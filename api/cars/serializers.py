@@ -6,8 +6,8 @@ from api.common.enums import Enum
 
 
 class CarSerializer(serializers.ModelSerializer):
-    damaged_parts = MultipleChoiceField(choices=Enum.DAMAGED_PARTS)
-    initial_impact = MultipleChoiceField(choices=Enum.INITIAL_IMPACT)
+    damaged_parts = MultipleChoiceField(choices=Enum.DAMAGED_PARTS, required=False)
+    initial_impact = MultipleChoiceField(choices=Enum.INITIAL_IMPACT, required=False)
 
     class Meta:
         model = Car

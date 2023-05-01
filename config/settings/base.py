@@ -29,8 +29,6 @@ SECRET_KEY = 'django-insecure-ex741egtee5r)6bs@r6%v^ryz*95xa_*!y05r2s2@h=goy9y(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,12 +43,16 @@ INSTALLED_APPS = [
     'api.crashes.apps.CrashesConfig',
     'api.cars.apps.CarsConfig',
     'api.drivers.apps.DriversConfig',
-    'multiselectfield'
+    'api.common.apps.CommonConfig',
+    'multiselectfield',
+    # CORS
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

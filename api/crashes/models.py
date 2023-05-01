@@ -3,6 +3,8 @@ import string
 
 from django.db import models
 
+from api.common.models.base import RevisionModel
+
 
 def generate_unique_code():
     length = 5
@@ -14,7 +16,7 @@ def generate_unique_code():
     return session_id
 
 
-class Crash(models.Model):
+class Crash(RevisionModel):
     created_at = models.DateTimeField(auto_now_add=True)
     session_id = models.CharField(max_length=8, default=generate_unique_code, unique=True, null=True)
     closed = models.BooleanField(default=False)

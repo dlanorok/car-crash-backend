@@ -1,7 +1,9 @@
 from django.db import models
 
+from api.common.models.base import RevisionModel
 
-class Driver(models.Model):
+
+class Driver(RevisionModel):
     name = models.CharField(max_length=128, blank=True)
     surname = models.CharField(max_length=128, blank=True)
     email = models.CharField(max_length=128, blank=True)
