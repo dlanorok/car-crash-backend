@@ -12,7 +12,6 @@ class CarsViewSet(mixins.CreateModelMixin,
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
-
     def perform_create(self, serializer):
         # Create session
         if not self.request.session.exists(self.request.session.session_key):
