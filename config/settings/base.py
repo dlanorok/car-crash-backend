@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'api.crashes.apps.CrashesConfig',
     'api.cars.apps.CarsConfig',
     'api.policy_holders.apps.PolicyHolderConfig',
+    'api.insurances.apps.InsuranceConfig',
+    'api.drivers.apps.DriverConfig',
     'api.common.apps.CommonConfig',
     'multiselectfield',
     # CORS

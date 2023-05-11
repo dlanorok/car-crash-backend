@@ -10,7 +10,9 @@ class Car(RevisionModel):
     crash = models.ForeignKey(Crash, on_delete=models.CASCADE, related_name='cars')
     creator = models.CharField(max_length=128, blank=True)  # session_id
 
+    car_type = models.CharField(max_length=128, blank=True)
     make_type = models.CharField(max_length=128, blank=True)
+    registration_country = models.CharField(max_length=8, blank=True)
     registration_plate = models.CharField(max_length=8, blank=True)
 
     damaged_parts = MultiSelectField(choices=Enum.DAMAGED_PARTS, max_length=3, blank=True)
