@@ -12,10 +12,7 @@ class CrashViewSet(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
     queryset = Crash.objects.all()
     serializer_class = CrashSerializer
-
-    def list(self, request, *args, **kwargs):
-        print("IP Address for debug-toolbar: " + request.META['REMOTE_ADDR'])
-        return super(CrashViewSet, self).list(request)
+    lookup_field = 'session_id'
 
     def get_serializer_class(self):
         if self.action == 'create':

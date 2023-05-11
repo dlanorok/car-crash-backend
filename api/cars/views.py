@@ -2,13 +2,17 @@ from rest_framework import viewsets, mixins
 
 from api.cars.models import Car
 from api.cars.serializers import CarSerializer
+from api.common.views.session_view import SessionView
 
 
-class CarsViewSet(mixins.CreateModelMixin,
+class CarsViewSet(
+                  SessionView,
+                  mixins.CreateModelMixin,
                   mixins.RetrieveModelMixin,
                   mixins.ListModelMixin,
                   mixins.UpdateModelMixin,
-                  viewsets.GenericViewSet):
+                  mixins.DestroyModelMixin,
+                  viewsets.GenericViewSet,):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
@@ -20,3 +24,6 @@ class CarsViewSet(mixins.CreateModelMixin,
         serializer.validated_data['creator'] = self.request.session.session_key
 
         return super().perform_create(serializer)
+
+    def get_by_session(self, session_id):
+        return Car.objects.select_related('crash').filter(crash__session_id=session_id[1])

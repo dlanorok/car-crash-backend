@@ -1,11 +1,11 @@
 import factory
 
-from api.drivers.models import Driver
+from api.policy_holders.models import PolicyHolder
 
 
-class DriverFactory(factory.django.DjangoModelFactory):
+class PolicyHolderFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = Driver
+        model = PolicyHolder
 
     name = factory.Faker('first_name')
     surname = factory.Faker('last_name')

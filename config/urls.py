@@ -19,12 +19,12 @@ from django.urls import path, include
 from rest_framework import routers
 from api.crashes.urls import router as crash_router
 from api.cars.urls import router as car_router
-from api.drivers.urls import router as driver_router
+from api.policy_holders.urls import router as policy_holder_router
 
 router = routers.DefaultRouter()
 router.registry.extend(crash_router.registry)
 router.registry.extend(car_router.registry)
-router.registry.extend(driver_router.registry)
+router.registry.extend(policy_holder_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

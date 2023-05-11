@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.crashes.apps.CrashesConfig',
     'api.cars.apps.CarsConfig',
-    'api.drivers.apps.DriversConfig',
+    'api.policy_holders.apps.PolicyHolderConfig',
     'api.common.apps.CommonConfig',
     'multiselectfield',
     # CORS
