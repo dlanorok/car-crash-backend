@@ -32,5 +32,3 @@ class CrashViewSet(mixins.CreateModelMixin,
 
         headers = self.get_success_headers(serializer.data)
         return Response(self.serializer_class(crash).data, status=status.HTTP_201_CREATED, headers=headers)
-
-

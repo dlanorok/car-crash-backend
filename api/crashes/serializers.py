@@ -15,4 +15,4 @@ class CrashSerializer(serializers.ModelSerializer):
 class CreateCrashSerializer(serializers.ModelSerializer):
     class Meta:
         model = Crash
-        fields = []
+        fields = ['date_of_accident', 'country', 'place', 'injuries', 'vehicle_material_damage', 'other_material_damage']

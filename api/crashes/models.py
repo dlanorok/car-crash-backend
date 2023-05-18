@@ -21,6 +21,13 @@ class Crash(RevisionModel):
     session_id = models.CharField(max_length=8, default=generate_unique_code, unique=True, null=True)
     closed = models.BooleanField(default=False)
 
+    date_of_accident = models.DateTimeField()
+    country = models.CharField(max_length=256)
+    place = models.CharField(max_length=256)
+    injuries = models.BooleanField(default=False)
+    vehicle_material_damage = models.BooleanField(default=False)
+    other_material_damage = models.BooleanField(default=False)
+
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         # If crash was sent and closed, free session_id
