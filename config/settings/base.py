@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api.policy_holders.apps.PolicyHolderConfig',
     'api.insurances.apps.InsuranceConfig',
     'api.drivers.apps.DriverConfig',
+    'api.circumstances.apps.CircumstancesConfig',
     'api.common.apps.CommonConfig',
     'multiselectfield',
     # CORS

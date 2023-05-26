@@ -12,4 +12,4 @@ class Driver(RevisionModel):
     driving_licence_valid_from = models.DateTimeField(null=True)
     driving_licence_valid_to = models.DateTimeField(null=True)
 
-    car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='drivers')
+    car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='driver')

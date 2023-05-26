@@ -22,6 +22,7 @@ from api.cars.urls import router as car_router
 from api.policy_holders.urls import router as policy_holder_router
 from api.insurances.urls import router as insurance_router
 from api.drivers.urls import router as driver_router
+from api.circumstances.urls import router as circumstance_router
 
 router = routers.DefaultRouter()
 router.registry.extend(crash_router.registry)
@@ -29,6 +30,7 @@ router.registry.extend(car_router.registry)
 router.registry.extend(policy_holder_router.registry)
 router.registry.extend(insurance_router.registry)
 router.registry.extend(driver_router.registry)
+router.registry.extend(circumstance_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

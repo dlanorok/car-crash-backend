@@ -15,5 +15,5 @@ class Car(RevisionModel):
     registration_country = models.CharField(max_length=256, blank=True)
     registration_plate = models.CharField(max_length=256, blank=True)
 
-    damaged_parts = MultiSelectField(choices=Enum.DAMAGED_PARTS, max_length=3, blank=True)
-    initial_impact = MultiSelectField(choices=Enum.INITIAL_IMPACT, max_length=3, blank=True)
+    damaged_parts = MultiSelectField(choices=Enum.DAMAGED_PARTS, max_length=20, blank=True)
+    initial_impact = MultiSelectField(choices=Enum.INITIAL_IMPACT, max_length=20, blank=True)

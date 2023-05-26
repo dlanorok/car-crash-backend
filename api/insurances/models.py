@@ -12,4 +12,4 @@ class Insurance(RevisionModel):
     valid_until = models.DateTimeField(null=True, blank=True)
     damage_insured = models.BooleanField(null=True, blank=True)
 
-    car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='insurances')
+    car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='insurance')
