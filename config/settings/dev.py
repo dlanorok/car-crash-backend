@@ -19,3 +19,6 @@ MIDDLEWARE.append(
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/')

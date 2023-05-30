@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -23,6 +24,7 @@ from api.policy_holders.urls import router as policy_holder_router
 from api.insurances.urls import router as insurance_router
 from api.drivers.urls import router as driver_router
 from api.circumstances.urls import router as circumstance_router
+from api.files.urls import router as file_router
 
 router = routers.DefaultRouter()
 router.registry.extend(crash_router.registry)
@@ -31,6 +33,7 @@ router.registry.extend(policy_holder_router.registry)
 router.registry.extend(insurance_router.registry)
 router.registry.extend(driver_router.registry)
 router.registry.extend(circumstance_router.registry)
+router.registry.extend(file_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,3 +43,4 @@ urlpatterns = [
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
