@@ -20,13 +20,14 @@ class Crash(RevisionModel):
     created_at = models.DateTimeField(auto_now_add=True)
     session_id = models.CharField(max_length=8, default=generate_unique_code, unique=True, null=True)
     closed = models.BooleanField(default=False)
+    participants = models.IntegerField(default=2)
 
-    date_of_accident = models.DateTimeField()
-    country = models.CharField(max_length=256)
-    place = models.CharField(max_length=256)
-    injuries = models.BooleanField(default=False)
-    vehicle_material_damage = models.BooleanField(default=False)
-    other_material_damage = models.BooleanField(default=False)
+    date_of_accident = models.DateTimeField(null=True)
+    country = models.CharField(max_length=256, null=True)
+    place = models.CharField(max_length=256, null=True)
+    injuries = models.BooleanField(null=True)
+    vehicle_material_damage = models.BooleanField(null=True)
+    other_material_damage = models.BooleanField(null=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
