@@ -1,6 +1,7 @@
 from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 
+from api.cars.models import Car
 from api.crashes.models import Crash
 from api.crashes.serializers import CreateCrashSerializer, CrashSerializer
 
@@ -19,6 +20,17 @@ class CrashViewSet(mixins.CreateModelMixin,
             return CreateCrashSerializer
 
         return super().get_serializer_class()
+
+    def retrieve(self, request, *args, **kwargs):
+        crash = self.get_object()
+
+        # Create session
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+            Car(crash=crash, creator=self.request.session.session_key).save()
+
+        serializer = self.get_serializer(crash)
+        return Response(serializer.data)
 
     def perform_create(self, serializer):
         return serializer.save()

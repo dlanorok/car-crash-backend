@@ -1,6 +1,4 @@
 from rest_framework import viewsets, mixins
-from rest_framework.decorators import action
-from rest_framework.response import Response
 
 from api.cars.models import Car
 from api.cars.serializers import CarSerializer
@@ -14,7 +12,7 @@ class CarsViewSet(
                   mixins.ListModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
-                  viewsets.GenericViewSet,):
+                  viewsets.GenericViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
@@ -27,5 +25,9 @@ class CarsViewSet(
 
         return super().perform_create(serializer)
 
+    def perform_update(self, serializer):
+        # Todo check if you can update
+        return super().perform_update(serializer)
+
     def get_by_session(self, session_id):
-        return Car.objects.select_related('crash').filter(crash__session_id=session_id[1])
+        return Car.objects.select_related('crash').filter(crash__session_id=session_id)

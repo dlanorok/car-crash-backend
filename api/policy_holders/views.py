@@ -16,6 +16,6 @@ class PolicyHoldersViewSet(SessionView,
 
     def get_by_session(self, session_id):
         return PolicyHolder.objects.select_related('car').select_related('car__crash').filter(
-            car__crash__session_id=session_id[1]
+            car__crash__session_id=session_id
         )
 

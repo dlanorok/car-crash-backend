@@ -1,3 +1,5 @@
+from abc import ABC
+
 from rest_framework import serializers
 
 from api.common.models.base import RevisionModel
@@ -24,3 +26,9 @@ class CreateSerializerStateChange(serializers.ModelSerializer):
             validated_data['state'] = RevisionModel.State.PARTIAL
 
         return super().create(validated_data)
+
+
+class SmsSerializer(serializers.Serializer):
+    recipient = serializers.CharField(max_length=255)
+    content = serializers.CharField()
+

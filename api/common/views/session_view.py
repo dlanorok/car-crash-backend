@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+from api.common.helpers import get_session_id
 from api.crashes.models import Crash
 
 
@@ -9,9 +10,9 @@ class SessionView:
         pass
 
     def get_queryset(self):
-        session_id = self.request.META.get('HTTP_X_SESSION', '').split()
+        session_id = get_session_id(self.request)
 
-        if session_id and len(session_id) > 1:
+        if session_id:
             return self.get_by_session(session_id)
 
         return []
