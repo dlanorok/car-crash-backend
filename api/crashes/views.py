@@ -1,25 +1,18 @@
-from rest_framework import viewsets, mixins, status
+from rest_framework import mixins
 from rest_framework.response import Response
 
 from api.cars.models import Car
+from api.common.views.event_view import EventView, model_event
 from api.crashes.models import Crash
-from api.crashes.serializers import CreateCrashSerializer, CrashSerializer
+from api.crashes.serializers import CrashSerializer
 
 
-class CrashViewSet(mixins.CreateModelMixin,
-                   mixins.RetrieveModelMixin,
+class CrashViewSet(mixins.RetrieveModelMixin,
                    mixins.ListModelMixin,
-                   mixins.UpdateModelMixin,
-                   viewsets.GenericViewSet):
+                   EventView):
     queryset = Crash.objects.all()
     serializer_class = CrashSerializer
     lookup_field = 'session_id'
-
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return CreateCrashSerializer
-
-        return super().get_serializer_class()
 
     def retrieve(self, request, *args, **kwargs):
         crash = self.get_object()
@@ -27,20 +20,23 @@ class CrashViewSet(mixins.CreateModelMixin,
         # Create session
         if not self.request.session.exists(self.request.session.session_key):
             self.request.session.create()
-            Car(crash=crash, creator=self.request.session.session_key).save()
+            car = Car(crash=crash, creator=self.request.session.session_key)
+            car.save()
+            model_event.send(
+                sender=self,
+                instance=car,
+                sender_id=self.request.session.session_key,
+                event_type='model_create'
+            )
 
         serializer = self.get_serializer(crash)
         return Response(serializer.data)
 
     def perform_create(self, serializer):
-        return serializer.save()
+        # Create session
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.validated_data['creator'] = self.request.session.session_key
 
-        # Map to new serializer
-        crash = self.perform_create(serializer)
-
-        headers = self.get_success_headers(serializer.data)
-        return Response(self.serializer_class(crash).data, status=status.HTTP_201_CREATED, headers=headers)
+        return super().perform_create(serializer)

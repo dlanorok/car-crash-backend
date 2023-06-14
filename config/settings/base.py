@@ -35,6 +35,8 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'api.common.apps.CommonConfig',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,10 +51,9 @@ INSTALLED_APPS = [
     'api.drivers.apps.DriverConfig',
     'api.circumstances.apps.CircumstancesConfig',
     'api.files.apps.FilesConfig',
-    'api.common.apps.CommonConfig',
     'multiselectfield',
     # CORS
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,14 @@ TWILIO_ACCOUNT_SID = 'ACdc6bda759305c9b022dc0e2f424efe29'
 TWILIO_AUTH_TOKEN = '385593dbb950850b2a3d0d66ea0d93f7'
 TWILIO_DEFAULT_CALLERID = '+447588721572'
 SMS_MANAGER = TwilioSmsManager(TWILIO_DEFAULT_CALLERID, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+ASGI_APPLICATION = "config.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}

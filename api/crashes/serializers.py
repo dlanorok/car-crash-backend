@@ -1,8 +1,6 @@
-from django.db.models import Model
 from rest_framework import serializers
 
 from api.cars.models import Car
-from api.common.helpers import get_session_id
 from api.common.models.base import RevisionModel
 from api.common.serializer import ValidationSerializer, UpdateSerializerStateChange
 from api.crashes.models import Crash
@@ -15,6 +13,7 @@ class CrashSerializer(ValidationSerializer, UpdateSerializerStateChange):
     class Meta:
         model = Crash
         fields = '__all__'
+        read_only_fields = ['session_id', 'closed', 'revision', 'creator']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -25,8 +24,9 @@ class CrashSerializer(ValidationSerializer, UpdateSerializerStateChange):
             return representation
 
         session_key = request.session.session_key
+
         if session_key:
-            cars = Car.objects.filter(creator=session_key, crash__session_id=get_session_id(self.context['request']))
+            cars = Car.objects.filter(creator=session_key, crash__session_id=instance.session_id)
             representation['my_cars'] = [car.id for car in cars]
 
         return representation

@@ -8,7 +8,7 @@ from api.crashes.models import Crash
 
 class Car(RevisionModel):
     crash = models.ForeignKey(Crash, on_delete=models.CASCADE, related_name='cars')
-    creator = models.CharField(max_length=128, blank=True)  # session_id
+    creator = models.CharField(max_length=128, blank=True)
     participants_count = models.IntegerField(default=2)
 
     car_type = models.CharField(max_length=128, blank=True)

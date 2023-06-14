@@ -21,6 +21,7 @@ class Crash(RevisionModel):
     session_id = models.CharField(max_length=8, default=generate_unique_code, unique=True, null=True)
     closed = models.BooleanField(default=False)
     participants = models.IntegerField(default=2)
+    creator = models.CharField(max_length=128, blank=True)
 
     date_of_accident = models.DateTimeField(null=True)
     country = models.CharField(max_length=256, null=True)

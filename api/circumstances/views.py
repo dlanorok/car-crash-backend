@@ -1,16 +1,15 @@
-from rest_framework import viewsets, mixins
+from rest_framework import mixins
 
 from api.circumstances.models import Circumstance
 from api.circumstances.serializers import CircumstanceSerializer
+from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 
 
 class CircumstancesViewSet(SessionView,
-                           mixins.CreateModelMixin,
                            mixins.RetrieveModelMixin,
                            mixins.ListModelMixin,
-                           mixins.UpdateModelMixin,
-                           viewsets.GenericViewSet):
+                           EventView):
     queryset = Circumstance.objects.all()
     serializer_class = CircumstanceSerializer
 

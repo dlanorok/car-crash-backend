@@ -2,17 +2,15 @@ from rest_framework import viewsets, mixins
 
 from api.cars.models import Car
 from api.cars.serializers import CarSerializer
+from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 
 
-class CarsViewSet(
-                  SessionView,
-                  mixins.CreateModelMixin,
+class CarsViewSet(SessionView,
                   mixins.RetrieveModelMixin,
                   mixins.ListModelMixin,
-                  mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
-                  viewsets.GenericViewSet):
+                  EventView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 

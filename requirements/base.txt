@@ -4,3 +4,5 @@ django-multiselectfield==0.1.12
 django-cors-headers
 django-debug-toolbar==3.8.1
 twilio
+channels[daphne]
+channels_redis

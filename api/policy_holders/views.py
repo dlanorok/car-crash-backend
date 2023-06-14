@@ -1,16 +1,15 @@
-from rest_framework import viewsets, mixins
+from rest_framework import mixins
 
+from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 from api.policy_holders.models import PolicyHolder
 from api.policy_holders.serializers import PolicyHolderSerializer
 
 
 class PolicyHoldersViewSet(SessionView,
-                           mixins.CreateModelMixin,
                            mixins.RetrieveModelMixin,
                            mixins.ListModelMixin,
-                           mixins.UpdateModelMixin,
-                           viewsets.GenericViewSet):
+                           EventView):
     queryset = PolicyHolder.objects.all()
     serializer_class = PolicyHolderSerializer
 
