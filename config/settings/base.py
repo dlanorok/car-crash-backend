@@ -160,3 +160,19 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',  # Set the desired log level (e.g., DEBUG, INFO, WARNING)
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}

@@ -2,6 +2,7 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.dispatch import receiver
 
+from api.cars.serializers import CarSerializer
 from api.circumstances.serializers import CircumstanceSerializer
 from api.common.views.event_view import model_event
 from api.crashes.serializers import CrashSerializer
@@ -33,7 +34,7 @@ def send_model_event(sender, instance, **kwargs):
     elif model_name == 'Car':
         _send_model_update(
             instance.crash.session_id,
-            CrashSerializer(instance).data,
+            CarSerializer(instance).data,
             kwargs['sender_id'],
             model_name,
             type

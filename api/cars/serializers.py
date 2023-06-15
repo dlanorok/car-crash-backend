@@ -24,3 +24,9 @@ class CarSerializer(ValidationSerializer):
     def validate(self, attrs):
         return attrs
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['damaged_parts'] = list(representation['damaged_parts'])
+        representation['initial_impact'] = list(representation['initial_impact'])
+        return representation
+
