@@ -22,3 +22,5 @@ INTERNAL_IPS = [
 
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '/')
+
+ALLOWED_HOSTS = ['*']
