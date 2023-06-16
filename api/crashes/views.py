@@ -17,8 +17,17 @@ class CrashViewSet(mixins.RetrieveModelMixin,
     def retrieve(self, request, *args, **kwargs):
         crash = self.get_object()
 
+        create_car = True
+
+        # Check session
+        if self.request.session.exists(self.request.session.session_key):
+            if Car.objects.filter(creator=self.request.session.session_key, crash__session_id=crash.session_id).count() == 0:
+                create_car = True
+            else:
+                create_car = False
+
         # Create session
-        if not self.request.session.exists(self.request.session.session_key):
+        if create_car:
             self.request.session.create()
             car = Car(crash=crash, creator=self.request.session.session_key)
             car.save()
