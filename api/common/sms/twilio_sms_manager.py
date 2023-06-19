@@ -5,10 +5,9 @@ from rest_framework.response import Response
 
 class TwilioSmsManager(SmsManagerInterface):
 
-    def __init__(self, from_number, account_sid, auth_token):
+    def __init__(self, api_key, api_key_secret, account_sid, from_number):
         super().__init__(from_number)
-        self.client = Client(account_sid, auth_token)
-        self.client = Client(account_sid, auth_token)
+        self.client = Client(api_key, api_key_secret, account_sid)
 
     def send_sms(self, to_phone_number, content):
         try:
