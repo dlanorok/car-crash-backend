@@ -16,6 +16,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from api.common.sms.twilio_sms_manager import TwilioSmsManager
 
+import dotenv
+dotenv.load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -145,9 +148,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_HTTPONLY = False
 
 
-TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
-TWILIO_API_KEY = os.environ['TWILIO_AUTH_TOKEN']
-TWILIO_API_KEY_SECRET = os.environ['TWILIO_API_KEY_SECRET']
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+TWILIO_API_KEY = os.environ.get('TWILIO_AUTH_TOKEN')
+TWILIO_API_KEY_SECRET = os.environ.get('TWILIO_API_KEY_SECRET')
 TWILIO_DEFAULT_CALLER_ID = '+447588721572'
 
 SMS_MANAGER = TwilioSmsManager(TWILIO_API_KEY, TWILIO_API_KEY_SECRET, TWILIO_ACCOUNT_SID, TWILIO_DEFAULT_CALLER_ID)
