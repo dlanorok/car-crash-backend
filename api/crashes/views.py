@@ -5,6 +5,7 @@ from api.cars.models import Car
 from api.common.views.event_view import EventView, model_event
 from api.crashes.models import Crash
 from api.crashes.serializers import CrashSerializer
+from api.sketches.models import Sketch
 
 
 class CrashViewSet(mixins.RetrieveModelMixin,
@@ -48,4 +49,6 @@ class CrashViewSet(mixins.RetrieveModelMixin,
 
         serializer.validated_data['creator'] = self.request.session.session_key
 
-        return super().perform_create(serializer)
+        instance = super().perform_create(serializer)
+
+        Sketch(creator=self.request.session.session_key, crash=instance).save()

@@ -26,6 +26,7 @@ from api.drivers.urls import router as driver_router
 from api.circumstances.urls import router as circumstance_router
 from api.files.urls import router as file_router
 from api.common.urls import router as common_router
+from api.sketches.urls import router as sketch_router
 
 router = routers.DefaultRouter()
 router.registry.extend(crash_router.registry)
@@ -36,6 +37,7 @@ router.registry.extend(driver_router.registry)
 router.registry.extend(circumstance_router.registry)
 router.registry.extend(file_router.registry)
 router.registry.extend(common_router.registry)
+router.registry.extend(sketch_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

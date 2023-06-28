@@ -37,5 +37,3 @@ class Crash(RevisionModel):
             self.session_id = None
 
         super().save(force_insert, force_update, using, update_fields)
-
-
