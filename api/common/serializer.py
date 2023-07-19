@@ -10,14 +10,6 @@ class ValidationSerializer(serializers.ModelSerializer):
         return self.initial_data.get('validate', False)
 
 
-class UpdateSerializerStateChange(serializers.ModelSerializer):
-    def update(self, instance, validated_data):
-        if validated_data['state'] is not RevisionModel.State.VALIDATED:
-            validated_data['state'] = RevisionModel.State.PARTIAL
-
-        return super().update(instance, validated_data)
-
-
 class CreateSerializerStateChange(serializers.ModelSerializer):
     def create(self, validated_data):
         if validated_data.get('state', RevisionModel.State.EMPTY) is not RevisionModel.State.VALIDATED:
