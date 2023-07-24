@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'api.circumstances.apps.CircumstancesConfig',
     'api.sketches.apps.SketchesConfig',
     'api.files.apps.FilesConfig',
+    'api.questionnaires.apps.QuestionnairesConfig',
     'multiselectfield',
     # CORS
     'corsheaders',
