@@ -63,7 +63,7 @@ class Question(str, Enum):
   COLLISION_DIRECTION = _('Collision direction')
   DAMAGED_PARTS = _('Damaged parts')
 
-class PlaceHolder:
+class PlaceHolder(str, Enum):
   STREET = _('Miklošičeva 21')
 
 class Label(str, Enum):
