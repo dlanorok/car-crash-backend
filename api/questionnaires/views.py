@@ -1,6 +1,3 @@
-import json
-import os
-
 from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -45,7 +42,6 @@ class QuestionnaireViewSet(SessionView,
             questionnaire.crash = self.get_crash_from_session()
             questionnaire.save()
             serializer = QuestionnaireSerializer([questionnaire], many=True)
-
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
