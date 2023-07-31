@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 10:49+0200\n"
+"POT-Creation-Date: 2023-07-31 11:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,199 +75,197 @@ msgid "Damaged parts"
 msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:67
+msgid "Miklošičeva 21"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:70
 msgid "Call 112"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:68
+#: .\api\questionnaires\data\questionnaire.py:71
 msgid "We are OK"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:69
-#: .\api\questionnaires\data\questionnaire.py:873
+#: .\api\questionnaires\data\questionnaire.py:72
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:715
 msgid "Yes"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:70
-#: .\api\questionnaires\data\questionnaire.py:881
+#: .\api\questionnaires\data\questionnaire.py:73
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:716
 msgid "No"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:73
+#: .\api\questionnaires\data\questionnaire.py:76
 msgid "My vehicle was parked"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:74
+#: .\api\questionnaires\data\questionnaire.py:77
 msgid "I was parking or entering into traffic"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:75
+#: .\api\questionnaires\data\questionnaire.py:78
 msgid "I was in a roundabout"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:76
+#: .\api\questionnaires\data\questionnaire.py:79
 msgid "I was at a crossing"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:77
+#: .\api\questionnaires\data\questionnaire.py:80
 msgid "I was driving straight"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:80
+#: .\api\questionnaires\data\questionnaire.py:83
 msgid "I was leaving car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:81
+#: .\api\questionnaires\data\questionnaire.py:84
 msgid "I was entering car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:82
+#: .\api\questionnaires\data\questionnaire.py:85
 msgid "I was not by the car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:84
+#: .\api\questionnaires\data\questionnaire.py:87
 msgid "I was leaving parking slot"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:85
+#: .\api\questionnaires\data\questionnaire.py:88
 msgid "I was parking my car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:86
+#: .\api\questionnaires\data\questionnaire.py:89
 msgid "I was merging into traffic from private property"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:87
+#: .\api\questionnaires\data\questionnaire.py:90
 msgid "I was turning to private property"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:89
+#: .\api\questionnaires\data\questionnaire.py:92
 msgid "I was entering roundabout"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:90
+#: .\api\questionnaires\data\questionnaire.py:93
 msgid "I run into vehicle in front"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:91
-#: .\api\questionnaires\data\questionnaire.py:101
+#: .\api\questionnaires\data\questionnaire.py:94
+#: .\api\questionnaires\data\questionnaire.py:104
 msgid "Another vehicle crashed into me from behind"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:92
+#: .\api\questionnaires\data\questionnaire.py:95
 msgid "Crashed with another vehicle from another traffic lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:93
+#: .\api\questionnaires\data\questionnaire.py:96
 msgid "I was changing traffic lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:95
+#: .\api\questionnaires\data\questionnaire.py:98
 msgid ""
 "I was standing in front of merging into traffic or in front of a traffic "
 "light"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:96
+#: .\api\questionnaires\data\questionnaire.py:99
 msgid "I was driving straight through the crossing"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:97
+#: .\api\questionnaires\data\questionnaire.py:100
 msgid "I was turning right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:98
+#: .\api\questionnaires\data\questionnaire.py:101
 msgid "I was turning left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:100
+#: .\api\questionnaires\data\questionnaire.py:103
 msgid "Crashed with vehicle driving in front of me"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:102
+#: .\api\questionnaires\data\questionnaire.py:105
 msgid "Crashed with vehicle driving in the same direction, but another lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:103
+#: .\api\questionnaires\data\questionnaire.py:106
 msgid "Changing lanes"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:104
+#: .\api\questionnaires\data\questionnaire.py:107
 msgid "Overtaking another vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:105
-#: .\api\questionnaires\data\questionnaire.py:113
+#: .\api\questionnaires\data\questionnaire.py:108
+#: .\api\questionnaires\data\questionnaire.py:116
 msgid "Driving reverse"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:106
+#: .\api\questionnaires\data\questionnaire.py:109
 msgid "Driving on a lane from opposite direction"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:109
+#: .\api\questionnaires\data\questionnaire.py:112
 msgid "Doors were closed"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:110
+#: .\api\questionnaires\data\questionnaire.py:113
 msgid "Doors were opened"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:112
+#: .\api\questionnaires\data\questionnaire.py:115
 msgid "Driving straight"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:115
+#: .\api\questionnaires\data\questionnaire.py:118
 msgid "Turning right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:116
+#: .\api\questionnaires\data\questionnaire.py:119
 msgid "Turning left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:118
+#: .\api\questionnaires\data\questionnaire.py:121
 msgid "On right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:119
+#: .\api\questionnaires\data\questionnaire.py:122
 msgid "On left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:121
+#: .\api\questionnaires\data\questionnaire.py:124
 msgid "Changed lane to right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:122
+#: .\api\questionnaires\data\questionnaire.py:125
 msgid "Changed lane to left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:123
+#: .\api\questionnaires\data\questionnaire.py:126
 msgid "I entered crossing from right relative to the other vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:124
+#: .\api\questionnaires\data\questionnaire.py:127
 msgid "Didn't follow the right-of-way signs or the red light"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:126
+#: .\api\questionnaires\data\questionnaire.py:129
 msgid "Casco insurance/parked vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:127
+#: .\api\questionnaires\data\questionnaire.py:130
 msgid "2 vehicles"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:128
+#: .\api\questionnaires\data\questionnaire.py:131
 msgid "3 or more"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:898
-msgid "Miklošičeva cesta 10"
 msgstr ""
 
 #: .\venv3.9\Lib\site-packages\_pytest\config\argparsing.py:474

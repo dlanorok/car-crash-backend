@@ -63,6 +63,9 @@ class Question(str, Enum):
   COLLISION_DIRECTION = _('Collision direction')
   DAMAGED_PARTS = _('Damaged parts')
 
+class PlaceHolder:
+  STREET = _('Miklošičeva 21')
+
 class Label(str, Enum):
   CALL_112 = _('Call 112')
   WE_ARE_OK = _('We are OK')
@@ -870,7 +873,7 @@ QUESTIONNAIRE = {
       "options": [
         {
           "value": True,
-          "label": _("Yes"),
+          "label": Label.YES,
           "action": Action.NEXT_STEP,
           "action_property": {
             "step": Step.ACCIDENT_PLACE
@@ -878,7 +881,7 @@ QUESTIONNAIRE = {
         },
         {
           "value": False,
-          "label": _("No"),
+          "label": Label.NO,
           "action": Action.NEXT_STEP,
           "action_property": {
             "step": Step.ACCIDENT_PLACE_TEXT
@@ -895,7 +898,7 @@ QUESTIONNAIRE = {
     {
       "id": 10,
       "type": "text",
-      "placeholder": _("Miklošičeva cesta 10"),
+      "placeholder": PlaceHolder.STREET,
       "value": None,
       "required": True
     },

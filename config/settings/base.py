@@ -39,7 +39,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'api.common.apps.CommonConfig',
+    # 'api.common.apps.CommonConfig',
     'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
