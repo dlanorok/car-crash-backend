@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 10:00+0200\n"
+"POT-Creation-Date: 2023-07-31 10:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\api\questionnaires\data\questionnaire.py:49
-#: .\api\questionnaires\views.py:24
 msgid "Starting questions"
 msgstr "Starting questions"
 
@@ -84,6 +83,7 @@ msgid "We are OK"
 msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:69
+#: .\api\questionnaires\data\questionnaire.py:873
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:715
@@ -91,6 +91,7 @@ msgid "Yes"
 msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:70
+#: .\api\questionnaires\data\questionnaire.py:881
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:716
@@ -263,6 +264,10 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:128
 msgid "3 or more"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:898
+msgid "Miklošičeva cesta 10"
 msgstr ""
 
 #: .\venv3.9\Lib\site-packages\_pytest\config\argparsing.py:474

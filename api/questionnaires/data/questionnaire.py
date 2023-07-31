@@ -870,7 +870,7 @@ QUESTIONNAIRE = {
       "options": [
         {
           "value": True,
-          "label": "Da",
+          "label": _("Yes"),
           "action": Action.NEXT_STEP,
           "action_property": {
             "step": Step.ACCIDENT_PLACE
@@ -878,7 +878,7 @@ QUESTIONNAIRE = {
         },
         {
           "value": False,
-          "label": "Ne",
+          "label": _("No"),
           "action": Action.NEXT_STEP,
           "action_property": {
             "step": Step.ACCIDENT_PLACE_TEXT
@@ -895,7 +895,7 @@ QUESTIONNAIRE = {
     {
       "id": 10,
       "type": "text",
-      "placeholder": "Miklošičeva cesta 10",
+      "placeholder": _("Miklošičeva cesta 10"),
       "value": None,
       "required": True
     },
