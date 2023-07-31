@@ -9,3 +9,4 @@ channels_redis
 python-dotenv
 jsonschema
 PyPDF2
+reportlab
