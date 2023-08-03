@@ -46,8 +46,8 @@ class Step(str, Enum):
   INSURANCE_NAME = "insurance_name"
   INSURANCE_NUMBER = 'insurance_number'
 
-  DRIVER_EMAIL = 'diver_email'
-  DRIVER_PHONE = 'driver_phone'
+  DRIVER_PERSONAL_DATA = 'driver_personal_data'
+  DRIVER_DATA = 'driver_data'
 
   WITNESSES = 'witnesses'
 
@@ -170,7 +170,7 @@ QUESTIONNAIRE = {
       "id": "driver",
       "name": Section.DRIVER,
       "state": "empty",
-      "starting_step": Step.DRIVER_EMAIL
+      "starting_step": Step.DRIVER_PERSONAL_DATA
     },
     {
       "id": "additional",
@@ -184,186 +184,186 @@ QUESTIONNAIRE = {
       "step_type": Step.INJURIES,
       "question": str(_('Is there anyone injured and needs medical attention?')),
       "next_step": Step.CAR_DAMAGE,
-      "input": 1,
+      "inputs": [1],
     },
     {
       "step_type": Step.CAR_DAMAGE,
       "question": str(_('Major property damage')),
       "next_step": Step.AT_ACCIDENT_PLACE,
-      "input": 2
+      "inputs": [2]
     },
     {
       "step_type": Step.AT_ACCIDENT_PLACE,
       "question": str(_('Are you at the place of the accident?')),
-      "input": 8
+      "inputs": [8]
     },
     {
       "step_type": Step.ACCIDENT_PLACE,
       "question": str(_('The place of the accident')),
       "next_step": Step.ACCIDENT_TIME,
-      "input": 9,
+      "inputs": [9],
     },
     {
       "step_type": Step.ACCIDENT_PLACE_TEXT,
       "question": str(_('Write down where it happened')),
       "next_step": Step.ACCIDENT_TIME,
-      "input": 10,
+      "inputs": [10],
     },
     {
       "step_type": Step.ACCIDENT_TIME,
       "question": str(_('Time of the accident')),
       "next_step": Step.PARTICIPANTS_NUMBER,
-      "input": 7,
+      "inputs": [7],
     },
     {
       "step_type": Step.PARTICIPANTS_NUMBER,
       "question": str(_('Number of participants')),
-      "input": 4
+      "inputs": [4]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_1,
       "question": str(_('Choose option that suits you the best')),
-      "input": 3
+      "inputs": [3]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_PARKED,
       "question": str(_('Choose option that suits you the best')),
-      "input": 5
+      "inputs": [5]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING,
       "question": str(_('Choose option that suits you the best')),
-      "input": 6
+      "inputs": [6]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_ROUNDABOUT,
       "question": str(_('Choose option that suits you the best')),
-      "input": 11
+      "inputs": [11]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_CROSSING,
       "question": str(_('Choose option that suits you the best')),
-      "input": 12
+      "inputs": [12]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD,
       "question": str(_('Choose option that suits you the best')),
-      "input": 13
+      "inputs": [13]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR,
       "question": str(_('Choose option that suits you the best')),
-      "input": 14
+      "inputs": [14]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR,
       "question": str(_('Choose option that suits you the best')),
-      "input": 15
+      "inputs": [15]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING,
       "question": str(_('Choose option that suits you the best')),
-      "input": 16
+      "inputs": [16]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKING,
       "question": str(_('Choose option that suits you the best')),
-      "input": 17
+      "inputs": [17]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
-      "input": 18
+      "inputs": [18]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
-      "input": 19
+      "inputs": [19]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
-      "input": 20
+      "inputs": [20]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
-      "input": 21
+      "inputs": [21]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT,
       "question": str(_('Choose option that suits you the best')),
-      "input": 22
+      "inputs": [22]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT,
       "question": str(_('Choose option that suits you the best')),
-      "input": 23
+      "inputs": [23]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT,
       "question": str(_('Choose option that suits you the best')),
-      "input": 24
+      "inputs": [24]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
-      "input": 25
+      "inputs": [25]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
-      "input": 26
+      "inputs": [26]
     },
     {
       "step_type": Step.COLLISION_DIRECTION,
       "question": str(_('Collision direction')),
       "next_step": Step.DAMAGED_PARTS,
-      "input": 27
+      "inputs": [27]
     },
     {
       "step_type": Step.DAMAGED_PARTS,
       "question": str(_('Damaged parts')),
-      "input": 28
+      "inputs": [28]
     },
     {
       "step_type": Step.REGISTRATION_NUMBER,
       "question": str(_('Registration Number')),
       "next_step": Step.REGISTRATION_COUNTRY,
-      "input": 29,
+      "inputs": [29],
     },
     {
       "step_type": Step.REGISTRATION_COUNTRY,
       "question": str(_('Registration Country')),
       "next_step": Step.INSURANCE_NAME,
-      "input": 30,
+      "inputs": [30],
     },
     {
       "step_type": Step.INSURANCE_NAME,
       "question": str(_('Insurance name')),
       "next_step": Step.INSURANCE_NUMBER,
-      "input": 31,
+      "inputs": [31],
     },
     {
       "step_type": Step.INSURANCE_NUMBER,
       "question": str(_('Insurance number')),
-      "input": 32,
+      "inputs": [32],
     },
     {
-      "step_type": Step.DRIVER_EMAIL,
-      "next_step": Step.DRIVER_PHONE,
-      "question": str(_('Driver email')),
-      "input": 33,
-    },
-    {
-      "step_type": Step.DRIVER_PHONE,
-      "question": str(_('Driver phone')),
-      "input": 34,
+      "step_type": Step.DRIVER_PERSONAL_DATA,
+      "question": str(_('For data exchange purposes and contact with your insurance company we need your email and telephone number.')),
+      "next_step": Step.DRIVER_DATA,
+      "inputs": [33, 34],
     },
     {
       "step_type": Step.WITNESSES,
       "question": str(_('Write down data of anyone who saw the accident?')),
-      "input": 35,
+      "inputs": [35],
+    },
+    {
+      "step_type": Step.DRIVER_DATA,
+      "question": str(_('Please scan you driving license or choose to input by hand')),
+      "inputs": [36],
     },
   ],
   "inputs": [
@@ -978,6 +978,7 @@ QUESTIONNAIRE = {
     {
       "id": 29,
       "type": "text",
+      "label": _("Registration number"),
       "value": None,
       "required": True
     },
@@ -990,13 +991,14 @@ QUESTIONNAIRE = {
     {
       "id": 31,
       "type": "insurance_picker",
-      "options": supported_insurances,
+      "options": sorted(supported_insurances, key=lambda d: d['label']) ,
       "value": None,
       "required": True
     },
     {
       "id": 32,
       "type": "text",
+      "label": _("Insurance number"),
       "value": None,
       "required": True
     },
@@ -1011,6 +1013,7 @@ QUESTIONNAIRE = {
     {
       "id": 34,
       "type": "phone_picker",
+      "label": str(_("Phone number")),
       "value": None,
       "required": True
     },
@@ -1018,6 +1021,12 @@ QUESTIONNAIRE = {
       "id": 35,
       "type": "textarea",
       "label": str(_("Witnesses")),
+      "value": None,
+      "required": True
+    },
+    {
+      "id": 36,
+      "type": "driving_license",
       "value": None,
       "required": True
     },
