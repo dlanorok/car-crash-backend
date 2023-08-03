@@ -978,7 +978,7 @@ QUESTIONNAIRE = {
     {
       "id": 29,
       "type": "text",
-      "label": _("Registration number"),
+      "label": str(_("Registration number")),
       "value": None,
       "required": True
     },
@@ -998,7 +998,7 @@ QUESTIONNAIRE = {
     {
       "id": 32,
       "type": "text",
-      "label": _("Insurance number"),
+      "label": str(_("Insurance number")),
       "value": None,
       "required": True
     },
