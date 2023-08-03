@@ -317,36 +317,36 @@ QUESTIONNAIRE = {
     },
     {
       "step_type": Step.COLLISION_DIRECTION,
-      "question": str(_('Collision direction')),
+      "question": str(_('Choose Collision direction')),
       "next_step": Step.DAMAGED_PARTS,
       "inputs": [27]
     },
     {
       "step_type": Step.DAMAGED_PARTS,
-      "question": str(_('Damaged parts')),
+      "question": str(_('Choose damaged parts')),
       "inputs": [28]
     },
     {
       "step_type": Step.REGISTRATION_NUMBER,
-      "question": str(_('Registration Number')),
+      "question": str(_('Write down your registration number')),
       "next_step": Step.REGISTRATION_COUNTRY,
       "inputs": [29],
     },
     {
       "step_type": Step.REGISTRATION_COUNTRY,
-      "question": str(_('Registration Country')),
+      "question": str(_('Select your country')),
       "next_step": Step.INSURANCE_NAME,
       "inputs": [30],
     },
     {
       "step_type": Step.INSURANCE_NAME,
-      "question": str(_('Insurance name')),
+      "question": str(_('Select your insurance')),
       "next_step": Step.INSURANCE_NUMBER,
       "inputs": [31],
     },
     {
       "step_type": Step.INSURANCE_NUMBER,
-      "question": str(_('Insurance number')),
+      "question": str(_('Write down insurance number')),
       "inputs": [32],
     },
     {
