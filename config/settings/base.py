@@ -196,3 +196,5 @@ LANGUAGES = [
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale/')
 ]
+
+CSRF_COOKIE_SECURE = True

@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -43,5 +44,16 @@ class QuestionnaireViewSet(SessionView,
             questionnaire.save()
             serializer = QuestionnaireSerializer([questionnaire], many=True)
 
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['patch'])
+    def update_inputs(self, request, pk=None):
+        questionnaire = self.get_object()
+        for key, value in request.data.items():
+            index = next((i for i, item in enumerate(questionnaire.data['inputs']) if item["id"] == int(key)), None)
+            questionnaire.data['inputs'][index].update(value=value)
+
+        questionnaire.save()
+        serializer = QuestionnaireSerializer(questionnaire)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

@@ -26,13 +26,13 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        for id, section in enumerate(data.get('data').get('sections')):
+        for id, section in enumerate(data.get('data').get('sections', [])):
             data['data']['sections'][id]['name'] = _(section['name'])
 
-        for id, step in enumerate(data.get('data').get('steps')):
+        for id, step in enumerate(data.get('data').get('steps', [])):
             data['data']['steps'][id]['question'] = _(step['question'])
 
-        for id, input in enumerate(data.get('data').get('inputs')):
+        for id, input in enumerate(data.get('data').get('inputs', [])):
             data['data']['inputs'][id].update(placeholder=_(input.get('placeholder'))) if input.get('placeholder') else None
             for option_index, option in enumerate(input.get('options', [])):
                 data['data']['inputs'][id]['options'][option_index].update(
