@@ -32,17 +32,18 @@ class QuestionnaireViewSet(SessionView,
         if not crash_id:
             return Response(data='SessionId is missing', status=status.HTTP_400_BAD_REQUEST)
 
-        existing_questionnaires = Questionnaire.objects.filter(creator=session_key, crash__session_id=crash_id)
+        crash_questionnaires = Questionnaire.objects.filter(crash__session_id=crash_id)
+        my_questionnaires = list(filter(lambda questionnaire: questionnaire.creator == session_key, crash_questionnaires))
 
-        if existing_questionnaires:
-            serializer = QuestionnaireSerializer(existing_questionnaires, many=True)
+        if my_questionnaires:
+            serializer = QuestionnaireSerializer(crash_questionnaires, many=True)
         else:
             questionnaire = Questionnaire()
             questionnaire.creator = session_key
             questionnaire.data = QUESTIONNAIRE
             questionnaire.crash = self.get_crash_from_session()
             questionnaire.save()
-            serializer = QuestionnaireSerializer([questionnaire], many=True)
+            serializer = QuestionnaireSerializer(list(crash_questionnaires) + [questionnaire], many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
