@@ -372,6 +372,7 @@ QUESTIONNAIRE = {
       "type": "select",
       "value": None,
       "required": True,
+      "shared_input": True,
       "options": [
         {
           "value": True,
@@ -393,6 +394,7 @@ QUESTIONNAIRE = {
       "type": "select",
       "value": None,
       "required": True,
+      "shared_input": True,
       "options": [
         {
           "value": True,
@@ -459,6 +461,7 @@ QUESTIONNAIRE = {
       "type": "select",
       "required": True,
       "value": None,
+      "shared_input": True,
       "options": [
         {
           "value": 1,
@@ -924,13 +927,15 @@ QUESTIONNAIRE = {
       "id": 7,
       "type": "datetime",
       "value": None,
-      "required": True
+      "required": True,
+      "shared_input": True
     },
     {
       "id": 8,
       "type": "select",
       "value": None,
       "required": True,
+      "shared_input": True,
       "options": [
         {
           "value": True,
@@ -954,11 +959,13 @@ QUESTIONNAIRE = {
       "id": 9,
       "type": "place",
       "value": None,
-      "required": True
+      "required": True,
+      "shared_input": True
     },
     {
       "id": 10,
       "type": "text",
+      "shared_input": True,
       "placeholder": PlaceHolder.STREET,
       "value": None,
       "required": True

@@ -50,9 +50,22 @@ class QuestionnaireViewSet(SessionView,
     @action(detail=True, methods=['patch'])
     def update_inputs(self, request, pk=None):
         questionnaire = self.get_object()
+        shared_input_indexes = []
+
         for key, value in request.data.items():
             index = next((i for i, item in enumerate(questionnaire.data['inputs']) if item["id"] == int(key)), None)
             questionnaire.data['inputs'][index].update(value=value)
+            if questionnaire.data['inputs'][index].get("shared_input"):
+                shared_input_indexes.append(index)
+
+        if shared_input_indexes:
+            questionnaires = Questionnaire.objects.filter(crash=questionnaire.crash).exclude(id=questionnaire.id)
+            for _questionnaire in questionnaires:
+                for shared_input_index in shared_input_indexes:
+                    _questionnaire.data['inputs'][shared_input_index] = questionnaire.data['inputs'][shared_input_index]
+                serializer = QuestionnaireSerializer(_questionnaire, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                super().perform_update(serializer)
 
         serializer = QuestionnaireSerializer(questionnaire, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
