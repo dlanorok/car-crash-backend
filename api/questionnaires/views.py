@@ -54,7 +54,9 @@ class QuestionnaireViewSet(SessionView,
             index = next((i for i, item in enumerate(questionnaire.data['inputs']) if item["id"] == int(key)), None)
             questionnaire.data['inputs'][index].update(value=value)
 
-        questionnaire.save()
-        serializer = QuestionnaireSerializer(questionnaire)
+        serializer = QuestionnaireSerializer(questionnaire, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        super().perform_update(serializer)
+
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

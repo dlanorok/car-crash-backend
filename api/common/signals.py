@@ -9,6 +9,7 @@ from api.crashes.serializers import CrashSerializer
 from api.drivers.serializers import DriverSerializer
 from api.insurances.serializers import InsuranceSerializer
 from api.policy_holders.serializers import PolicyHolderSerializer
+from api.questionnaires.serializers import QuestionnaireSerializer
 from api.sketches.serializers import SketchSerializer
 
 car_serializers = {
@@ -52,6 +53,14 @@ def send_model_event(sender, instance, **kwargs):
         _send_model_update(
             instance.crash.session_id,
             SketchSerializer(instance).data,
+            kwargs['sender_id'],
+            model_name,
+            type
+        )
+    elif model_name == 'Questionnaire':
+        _send_model_update(
+            instance.crash.session_id,
+            QuestionnaireSerializer(instance).data,
             kwargs['sender_id'],
             model_name,
             type
