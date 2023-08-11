@@ -365,6 +365,12 @@ QUESTIONNAIRE = {
       "question": str(_('Please scan you driving license or choose to input by hand')),
       "inputs": [36],
     },
+    {
+      "step_type": Step.ACCIDENT_SKETCH,
+      "question": str(_('Sketch you accident')),
+      "data_from_input": 9,
+      "inputs": [37],
+    },
   ],
   "inputs": [
     {
@@ -542,6 +548,38 @@ QUESTIONNAIRE = {
           "action": Action.NEXT_STEP,
         }
       ]
+    },
+    {
+      "id": 8,
+      "type": "select",
+      "value": None,
+      "required": True,
+      "shared_input": True,
+      "options": [
+        {
+          "value": True,
+          "label": Label.YES,
+          "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.ACCIDENT_PLACE
+          }
+        },
+        {
+          "value": False,
+          "label": Label.NO,
+          "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.ACCIDENT_PLACE_TEXT
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "place",
+      "value": None,
+      "required": True,
+      "shared_input": True
     },
     {
       "id": 11,
@@ -931,38 +969,6 @@ QUESTIONNAIRE = {
       "shared_input": True
     },
     {
-      "id": 8,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "shared_input": True,
-      "options": [
-        {
-          "value": True,
-          "label": Label.YES,
-          "action": Action.NEXT_STEP,
-          "action_property": {
-            "step": Step.ACCIDENT_PLACE
-          }
-        },
-        {
-          "value": False,
-          "label": Label.NO,
-          "action": Action.NEXT_STEP,
-          "action_property": {
-            "step": Step.ACCIDENT_PLACE_TEXT
-          }
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "type": "place",
-      "value": None,
-      "required": True,
-      "shared_input": True
-    },
-    {
       "id": 10,
       "type": "text",
       "shared_input": True,
@@ -1034,6 +1040,13 @@ QUESTIONNAIRE = {
     {
       "id": 36,
       "type": "driving_license",
+      "value": None,
+      "required": True
+    },
+    {
+      "id": 37,
+      "shared_input": True,
+      "type": "sketch",
       "value": None,
       "required": True
     },

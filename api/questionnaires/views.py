@@ -36,16 +36,19 @@ class QuestionnaireViewSet(SessionView,
         my_questionnaires = list(filter(lambda questionnaire: questionnaire.creator == session_key, crash_questionnaires))
 
         if my_questionnaires:
-            serializer = QuestionnaireSerializer(crash_questionnaires, many=True)
+            serializer_many = QuestionnaireSerializer(crash_questionnaires, many=True)
         else:
-            questionnaire = Questionnaire()
-            questionnaire.creator = session_key
-            questionnaire.data = QUESTIONNAIRE
-            questionnaire.crash = self.get_crash_from_session()
-            questionnaire.save()
-            serializer = QuestionnaireSerializer(list(crash_questionnaires) + [questionnaire], many=True)
+            data = {
+                "creator": session_key,
+                "data": QUESTIONNAIRE,
+                "crash": self.get_crash_from_session().id
+            }
+            serializer = self.get_serializer(data=data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            serializer_many = QuestionnaireSerializer(list(crash_questionnaires) + [serializer.instance], many=True)
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(data=serializer_many.data, status=status.HTTP_200_OK)
 
     @action(detail=True, methods=['patch'])
     def update_inputs(self, request, pk=None):
