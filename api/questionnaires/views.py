@@ -1,4 +1,5 @@
-from django.views.decorators.csrf import csrf_exempt
+import copy
+
 from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -40,9 +41,15 @@ class QuestionnaireViewSet(SessionView,
         else:
             data = {
                 "creator": session_key,
-                "data": QUESTIONNAIRE,
+                "data": copy.deepcopy(QUESTIONNAIRE),
                 "crash": self.get_crash_from_session().id
             }
+
+            if len(crash_questionnaires) > 0:
+                data.get("data").update(sections=list(filter(lambda section: section.get("id") != "starting_questions",
+                                                             data.get("data").get("sections"))))
+                self.update_all_shared_inputs(data, crash_questionnaires.first())
+
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
@@ -75,4 +82,10 @@ class QuestionnaireViewSet(SessionView,
         super().perform_update(serializer)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+    def update_all_shared_inputs(self, questionnaire_data, questionnaire):
+        inputs = list(filter(lambda input: input.get("shared_input"), questionnaire.data.get("inputs")))
+        for input in inputs:
+            questionnaire_data.get("data").get("inputs")[input.get("id") - 1] = input
 
