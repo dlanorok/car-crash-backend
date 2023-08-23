@@ -1,8 +1,8 @@
 from enum import Enum
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
+from api.questionnaires.data.helpers import generate_circumstance_map
 from api.questionnaires.data.insurances import supported_insurances
-
 
 class Step(str, Enum):
   INJURIES = "injuries"
@@ -135,6 +135,7 @@ class Label(str, Enum):
 
 
 QUESTIONNAIRE = {
+  "car_arrow": "",
   "sections": [
     {
       "id": "starting_questions",
@@ -184,196 +185,215 @@ QUESTIONNAIRE = {
       "step_type": Step.INJURIES,
       "question": str(_('Is there anyone injured and needs medical attention?')),
       "next_step": Step.CAR_DAMAGE,
-      "inputs": [1],
+      "inputs": ["1"],
     },
     {
       "step_type": Step.CAR_DAMAGE,
       "question": str(_('Major property damage')),
       "next_step": Step.AT_ACCIDENT_PLACE,
-      "inputs": [2]
+      "inputs": ["2"]
     },
     {
       "step_type": Step.AT_ACCIDENT_PLACE,
       "question": str(_('Are you at the place of the accident?')),
-      "inputs": [8]
+      "inputs": ["8"]
     },
     {
       "step_type": Step.ACCIDENT_PLACE,
       "question": str(_('The place of the accident')),
       "next_step": Step.ACCIDENT_TIME,
-      "inputs": [9],
+      "inputs": ["9"],
     },
     {
       "step_type": Step.ACCIDENT_PLACE_TEXT,
       "question": str(_('Write down where it happened')),
       "next_step": Step.ACCIDENT_TIME,
-      "inputs": [10],
+      "inputs": ["10"],
     },
     {
       "step_type": Step.ACCIDENT_TIME,
       "question": str(_('Time of the accident')),
       "next_step": Step.PARTICIPANTS_NUMBER,
-      "inputs": [7],
+      "inputs": ["7"],
     },
     {
       "step_type": Step.PARTICIPANTS_NUMBER,
       "question": str(_('Number of participants')),
-      "inputs": [4]
+      "inputs": ["4"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_1,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [3]
+      "updated_inputs": ["37"],
+      "inputs": ["3"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_PARKED,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [5]
+      "updated_inputs": ["37"],
+      "inputs": ["5"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [6]
+      "updated_inputs": ["37"],
+      "inputs": ["6"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_ROUNDABOUT,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [11]
+      "updated_inputs": ["37"],
+      "inputs": ["11"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_CROSSING,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [12]
+      "updated_inputs": ["37"],
+      "inputs": ["12"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [13]
+      "updated_inputs": ["37"],
+      "inputs": ["13"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [14]
+      "updated_inputs": ["37"],
+      "inputs": ["14"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [15]
+      "updated_inputs": ["37"],
+      "inputs": ["15"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [16]
+      "updated_inputs": ["37"],
+      "inputs": ["16"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKING,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [17]
+      "updated_inputs": ["37"],
+      "inputs": ["17"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [18]
+      "updated_inputs": ["37"],
+      "inputs": ["18"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [19]
+      "updated_inputs": ["37"],
+      "inputs": ["19"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [20]
+      "updated_inputs": ["37"],
+      "inputs": ["20"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [21]
+      "updated_inputs": ["37"],
+      "inputs": ["21"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [22]
+      "updated_inputs": ["37"],
+      "inputs": ["22"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [23]
+      "updated_inputs": ["37"],
+      "inputs": ["23"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [24]
+      "updated_inputs": ["37"],
+      "inputs": ["24"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [25]
+      "updated_inputs": ["37"],
+      "inputs": ["25"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
-      "inputs": [26]
+      "updated_inputs": ["37"],
+      "inputs": ["26"]
     },
     {
       "step_type": Step.COLLISION_DIRECTION,
       "question": str(_('Choose Collision direction')),
       "next_step": Step.DAMAGED_PARTS,
-      "inputs": [27]
+      "inputs": ["27"]
     },
     {
       "step_type": Step.DAMAGED_PARTS,
       "question": str(_('Choose damaged parts')),
-      "inputs": [28]
+      "inputs": ["28"]
     },
     {
       "step_type": Step.REGISTRATION_NUMBER,
       "question": str(_('Write down your registration number')),
       "next_step": Step.REGISTRATION_COUNTRY,
-      "inputs": [29],
+      "inputs": ["29"],
     },
     {
       "step_type": Step.REGISTRATION_COUNTRY,
       "question": str(_('Select your country')),
       "next_step": Step.INSURANCE_NAME,
-      "inputs": [30],
+      "inputs": ["30"],
     },
     {
       "step_type": Step.INSURANCE_NAME,
       "question": str(_('Select your insurance')),
       "next_step": Step.INSURANCE_NUMBER,
-      "inputs": [31],
+      "inputs": ["31"],
     },
     {
       "step_type": Step.INSURANCE_NUMBER,
       "question": str(_('Write down insurance number')),
-      "inputs": [32],
+      "inputs": ["32"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
       "question": str(_('For data exchange purposes and contact with your insurance company we need your email and telephone number.')),
       "next_step": Step.DRIVER_DATA,
-      "inputs": [33, 34],
+      "inputs": ["33", "34"],
     },
     {
       "step_type": Step.WITNESSES,
       "question": str(_('Write down data of anyone who saw the accident?')),
-      "inputs": [35],
+      "inputs": ["35"],
     },
     {
       "step_type": Step.DRIVER_DATA,
       "question": str(_('Please scan you driving license or choose to input by hand')),
-      "inputs": [36],
+      "inputs": ["36"],
     },
     {
       "step_type": Step.ACCIDENT_SKETCH,
       "question": str(_('Sketch you accident')),
       "data_from_input": 9,
-      "inputs": [37],
+      "inputs": ["37"],
     },
   ],
-  "inputs": [
-    {
+  "inputs": {
+    "1": {
       "id": 1,
       "type": "select",
       "value": None,
@@ -395,7 +415,14 @@ QUESTIONNAIRE = {
         }
       ]
     },
-    {
+    "37": {
+      "id": 37,
+      "shared_input": True,
+      "type": "sketch",
+      "value": {"cars": [], "confirmed_editors": [], "editing": False},
+      "required": True
+    },
+    "2": {
       "id": 2,
       "type": "select",
       "value": None,
@@ -414,7 +441,7 @@ QUESTIONNAIRE = {
         }
       ]
     },
-    {
+    "3": {
       "id": 3,
       "type": "select",
       "value": None,
@@ -462,7 +489,7 @@ QUESTIONNAIRE = {
         }
       ]
     },
-    {
+    "4": {
       "id": 4,
       "type": "select",
       "required": True,
@@ -486,7 +513,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "5": {
       "id": 5,
       "type": "select",
       "value": None,
@@ -515,7 +542,7 @@ QUESTIONNAIRE = {
         }
       ]
     },
-    {
+    "6": {
       "id": 6,
       "type": "select",
       "value": None,
@@ -526,7 +553,7 @@ QUESTIONNAIRE = {
           "label": Label.MOVING_LEAVING_PARKING,
           "action": Action.NEXT_STEP,
           "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR
+            "step": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING
           }
         },
         {
@@ -534,22 +561,35 @@ QUESTIONNAIRE = {
           "label": Label.MOVING_PARKING_CAR,
           "action": Action.NEXT_STEP,
           "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR
+            "step": Step.CIRCUMSTANCES_STEP_3_PARKING
           }
         },
         {
           "value": "leaving_parking_slot_private_property",
           "label": Label.MOVING_LEAVING_PRIVATE_PROPERTY,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY
+          }
         },
         {
           "value": "entering_parking_slot_private_property",
           "label": Label.MOVING_ENTERING_PRIVATE_PROPERTY,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY
+          }
         }
       ]
     },
-    {
+    "7": {
+      "id": 7,
+      "type": "datetime",
+      "value": None,
+      "required": True,
+      "shared_input": True
+    },
+    "8": {
       "id": 8,
       "type": "select",
       "value": None,
@@ -574,14 +614,22 @@ QUESTIONNAIRE = {
         }
       ]
     },
-    {
+    "9": {
       "id": 9,
       "type": "place",
       "value": None,
       "required": True,
       "shared_input": True
     },
-    {
+    "10": {
+      "id": 10,
+      "type": "text",
+      "shared_input": True,
+      "placeholder": PlaceHolder.STREET,
+      "value": None,
+      "required": True
+    },
+    "11": {
       "id": 11,
       "type": "select",
       "value": None,
@@ -617,10 +665,13 @@ QUESTIONNAIRE = {
           "value": "roundabout_changing_traffic_lane",
           "label": Label.ROUNDABOUT_CHANGING_TRAFFIC_LANE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES
+          }
         }
       ]
     },
-    {
+    "12": {
       "id": 12,
       "type": "select",
       "value": None,
@@ -657,7 +708,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "13": {
       "id": 13,
       "type": "select",
       "value": None,
@@ -695,7 +746,7 @@ QUESTIONNAIRE = {
           "action": Action.NEXT_STEP,
         },
         {
-          "value": "driving_straight_reverse",
+          "value": "driving_reverse",
           "label": Label.DRIVING_STRAIGHT_REVERSE,
           "action": Action.NEXT_STEP,
         },
@@ -706,7 +757,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "14": {
       "id": 14,
       "type": "select",
       "value": None,
@@ -724,7 +775,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "15": {
       "id": 15,
       "type": "select",
       "value": None,
@@ -742,7 +793,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "16": {
       "id": 16,
       "type": "select",
       "value": None,
@@ -760,7 +811,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "17": {
       "id": 17,
       "type": "select",
       "value": None,
@@ -778,7 +829,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "18": {
       "id": 18,
       "type": "select",
       "value": None,
@@ -806,7 +857,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "19": {
       "id": 19,
       "type": "select",
       "value": None,
@@ -834,7 +885,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "20": {
       "id": 20,
       "type": "select",
       "value": None,
@@ -852,7 +903,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "21": {
       "id": 21,
       "type": "select",
       "value": None,
@@ -870,7 +921,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "22": {
       "id": 22,
       "type": "select",
       "value": None,
@@ -888,7 +939,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "23": {
       "id": 23,
       "type": "select",
       "value": None,
@@ -906,7 +957,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "24": {
       "id": 24,
       "type": "select",
       "value": None,
@@ -924,8 +975,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-
-    {
+    "25": {
       "id": 25,
       "type": "select",
       "value": None,
@@ -943,7 +993,7 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
+    "26": {
       "id": 26,
       "type": "select",
       "value": None,
@@ -961,61 +1011,46 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    {
-      "id": 7,
-      "type": "datetime",
-      "value": None,
-      "required": True,
-      "shared_input": True
-    },
-    {
-      "id": 10,
-      "type": "text",
-      "shared_input": True,
-      "placeholder": PlaceHolder.STREET,
-      "value": None,
-      "required": True
-    },
-    {
+    "27": {
       "id": 27,
       "type": "collision_direction",
       "value": None,
       "required": True
     },
-    {
+    "28": {
       "id": 28,
       "type": "damaged_parts",
       "value": None,
       "required": True
     },
-    {
+    "29": {
       "id": 29,
       "type": "text",
       "label": str(_("Registration number")),
       "value": None,
       "required": True
     },
-    {
+    "30": {
       "id": 30,
       "type": "country_picker",
       "value": None,
       "required": True
     },
-    {
+    "31": {
       "id": 31,
       "type": "insurance_picker",
       "options": sorted(supported_insurances, key=lambda d: d['label']) ,
       "value": None,
       "required": True
     },
-    {
+    "32": {
       "id": 32,
       "type": "text",
       "label": str(_("Insurance number")),
       "value": None,
       "required": True
     },
-    {
+    "33": {
       "id": 33,
       "type": "text",
       "label": str(_("Email address")),
@@ -1023,32 +1058,27 @@ QUESTIONNAIRE = {
       "value": None,
       "required": True
     },
-    {
+    "34": {
       "id": 34,
       "type": "phone_picker",
       "label": str(_("Phone number")),
       "value": None,
       "required": True
     },
-    {
+    "35": {
       "id": 35,
       "type": "textarea",
       "label": str(_("Witnesses")),
       "value": None,
       "required": True
     },
-    {
+    "36": {
       "id": 36,
       "type": "driving_license",
       "value": None,
       "required": True
-    },
-    {
-      "id": 37,
-      "shared_input": True,
-      "type": "sketch",
-      "value": None,
-      "required": True
-    },
-  ]
+    }
+  }
 }
+
+QUESTIONNAIRE_MAP = generate_circumstance_map(QUESTIONNAIRE)

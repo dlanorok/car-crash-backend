@@ -36,22 +36,7 @@
       }
     },
     "inputs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "type": {
-            "type": "string"
-          },
-          "value": {},
-          "options": {
-            "type": "array"
-          }
-        }
-      }
+      "type": "object"
     }
   }
 }

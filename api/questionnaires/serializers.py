@@ -32,10 +32,10 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
         for id, step in enumerate(data.get('data').get('steps', [])):
             data['data']['steps'][id]['question'] = _(step['question'])
 
-        for id, input in enumerate(data.get('data').get('inputs', [])):
-            data['data']['inputs'][id].update(placeholder=_(input.get('placeholder'))) if input.get('placeholder') else None
+        for input_id, input in data.get('data').get('inputs', {}).items():
+            data['data']['inputs'][input_id].update(placeholder=_(input.get('placeholder'))) if input.get('placeholder') else None
             for option_index, option in enumerate(input.get('options', [])):
-                data['data']['inputs'][id]['options'][option_index].update(
+                data['data']['inputs'][input_id]['options'][option_index].update(
                     label= _(option['label']) if option.get('label') else None
                 )
 
