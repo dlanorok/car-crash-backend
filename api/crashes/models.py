@@ -2,8 +2,10 @@ import random
 import string
 
 from django.db import models
+from django.apps import apps
 
 from api.common.models.base import RevisionModel
+from api.files.models import File
 
 
 def generate_unique_code():
@@ -30,10 +32,18 @@ class Crash(RevisionModel):
     vehicle_material_damage = models.BooleanField(null=True)
     other_material_damage = models.BooleanField(null=True)
 
+    pdf = models.ForeignKey(File, on_delete=models.SET_NULL, related_name='crash_pdf', blank=True, null=True)
+
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         # If crash was sent and closed, free session_id
         if self.closed:
             self.session_id = None
 
+        is_new_crash = self.pk is None
         super().save(force_insert, force_update, using, update_fields)
+        if is_new_crash:
+            apps.get_model('sketches', 'Sketch').objects.create(crash=self).save()
+
+
+

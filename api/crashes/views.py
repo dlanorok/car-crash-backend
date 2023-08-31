@@ -2,12 +2,10 @@ from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from api.cars.models import Car
 from api.common.pdf_generator.py_pdf_generator import PyPdfGenerator
-from api.common.views.event_view import EventView, model_event
+from api.common.views.event_view import EventView
 from api.crashes.models import Crash
 from api.crashes.serializers import CrashSerializer
-from api.sketches.models import Sketch
 
 
 class CrashViewSet(mixins.RetrieveModelMixin,
@@ -24,9 +22,7 @@ class CrashViewSet(mixins.RetrieveModelMixin,
 
         serializer.validated_data['creator'] = self.request.session.session_key
 
-        instance = super().perform_create(serializer)
-
-        Sketch(creator=self.request.session.session_key, crash=instance).save()
+        super().perform_create(serializer)
 
     @action(detail=True, methods=['post'])
     def generate_pdf(self, request, session_id=None):

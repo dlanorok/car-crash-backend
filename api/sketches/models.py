@@ -4,17 +4,10 @@ from django.db import models
 from api.cars.models import Car
 from api.common.models.base import RevisionModel
 from api.crashes.models import Crash
+from api.files.models import File
+
 
 class Sketch(RevisionModel):
-    crash = models.ForeignKey(Crash, on_delete=models.CASCADE, related_name='sketches')
-    creator = models.CharField(max_length=128, blank=True)
-    polygons = models.JSONField(blank=True, null=True)
-
-class SketchCar(models.Model):
-    sketch = models.ForeignKey(Sketch, on_delete=models.CASCADE, related_name='sketch_cars')
-    car_id = models.IntegerField()
-    position_south = models.FloatField()
-    position_west = models.FloatField()
-    position_north = models.FloatField()
-    position_east = models.FloatField()
-    rotation = models.FloatField()
+    crash = models.OneToOneField(Crash, on_delete=models.CASCADE, related_name='sketch', null=True, blank=True)
+    file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='sketch', blank=True, null=True)
+    confirmed_editors = models.CharField(max_length=256, blank=True, null=True)

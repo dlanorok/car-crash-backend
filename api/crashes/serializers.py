@@ -4,12 +4,11 @@ from api.cars.models import Car
 from api.common.models.base import RevisionModel
 from api.common.serializer import ValidationSerializer
 from api.crashes.models import Crash
-from api.sketches.models import Sketch
 
 
 class CrashSerializer(ValidationSerializer):
     cars = serializers.PrimaryKeyRelatedField(queryset=Car.objects.all(), many=True, required=False)
-    sketches = serializers.PrimaryKeyRelatedField(queryset=Sketch.objects.all(), many=True, required=False)
+    sketch = serializers.PrimaryKeyRelatedField(read_only=True)
     my_cars = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:

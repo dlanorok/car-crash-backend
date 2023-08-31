@@ -9,6 +9,7 @@ class Driver(RevisionModel):
     surname = models.CharField(max_length=256, null=True)
     address = models.CharField(max_length=256, null=True)
     email = models.CharField(max_length=256, null=True)
+    phone_number = models.CharField(max_length=256, null=True)
     country = models.CharField(max_length=256, null=True)
     birthday = models.DateTimeField(null=True)
     driving_licence_number = models.CharField(max_length=256, null=True)

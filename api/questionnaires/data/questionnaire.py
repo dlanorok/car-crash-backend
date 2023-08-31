@@ -1,8 +1,54 @@
+from dataclasses import dataclass
 from enum import Enum
 from django.utils.translation import ugettext_lazy as _
+from geopy.geocoders import Nominatim
 
 from api.questionnaires.data.helpers import generate_circumstance_map
 from api.questionnaires.data.insurances import supported_insurances
+
+@dataclass
+class MarkerPosition:
+  lat: float
+  lng: float
+
+
+@dataclass
+class Place:
+  marker_position: MarkerPosition
+  written_position: str
+
+  def __post_init__(self):
+    self.marker_position = MarkerPosition(**self.marker_position)
+
+  def to_presentation(self):
+    if self.marker_position.lng:
+      geolocator = Nominatim(user_agent="car_crash_assist")
+      return str(geolocator.reverse(f"{self.marker_position.lat}, {self.marker_position.lng}"))
+    else:
+      return self.written_position
+
+@dataclass
+class Country(Place):
+  def to_presentation(self):
+    if self.marker_position.lng:
+      geolocator = Nominatim(user_agent="car_crash_assist")
+      return geolocator.reverse(f"{self.marker_position.lat}, {self.marker_position.lng}").raw.get("address").get("country")
+    else:
+      return self.written_position
+
+@dataclass(init=False)
+class PhoneNumber:
+  number: str
+  internationalNumber: str
+  nationalNumber: str
+
+  def __init__(self, **kwargs):
+    self.number = kwargs.get("number")
+    self.internationalNumber = kwargs.get("internationalNumber")
+    self.nationalNumber = kwargs.get("nationalNumber")
+
+  def to_presentation(self):
+    return self.internationalNumber
 
 class Step(str, Enum):
   INJURIES = "injuries"
