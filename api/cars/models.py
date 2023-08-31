@@ -19,8 +19,8 @@ class Car(RevisionModel):
     registration_country = models.CharField(max_length=256, blank=True)
     registration_plate = models.CharField(max_length=256, blank=True)
 
-    damaged_parts = MultiSelectField(choices=Enum.DAMAGED_PARTS, max_length=20, blank=True)
-    initial_impact = MultiSelectField(choices=Enum.INITIAL_IMPACT, max_length=20, blank=True)
+    damaged_parts = MultiSelectField(choices=Enum.DAMAGED_PARTS, max_length=200, blank=True)
+    initial_impact = MultiSelectField(choices=Enum.INITIAL_IMPACT, max_length=200, blank=True)
 
     initial_impact_svg_file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='initial_impact_car', blank=True, null=True)
     damaged_parts_svg_file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='damaged_parts_car', blank=True, null=True)

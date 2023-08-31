@@ -45,7 +45,7 @@ class QuestionnaireViewSet(SessionView,
             serializer_many = QuestionnaireSerializer(crash_questionnaires, many=True)
         else:
             crash = self.get_crash_from_session()
-            car = Car(crash=crash)
+            car = Car(crash=crash, creator=session_key)
             car.save()
             data = {
                 "creator": session_key,

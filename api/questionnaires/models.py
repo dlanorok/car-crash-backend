@@ -13,3 +13,4 @@ class Questionnaire(RevisionModel):
     creator = models.CharField(max_length=128, blank=True)
     crash = models.ForeignKey(Crash, on_delete=models.CASCADE, related_name='questionnaires')
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='cars')
+    crash_confirmed = models.BooleanField(default=False)
