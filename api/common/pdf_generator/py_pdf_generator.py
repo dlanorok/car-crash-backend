@@ -2,7 +2,9 @@ import io
 import os
 
 from PyPDF2 import PdfReader, PdfWriter
-from django.core.files.base import ContentFile
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+from django.dispatch import Signal
 from reportlab.graphics import renderPDF
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.utils import ImageReader
@@ -11,8 +13,13 @@ from svglib.svglib import svg2rlg
 
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
 from api.crashes.models import Crash
+from api.crashes.serializers import CrashSerializer
 from api.files.models import File
 from django.core.files import File as CoreFile
+
+
+
+pdf_generator_event = Signal(providing_args=['instance', 'sender_id'])
 
 
 class PyPdfGenerator(PdfGeneratorInterface):
@@ -88,6 +95,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
             renderPDF.draw(drawing, canvas, drawing_x, y)
 
     def draw_sketch(self, canvas):
+        if not self.crash.sketch or not self.crash.sketch.file:
+            return
+
         img = ImageReader(self.crash.sketch.file.file.path)
 
         # define position of img
@@ -178,3 +188,10 @@ class PyPdfGenerator(PdfGeneratorInterface):
         self.crash.pdf = pdf
         self.crash.save()
         output_buffer.close()
+
+        pdf_generator_event.send(
+            sender=None,
+            instance=self.crash,
+            sender_id='',
+            event_type='model_update'
+        )

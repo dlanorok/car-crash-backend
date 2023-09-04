@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from api.cars.serializers import CarSerializer
 from api.circumstances.serializers import CircumstanceSerializer
+from api.common.pdf_generator.py_pdf_generator import pdf_generator_event
 from api.common.views.event_view import model_event
 from api.crashes.serializers import CrashSerializer
 from api.drivers.serializers import DriverSerializer
@@ -21,6 +22,7 @@ car_serializers = {
 
 
 @receiver(model_event)
+@receiver(pdf_generator_event)
 def send_model_event(sender, instance, **kwargs):
     model_name = instance._meta.model.__name__
     type = kwargs['event_type']

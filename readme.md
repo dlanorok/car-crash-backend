@@ -11,3 +11,9 @@ Run command...
 ...and start backend with...
 
 >> python manage.py runserver
+
+
+Run celery 
+
+>> celery -A config worker -l INFO -P solo
+

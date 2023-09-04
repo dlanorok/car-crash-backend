@@ -11,3 +11,5 @@ jsonschema
 PyPDF2
 reportlab
 cairosvg
+celery
+redis
