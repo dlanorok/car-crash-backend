@@ -7,7 +7,7 @@ def send_pdf(file, recipients):
     email = EmailMessage(
         subject=_("Crash confirmed"),
         body="Content",
-        from_email=settings.EMAIL_HOST_USER,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=recipients
     )
 

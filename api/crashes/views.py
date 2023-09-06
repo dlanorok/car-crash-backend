@@ -1,16 +1,13 @@
+from django.utils.translation import ugettext_lazy as _
 from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from api.cars.models import Car
 from api.common.views.event_view import EventView
 from api.crashes.helpers.create_pdf import create_pdf_from_crash
 from api.crashes.helpers.email_helper import send_pdf
 from api.crashes.models import Crash
 from api.crashes.serializers import CrashSerializer
-from django.utils.translation import ugettext_lazy as _
-
-from api.questionnaires.models import Questionnaire
 from api.questionnaires.serializers import QuestionnaireSerializer
 
 
