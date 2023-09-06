@@ -30,8 +30,13 @@ MEDIA_ROOT = BASE_DIR
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "feeapp.noreply@gmail.com"
-EMAIL_HOST_PASSWORD = "xkmszoidotetsuqb"
+
+EMAIL_HOST_PASSWORD = os.getenv("APP_EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.getenv("APP_EMAIL_HOST_USER")
+
+EMAIL_HOST = os.getenv("APP_EMAIL_HOST")
+EMAIL_PORT = os.getenv("APP_EMAIL_PORT")
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_USE_TLS = os.getenv("APP_EMAIL_USE_TLS", True)
+EMAIL_TIMEOUT = os.getenv("APP_EMAIL_TIMEOUT", 60)

@@ -7,6 +7,7 @@ from api.crashes.models import Crash
 from django.apps import apps
 
 from api.files.models import File
+from api.questionnaires.data.questionnaire import ResponsibilityTypeEnum
 
 
 class Car(RevisionModel):
@@ -24,6 +25,8 @@ class Car(RevisionModel):
 
     initial_impact_svg_file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='initial_impact_car', blank=True, null=True)
     damaged_parts_svg_file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='damaged_parts_car', blank=True, null=True)
+
+    responsibility_type = models.CharField(max_length=100, choices=ResponsibilityTypeEnum.RESPONSIBILITY_TYPE, blank=True)
 
     def save(self, *args, **kwargs):
         is_new_car = self.pk is None

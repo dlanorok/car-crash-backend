@@ -58,6 +58,7 @@ class Step(str, Enum):
   ACCIDENT_PLACE_TEXT = "accident_place_text"
   ACCIDENT_TIME = "accident_time"
   PARTICIPANTS_NUMBER = "participants_number"
+  CIRCUMSTANCES_STEP_FINAL = "circumstances_step_final"
   CIRCUMSTANCES_STEP_1 = "circumstances_step_1"
   CIRCUMSTANCES_STEP_2_PARKED = "circumstances_step_2_parked"
   CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING = "circumstances_step_2_moving_parking_joining"
@@ -87,15 +88,15 @@ class Step(str, Enum):
   DAMAGED_PARTS = 'damaged_parts'
   ACCIDENT_SKETCH = 'accident_sketch'
 
-  REGISTRATION_NUMBER = "registration_number"
-  REGISTRATION_COUNTRY = "registration_country"
+  CAR_DATA = "car_data"
   INSURANCE_NAME = "insurance_name"
-  INSURANCE_NUMBER = 'insurance_number'
+  INSURANCE_DATA = 'insurance_data'
 
   DRIVER_PERSONAL_DATA = 'driver_personal_data'
   DRIVER_DATA = 'driver_data'
 
   WITNESSES = 'witnesses'
+  ADDITIONAL_ACCIDENT_DATA_TEXT = 'additional_accident_data_text'
 
 
 class Action(str, Enum):
@@ -179,6 +180,19 @@ class Label(str, Enum):
   TWO_VEHICLES = _('2 vehicles')
   THREE_OR_MORE_VEHICLES = _('3 or more')
 
+  ME = _("ME")
+  ANOTHER_VEHICLE = _("Another vehicle")
+  UNKNOWN = _("I don't know")
+
+class ResponsibilityTypeEnum:
+  ME = "ME"
+  ANOTHER = "ANOTHER"
+  UNKNOWN = "UNKNOWN"
+  RESPONSIBILITY_TYPE = [
+    (ME, "me"),
+    (ANOTHER, "another"),
+    (UNKNOWN, "unknown"),
+  ]
 
 QUESTIONNAIRE = {
   "car_arrow": "",
@@ -211,7 +225,7 @@ QUESTIONNAIRE = {
       "id": "car_and_insurance",
       "name": Section.CAR_AND_INSURANCE,
       "state": "empty",
-      "starting_step": Step.REGISTRATION_NUMBER
+      "starting_step": Step.CAR_DATA
     },
     {
       "id": "driver",
@@ -230,6 +244,8 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.INJURIES,
       "question": str(_('Is there anyone injured and needs medical attention?')),
+      "help_text": str(_('This is random help text that needs to be changed')),
+      "additional_help": str(_('This is random help text that needs to be changed')),
       "next_step": Step.CAR_DAMAGE,
       "inputs": ["1"],
     },
@@ -266,6 +282,11 @@ QUESTIONNAIRE = {
       "step_type": Step.PARTICIPANTS_NUMBER,
       "question": str(_('Number of participants')),
       "inputs": ["4"]
+    },
+    {
+      "step_type": Step.CIRCUMSTANCES_STEP_FINAL,
+      "question": str(_('Who is responsible for the accident')),
+      "inputs": ["38"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_1,
@@ -393,27 +414,21 @@ QUESTIONNAIRE = {
       "inputs": ["28"]
     },
     {
-      "step_type": Step.REGISTRATION_NUMBER,
+      "step_type": Step.CAR_DATA,
       "question": str(_('Write down your registration number')),
-      "next_step": Step.REGISTRATION_COUNTRY,
-      "inputs": ["29"],
-    },
-    {
-      "step_type": Step.REGISTRATION_COUNTRY,
-      "question": str(_('Select your country')),
       "next_step": Step.INSURANCE_NAME,
-      "inputs": ["30"],
+      "inputs": ["29", "30", "40"],
     },
     {
       "step_type": Step.INSURANCE_NAME,
       "question": str(_('Select your insurance')),
-      "next_step": Step.INSURANCE_NUMBER,
+      "next_step": Step.INSURANCE_DATA,
       "inputs": ["31"],
     },
     {
-      "step_type": Step.INSURANCE_NUMBER,
-      "question": str(_('Write down insurance number')),
-      "inputs": ["32"],
+      "step_type": Step.INSURANCE_DATA,
+      "question": str(_('Write down insurance data')),
+      "inputs": ["32", "41", "42", "43", "44", "45", "46"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
@@ -424,6 +439,7 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.WITNESSES,
       "question": str(_('Write down data of anyone who saw the accident?')),
+      "next_step": Step.ADDITIONAL_ACCIDENT_DATA_TEXT,
       "inputs": ["35"],
     },
     {
@@ -436,6 +452,11 @@ QUESTIONNAIRE = {
       "question": str(_('Sketch you accident')),
       "data_from_input": 9,
       "inputs": ["37"],
+    },
+    {
+      "step_type": Step.ADDITIONAL_ACCIDENT_DATA_TEXT,
+      "question": str(_('Write down additional data of the accident')),
+      "inputs": ["39"],
     },
   ],
   "inputs": {
@@ -585,6 +606,9 @@ QUESTIONNAIRE = {
           "value": "not_in_car",
           "label": Label.PARKED_NOT_BY_THE_CAR,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         }
       ]
     },
@@ -701,11 +725,17 @@ QUESTIONNAIRE = {
           "value": "roundabout_another_vehicle_crashed_from_behind",
           "label": Label.ROUNDABOUT_ANOTHER_VEHICLE_FROM_BEHIND,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "roundabout_crashed_with_vehicle_from_another_traffic_lane",
           "label": Label.ROUNDABOUT_CRASHED_WITH_VEHICLE_FROM_ANOTHER_TRAFFIC_LANE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "roundabout_changing_traffic_lane",
@@ -727,6 +757,9 @@ QUESTIONNAIRE = {
           "value": "crossing_standing_or_traffic_light",
           "label": Label.CROSSING_STANDING_IN_FRONT_OF_CROSSING_OR_TRAFFIC_LIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "crossing_driving_straight",
@@ -764,11 +797,17 @@ QUESTIONNAIRE = {
           "value": "driving_straight_crashed_with_vehicle_in_front",
           "label": Label.DRIVING_STRAIGHT_CRASHED_WITH_VEHICLE_IN_FRONT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_straight_crashed_from_behind",
           "label": Label.DRIVING_STRAIGHT_CRASHED_FROM_BEHIND,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_straight_crashed_to_vehicle_in_another_lane",
@@ -790,16 +829,25 @@ QUESTIONNAIRE = {
           "value": "driving_straight_overtaking_another_vehicle",
           "label": Label.DRIVING_STRAIGHT_OVERTAKING_ANOTHER_VEHICLE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_STRAIGHT_REVERSE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_straight_in_opposite_lane",
           "label": Label.DRIVING_STRAIGHT_IN_OPPOSITE_LANE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -813,11 +861,17 @@ QUESTIONNAIRE = {
           "value": "parked_leaving_car_doors_closed",
           "label": Label.DOORS_CLOSED,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "parked_leaving_car_doors_opened",
           "label": Label.DOORS_OPENED,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -831,11 +885,17 @@ QUESTIONNAIRE = {
           "value": "parked_entering_car_doors_closed",
           "label": Label.DOORS_CLOSED,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "parked_entering_car_doors_opened",
           "label": Label.DOORS_OPENED,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -849,11 +909,17 @@ QUESTIONNAIRE = {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -867,11 +933,17 @@ QUESTIONNAIRE = {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -885,21 +957,33 @@ QUESTIONNAIRE = {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "turning_left",
           "label": Label.TURNING_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "turning_right",
           "label": Label.TURNING_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -913,21 +997,33 @@ QUESTIONNAIRE = {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "turning_left",
           "label": Label.TURNING_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "turning_right",
           "label": Label.TURNING_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -941,11 +1037,17 @@ QUESTIONNAIRE = {
           "value": "vehicle_on_right",
           "label": Label.VEHICLE_ON_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "vehicle_on_left",
           "label": Label.VEHICLE_ON_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -959,11 +1061,17 @@ QUESTIONNAIRE = {
           "value": "changing_driving_lane_right",
           "label": Label.CHANGING_DRIVING_LANE_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "changing_driving_lane_left",
           "label": Label.CHANGING_DRIVING_LANE_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -977,11 +1085,17 @@ QUESTIONNAIRE = {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -995,11 +1109,17 @@ QUESTIONNAIRE = {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -1013,11 +1133,17 @@ QUESTIONNAIRE = {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -1031,11 +1157,17 @@ QUESTIONNAIRE = {
           "value": "vehicle_on_right",
           "label": Label.VEHICLE_ON_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "vehicle_on_left",
           "label": Label.VEHICLE_ON_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -1049,11 +1181,17 @@ QUESTIONNAIRE = {
           "value": "changing_driving_lane_right",
           "label": Label.CHANGING_DRIVING_LANE_RIGHT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
         {
           "value": "changing_driving_lane_left",
           "label": Label.CHANGING_DRIVING_LANE_LEFT,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
+          }
         },
       ]
     },
@@ -1078,14 +1216,15 @@ QUESTIONNAIRE = {
     },
     "30": {
       "id": 30,
+      "label": str(_("Country")),
       "type": "country_picker",
       "value": None,
       "required": True
     },
     "31": {
       "id": 31,
-      "type": "insurance_picker",
-      "options": sorted(supported_insurances, key=lambda d: d['label']) ,
+      "type": "select",
+      "options": sorted(map(lambda insurance: insurance.update(action=Action.NEXT_STEP) or insurance, supported_insurances), key=lambda d: d['label']),
       "value": None,
       "required": True
     },
@@ -1115,15 +1254,93 @@ QUESTIONNAIRE = {
       "id": 35,
       "type": "textarea",
       "label": str(_("Witnesses")),
+      "shared_input": True,
       "value": None,
-      "required": True
     },
     "36": {
       "id": 36,
       "type": "driving_license",
       "value": None,
       "required": True
-    }
+    },
+    "38": {
+      "id": 38,
+      "type": "select",
+      "value": None,
+      "required": True,
+      "options": [
+        {
+          "value": ResponsibilityTypeEnum.ME,
+          "label": Label.ME,
+          "action": Action.NEXT_STEP,
+        },
+        {
+          "value": ResponsibilityTypeEnum.ANOTHER,
+          "label": Label.ANOTHER_VEHICLE,
+          "action": Action.NEXT_STEP,
+        },
+        {
+          "value": ResponsibilityTypeEnum.UNKNOWN,
+          "label": Label.UNKNOWN,
+          "action": Action.NEXT_STEP,
+        },
+      ]
+    },
+    "39": {
+      "id": 39,
+      "shared_input": True,
+      "type": "textarea",
+      "label": str(_("Additional Data")),
+      "value": None,
+    },
+    "40": {
+      "id": 40,
+      "type": "text",
+      "label": str(_("Vehicle type")),
+      "value": None,
+      "required": True
+    },
+    "41": {
+      "id": 41,
+      "type": "text",
+      "label": str(_("Green card number")),
+      "value": None,
+    },
+    "42": {
+      "id": 42,
+      "type": "date",
+      "label": str(_("Validity")),
+      "value": None,
+      "required": True
+    },
+    "43": {
+      "id": 43,
+      "type": "text",
+      "label": str(_("Insurance holder Name")),
+      "value": None,
+      "required": True
+    },
+    "44": {
+      "id": 44,
+      "type": "text",
+      "label": str(_("Insurance holder Address")),
+      "value": None,
+      "required": True
+    },
+    "45": {
+      "id": 45,
+      "type": "text",
+      "label": str(_("Insurance holder phone/email")),
+      "value": None,
+      "required": True
+    },
+    "46": {
+      "id": 46,
+      "type": "country_picker",
+      "label": str(_("Insurance holder country")),
+      "value": None,
+      "required": True
+    },
   }
 }
 

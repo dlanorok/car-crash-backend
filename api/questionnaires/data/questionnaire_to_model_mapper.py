@@ -3,6 +3,7 @@ from api.crashes.models import Crash
 from api.drivers.models import Driver
 from api.files.models import File
 from api.insurances.models import Insurance
+from api.policy_holders.models import PolicyHolder
 from api.questionnaires.data.questionnaire import Place, PhoneNumber, Country
 from api.sketches.models import Sketch
 
@@ -52,6 +53,10 @@ questionnaire_to_model_mapper = {
         "model": Car,
         "property": "registration_country",
     },
+    "40": {
+        "model": Car,
+        "property": "car_type",
+    },
     "31": {
         "model": Insurance,
         "property": "name",
@@ -59,6 +64,30 @@ questionnaire_to_model_mapper = {
     "32": {
         "model": Insurance,
         "property": "policy_number",
+    },
+    "41": {
+        "model": Insurance,
+        "property": "green_card",
+    },
+    "42": {
+        "model": Insurance,
+        "property": "valid_until",
+    },
+    "43": {
+        "model": PolicyHolder,
+        "property": "name",
+    },
+    "44": {
+        "model": PolicyHolder,
+        "property": "address",
+    },
+    "45": {
+        "model": PolicyHolder,
+        "property": "email_phone_number",
+    },
+    "46": {
+        "model": PolicyHolder,
+        "property": "country_code",
     },
     "33": {
         "model": Driver,
@@ -84,6 +113,18 @@ questionnaire_to_model_mapper = {
         "mapper": {
             "file": {"fe_property": "file_id", "model": File},
         }
+    },
+    "38": {
+        "model": Car,
+        "property": "responsibility_type"
+    },
+    "35": {
+        "model": Crash,
+        "property": "witnesses"
+    },
+    "39": {
+        "model": Crash,
+        "property": "additional_crash_data"
     }
 }
 

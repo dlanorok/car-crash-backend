@@ -46,15 +46,16 @@ class CrashViewSet(mixins.RetrieveModelMixin,
         if len(questionnaires) < 2:
             return Response(status=status.HTTP_400_BAD_REQUEST, data=_("Not enough cars to confirm the crash"))
 
-        questionnaire = Questionnaire.objects.get(creator=session_key, crash=crash)
+        if all(_questionnaire.crash_confirmed if _questionnaire.creator != session_key else True for _questionnaire in questionnaires):
+            create_pdf_from_crash(crash)
+            send_pdf(crash.pdf, list(map(lambda q: q.car.driver.email, questionnaires)))
+            crash.closed = True
+            crash.save()
+
+        questionnaire = questionnaires.get(creator=session_key, crash=crash)
         if questionnaire:
             questionnaire.crash_confirmed = True
             questionnaire.save()
-
-        if all(map(lambda _questionnaire: _questionnaire.crash_confirmed, questionnaires)):
-            crash.closed = True
-            create_pdf_from_crash(crash)
-            send_pdf(crash.pdf, list(map(lambda car: car.driver.email, questionnaires)))
 
         serializer = QuestionnaireSerializer(questionnaire, data=request.data, partial=True)
         serializer.is_valid()

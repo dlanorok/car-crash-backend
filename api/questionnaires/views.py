@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from api.cars.models import Car
-from api.common.views.event_view import EventView
+from api.common.views.event_view import EventView, model_event
 from api.common.views.session_view import SessionView
 from api.questionnaires.data.constants import circumstances_input_ids
 from api.questionnaires.data.helpers import circumstance_input_to_arrow
@@ -63,17 +63,20 @@ class QuestionnaireViewSet(SessionView,
             self.perform_create(serializer)
 
             questionnaires = Questionnaire.objects.filter(crash=serializer.instance.crash)
+            ids = list(map(lambda questionnaire: questionnaire.id, questionnaires))
             for _questionnaire in questionnaires:
                 sketch_input = _questionnaire.data['inputs']["37"]
                 value = sketch_input.get("value", {})
                 if not value:
                     value = {"cars": []}
 
-                cars = value.get("cars", [])
-                cars.append({"questionnaire_id": serializer.instance.id})
+                value.update(cars=[{"questionnaire_id": id} for id in ids])
                 # Reset confirmed ediotrs
                 value.update(confirmed_editors=[])
-                _questionnaire.save()
+                serializer = QuestionnaireSerializer(_questionnaire, data={}, partial=True)
+                serializer.is_valid(raise_exception=True)
+                self.perform_update(serializer)
+
 
             serializer_many = QuestionnaireSerializer(questionnaires, many=True)
 

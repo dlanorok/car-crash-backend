@@ -13,3 +13,7 @@ reportlab
 cairosvg
 celery
 redis
+django_celery_results
+svglib
+geopy
+python-dotenv

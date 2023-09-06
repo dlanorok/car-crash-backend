@@ -2,8 +2,7 @@ import io
 import os
 
 from PyPDF2 import PdfReader, PdfWriter
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
+from django.core.files import File as CoreFile
 from django.dispatch import Signal
 from reportlab.graphics import renderPDF
 from reportlab.lib.pagesizes import letter
@@ -13,11 +12,7 @@ from svglib.svglib import svg2rlg
 
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
 from api.crashes.models import Crash
-from api.crashes.serializers import CrashSerializer
 from api.files.models import File
-from django.core.files import File as CoreFile
-
-
 
 pdf_generator_event = Signal(providing_args=['instance', 'sender_id'])
 
