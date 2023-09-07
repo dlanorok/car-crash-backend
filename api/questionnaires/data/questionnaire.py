@@ -98,6 +98,9 @@ class Step(str, Enum):
   WITNESSES = 'witnesses'
   ADDITIONAL_ACCIDENT_DATA_TEXT = 'additional_accident_data_text'
 
+  CASE_1_VEHICLES = 'case_1_vehicles'
+  CASE_3_VEHICLES = 'case_3_vehicles'
+
 
 class Action(str, Enum):
   CALL = 'call',
@@ -458,6 +461,18 @@ QUESTIONNAIRE = {
       "question": str(_('Write down additional data of the accident')),
       "inputs": ["39"],
     },
+    {
+      "step_type": Step.CASE_3_VEHICLES,
+      "question": str(_('3 vehicles not supported')),
+      "help_text": str(_('This is random help text that needs to be changed')),
+      "inputs": [],
+    },
+    {
+      "step_type": Step.CASE_1_VEHICLES,
+      "inputs": [],
+      "question": str(_('CASCO test')),
+      "help_text": str(_('This is random help text that needs to be changed')),
+    }
   ],
   "inputs": {
     "1": {
@@ -567,6 +582,9 @@ QUESTIONNAIRE = {
           "value": 1,
           "label": Label.CASCO_INSURANCE_OR_PARKED_VEHICLE,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CASE_1_VEHICLES
+          }
         },
         {
           "value": 2,
@@ -577,6 +595,9 @@ QUESTIONNAIRE = {
           "value": 3,
           "label": Label.THREE_OR_MORE_VEHICLES,
           "action": Action.NEXT_STEP,
+          "action_property": {
+            "step": Step.CASE_3_VEHICLES
+          }
         },
       ]
     },
