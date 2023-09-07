@@ -3,6 +3,7 @@ import os
 
 from PyPDF2 import PdfReader, PdfWriter
 from django.core.files import File as CoreFile
+from django.core.files.storage import default_storage
 from django.dispatch import Signal
 from reportlab.graphics import renderPDF
 from reportlab.lib.pagesizes import letter
@@ -59,7 +60,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 drawing_x = width - 100
 
             canvas.rect(rect_x, y, rect_width, 30, fill=1, stroke=0)
-            drawing = svg2rlg(car.damaged_parts_svg_file.file.path)
+            s3_file = default_storage.open(car.damaged_parts_svg_file.file.name)
+            svg_content = s3_file.read()
+            drawing = svg2rlg(io.BytesIO(svg_content))
 
             drawing.scale(0.1, 0.1)
 
@@ -82,7 +85,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 drawing_x = width - 100
 
             canvas.rect(rect_x, y, rect_width, 75, fill=1, stroke=0)
-            drawing = svg2rlg(car.initial_impact_svg_file.file.path)
+            s3_file = default_storage.open(car.initial_impact_svg_file.file.name)
+            svg_content = s3_file.read()
+            drawing = svg2rlg(io.BytesIO(svg_content))
 
             drawing.scale(0.16, 0.16)
 
@@ -178,7 +183,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
             except:
                 print('File does not exists')
 
-        pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}.pdf'), name=f'{self.crash.id}.pdf')
+        pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}.pdf'), file_name=f'{self.crash.id}.pdf')
         pdf.save()
         self.crash.pdf = pdf
         self.crash.save()

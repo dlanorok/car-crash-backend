@@ -23,13 +23,6 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-MEDIA_URL = '/'
-
-MEDIA_ROOT = BASE_DIR
-
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
-
-
-DEFAULT_FROM_EMAIL = os.getenv("APP_DEFAULT_FROM_EMAIL")

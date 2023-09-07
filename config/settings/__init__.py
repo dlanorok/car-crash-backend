@@ -1,1 +1,3 @@
 ENV = "dev"
+FILE_UPLOAD_STORAGE = ''
+APP_DOMAIN = ''

@@ -17,3 +17,5 @@ django_celery_results
 svglib
 geopy
 python-dotenv
+django-storages
+django-ses
