@@ -180,8 +180,8 @@ class Label(str, Enum):
   TWO_VEHICLES = _('2 vehicles')
   THREE_OR_MORE_VEHICLES = _('3 or more')
 
-  ME = _("ME")
-  ANOTHER_VEHICLE = _("Another vehicle")
+  ME = _("Me")
+  ANOTHER_VEHICLE = _("Other vehicle")
   UNKNOWN = _("I don't know")
 
 class ResponsibilityTypeEnum:
