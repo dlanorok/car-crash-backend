@@ -181,7 +181,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
         if not self.crash.pdf:
             self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
         else:
-            self.crash.pdf.file = CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'),
+            self.crash.pdf.file.file = CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'),
 
         self.crash.pdf.save()
         self.crash.save()
