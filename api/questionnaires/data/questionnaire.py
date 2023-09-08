@@ -53,9 +53,8 @@ class PhoneNumber:
 class Step(str, Enum):
   INJURIES = "injuries"
   CAR_DAMAGE = "car_damage"
-  AT_ACCIDENT_PLACE = "at_accident_place"
+  PROPERTY_DAMAGE = "property_damage"
   ACCIDENT_PLACE = "accident_place"
-  ACCIDENT_PLACE_TEXT = "accident_place_text"
   ACCIDENT_TIME = "accident_time"
   PARTICIPANTS_NUMBER = "participants_number"
   CIRCUMSTANCES_STEP_FINAL = "circumstances_step_final"
@@ -254,26 +253,21 @@ QUESTIONNAIRE = {
     },
     {
       "step_type": Step.CAR_DAMAGE,
-      "question": str(_('Major property damage')),
-      "next_step": Step.AT_ACCIDENT_PLACE,
+      "question": str(_('Damage on other vehicles')),
+      "next_step": Step.PROPERTY_DAMAGE,
       "inputs": ["2"]
     },
     {
-      "step_type": Step.AT_ACCIDENT_PLACE,
-      "question": str(_('Are you at the place of the accident?')),
-      "inputs": ["8"]
+      "step_type": Step.PROPERTY_DAMAGE,
+      "question": str(_('Is there any damage on nearby property?')),
+      "next_step": Step.ACCIDENT_PLACE,
+      "inputs": ["47"]
     },
     {
       "step_type": Step.ACCIDENT_PLACE,
-      "question": str(_('The place of the accident')),
+      "question": str(_('')),
       "next_step": Step.ACCIDENT_TIME,
       "inputs": ["9"],
-    },
-    {
-      "step_type": Step.ACCIDENT_PLACE_TEXT,
-      "question": str(_('Write down where it happened')),
-      "next_step": Step.ACCIDENT_TIME,
-      "inputs": ["10"],
     },
     {
       "step_type": Step.ACCIDENT_TIME,
@@ -431,7 +425,7 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.INSURANCE_DATA,
       "question": str(_('Write down insurance data')),
-      "inputs": ["32", "41", "42", "43", "44", "45", "46"],
+      "inputs": ["32", "41", "42", "43", "44", "48", "45", "46"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
@@ -680,45 +674,12 @@ QUESTIONNAIRE = {
       "required": True,
       "shared_input": True
     },
-    "8": {
-      "id": 8,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "shared_input": True,
-      "options": [
-        {
-          "value": True,
-          "label": Label.YES,
-          "action": Action.NEXT_STEP,
-          "action_property": {
-            "step": Step.ACCIDENT_PLACE
-          }
-        },
-        {
-          "value": False,
-          "label": Label.NO,
-          "action": Action.NEXT_STEP,
-          "action_property": {
-            "step": Step.ACCIDENT_PLACE_TEXT
-          }
-        }
-      ]
-    },
     "9": {
       "id": 9,
       "type": "place",
       "value": None,
       "required": True,
       "shared_input": True
-    },
-    "10": {
-      "id": 10,
-      "type": "text",
-      "shared_input": True,
-      "placeholder": PlaceHolder.STREET,
-      "value": None,
-      "required": True
     },
     "11": {
       "id": 11,
@@ -1231,6 +1192,7 @@ QUESTIONNAIRE = {
     "29": {
       "id": 29,
       "type": "text",
+      "on_change_action": "capitalize",
       "label": str(_("Registration number")),
       "value": None,
       "required": True
@@ -1350,8 +1312,8 @@ QUESTIONNAIRE = {
     },
     "45": {
       "id": 45,
-      "type": "text",
-      "label": str(_("Insurance holder phone/email")),
+      "label": str(_("Insurance holder phone")),
+      "type": "phone_picker",
       "value": None,
       "required": True
     },
@@ -1362,7 +1324,35 @@ QUESTIONNAIRE = {
       "value": None,
       "required": True
     },
+    "47": {
+      "id": 47,
+      "type": "select",
+      "value": None,
+      "required": True,
+      "shared_input": True,
+      "options": [
+        {
+          "value": True,
+          "label": Label.YES,
+          "action": Action.NEXT_STEP,
+        },
+        {
+          "value": False,
+          "label": Label.NO,
+          "action": Action.NEXT_STEP,
+        }
+      ]
+    },
+    "48": {
+      "id": 48,
+      "type": "text",
+      "input_type": "email",
+      "label": str(_("Insurance holder email")),
+      "value": None,
+      "required": True
+    },
   }
+
 }
 
 QUESTIONNAIRE_MAP = generate_circumstance_map(QUESTIONNAIRE)
