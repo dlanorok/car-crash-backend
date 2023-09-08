@@ -14,6 +14,7 @@ from svglib.svglib import svg2rlg
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
 from api.crashes.models import Crash
 from api.files.models import File
+from config import settings
 
 pdf_generator_event = Signal(providing_args=['instance', 'sender_id'])
 
@@ -176,16 +177,13 @@ class PyPdfGenerator(PdfGeneratorInterface):
         output_buffer = io.BytesIO()
         self.writer.write(output_buffer)
         output_buffer.seek(0)
-        if self.crash.pdf:
-            try:
-                os.remove(self.crash.pdf.file.path)
-                self.crash.pdf.delete()
-            except:
-                print('File does not exists')
 
-        pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}.pdf'), file_name=f'{self.crash.id}.pdf')
-        pdf.save()
-        self.crash.pdf = pdf
+        if not self.crash.pdf:
+            self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
+        else:
+            self.crash.pdf.file = CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'),
+
+        self.crash.pdf.save()
         self.crash.save()
         output_buffer.close()
 
