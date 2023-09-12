@@ -692,7 +692,7 @@ QUESTIONNAIRE = {
           "label": Label.ROUNDABOUT_ENTERING,
           "action": Action.NEXT_STEP,
           "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
           }
         },
         {
@@ -700,7 +700,7 @@ QUESTIONNAIRE = {
           "label": Label.ROUNDABOUT_RUN_INTO_VEHICLE,
           "action": Action.NEXT_STEP,
           "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES
+            "step": Step.CIRCUMSTANCES_STEP_FINAL
           }
         },
         {
@@ -716,7 +716,7 @@ QUESTIONNAIRE = {
           "label": Label.ROUNDABOUT_CRASHED_WITH_VEHICLE_FROM_ANOTHER_TRAFFIC_LANE,
           "action": Action.NEXT_STEP,
           "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
+            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE
           }
         },
         {
