@@ -103,7 +103,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
         if not self.crash.sketch or not self.crash.sketch.file:
             return
 
-        img = ImageReader(self.crash.sketch.file.file.path)
+        s3_file = default_storage.open(self.crash.sketch.file.file.name)
+        image = s3_file.read()
+        img = ImageReader(io.BytesIO(image))
 
         # define position of img
         x = 125
