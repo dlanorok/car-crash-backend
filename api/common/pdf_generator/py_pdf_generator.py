@@ -1,5 +1,6 @@
 import io
 import os
+import textwrap
 
 from PyPDF2 import PdfReader, PdfWriter
 from django.core.files import File as CoreFile
@@ -12,6 +13,7 @@ from reportlab.pdfgen.canvas import Canvas
 from svglib.svglib import svg2rlg
 
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
+from api.common.pdf_generator.statement_enum import AccidentStatementEnums
 from api.crashes.models import Crash
 from api.files.models import File
 from config import settings
@@ -23,9 +25,11 @@ class PyPdfGenerator(PdfGeneratorInterface):
     def __init__(self, crash: Crash):
         super().__init__(crash)
 
-        reader = PdfReader("assets/statement_si.pdf")
+        self.reader = PdfReader("assets/statement_si.pdf")
         self.writer = PdfWriter()
-        self.page = reader.pages[0]
+        self.writer.append(self.reader)
+
+        self.page = self.reader.pages[0]
         self.questionnaires = self.crash.questionnaires.all()
 
         packet = io.BytesIO()
@@ -112,22 +116,14 @@ class PyPdfGenerator(PdfGeneratorInterface):
 
 
     def prepare_pdf(self):
-        pass
         # car: Car = self.crash.cars.first()
         #
-        # write_fields = {
-        #     AccidentStatementEnums.DATE_OF_ACCIDENT: self.crash.date_of_accident,
-        #     AccidentStatementEnums.TIME_OF_ACCIDENT: self.crash.date_of_accident,
-        #     AccidentStatementEnums.ACCIDENT_COUNTRY: self.crash.country,
-        #     AccidentStatementEnums.ACCIDENT_PLACE: self.crash.place,
-        #     AccidentStatementEnums.INJURIES_NO: 'TODO',
-        #     AccidentStatementEnums.INJURIES_YES: 'TODO',
-        #     AccidentStatementEnums.VEHICLE_MATERIAL_DAMAGE_NO: 'TODO',
-        #     AccidentStatementEnums.VEHICLE_MATERIAL_DAMAGE_YES: 'TODO',
-        #     AccidentStatementEnums.OTHER_MATERIAL_DAMAGE_NO: 'TODO',
-        #     AccidentStatementEnums.OTHER_MATERIAL_DAMAGE_YES: 'TODO',
-        #     AccidentStatementEnums.WITNESSES: 'TODO',
-        # }
+        write_fields = {
+            AccidentStatementEnums.DATE_OF_ACCIDENT: textwrap.fill(str(self.crash.date_of_accident), 20),
+            AccidentStatementEnums.TIME_OF_ACCIDENT: str(self.crash.date_of_accident),
+            AccidentStatementEnums.ACCIDENT_COUNTRY: str(self.crash.country),
+            AccidentStatementEnums.ACCIDENT_PLACE: textwrap.fill(str(self.crash.place), 20),
+        }
         #
         # if car:
         #     write_fields.update({
@@ -168,9 +164,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
         #         })
         #
         #
-        # self.writer.update_page_form_field_values(
-        #     self.writer.pages[0], write_fields
-        # )
+        self.writer.update_page_form_field_values(
+            self.writer.pages[0], write_fields
+        )
 
 
     def write(self):
@@ -181,7 +177,8 @@ class PyPdfGenerator(PdfGeneratorInterface):
         if not self.crash.pdf:
             self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
         else:
-            self.crash.pdf.file.file = CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'),
+            self.crash.pdf.file.delete()
+            self.crash.pdf.file.save(f'{self.crash.id}_{settings.ENV}.pdf', output_buffer)
 
         self.crash.pdf.save()
         self.crash.save()

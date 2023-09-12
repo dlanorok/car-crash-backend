@@ -15,7 +15,7 @@ class MarkerPosition:
 @dataclass
 class Place:
   marker_position: MarkerPosition
-  written_position: str
+  at_place: bool
 
   def __post_init__(self):
     self.marker_position = MarkerPosition(**self.marker_position)

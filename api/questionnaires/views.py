@@ -110,7 +110,7 @@ class QuestionnaireViewSet(SessionView,
         serializer.is_valid(raise_exception=True)
         super().perform_update(serializer)
 
-        map_questionnaire_to_models.delay(request.data, questionnaire.id)
+        map_questionnaire_to_models(request.data, questionnaire.id)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
