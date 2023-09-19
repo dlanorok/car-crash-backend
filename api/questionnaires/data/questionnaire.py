@@ -89,6 +89,7 @@ class Step(str, Enum):
   CAR_DATA = "car_data"
   INSURANCE_NAME = "insurance_name"
   INSURANCE_DATA = 'insurance_data'
+  INSURANCE_HOLDER_DATA = 'insurance_holder_data'
 
   DRIVER_PERSONAL_DATA = 'driver_personal_data'
   DRIVER_DATA = 'driver_data'
@@ -100,6 +101,15 @@ class Step(str, Enum):
   CASE_3_VEHICLES = 'case_3_vehicles'
 
   RESPONSIBILITY_CONFIRMATION = "responsibility_confirmation"
+
+  STARTING_STEP_INITIAL_PAGE = "starting_page_initial_page"
+  CIRCUMSTANCES_INITIAL_PAGE = "circumstances_initial_page"
+  VEHICLE_DAMAGES_INITIAL_PAGE = "vehicle_damages_initial_page"
+  ACCIDENT_SKETCH_INITIAL_PAGE = "accident_sketch_initial_page"
+  CAR_AND_INSURANCE_INITIAL_PAGE = "car_and_insurance_initial_page"
+  DRIVER_INITIAL_PAGE = "driver_initial_page"
+  ADDITIONAL_INITIAL_PAGE = "additional_initial_page"
+  CONFIRMATION_STEP_INITIAL_PAGE = "confirmation_step_initial_page"
 
 
 class Action(str, Enum):
@@ -205,52 +215,126 @@ QUESTIONNAIRE = {
       "id": "starting_questions",
       "name": Section.STARTING_QUESTIONS,
       "state": "empty",
-      "starting_step": Step.INJURIES
+      "starting_step": Step.STARTING_STEP_INITIAL_PAGE
     },
     {
       "id": "circumstances",
       "name": Section.CIRCUMSTANCES,
       "state": "empty",
-      "starting_step": Step.CIRCUMSTANCES_STEP_1
+      "starting_step": Step.CIRCUMSTANCES_INITIAL_PAGE
     },
     {
       "id": "vehicle_damage",
       "name": Section.VEHICLE_DAMAGES,
       "state": "empty",
-      "starting_step": Step.COLLISION_DIRECTION
+      "starting_step": Step.VEHICLE_DAMAGES_INITIAL_PAGE
     },
     {
       "id": "accident_sketch",
       "name": Section.ACCIDENT_SKETCH,
       "state": "empty",
-      "starting_step": Step.ACCIDENT_SKETCH
+      "starting_step": Step.ACCIDENT_SKETCH_INITIAL_PAGE
     },
     {
       "id": "car_and_insurance",
       "name": Section.CAR_AND_INSURANCE,
       "state": "empty",
-      "starting_step": Step.CAR_DATA
+      "starting_step": Step.CAR_AND_INSURANCE_INITIAL_PAGE
     },
     {
       "id": "driver",
       "name": Section.DRIVER,
       "state": "empty",
-      "starting_step": Step.DRIVER_PERSONAL_DATA
+      "starting_step": Step.DRIVER_INITIAL_PAGE
     },
     {
       "id": "additional",
       "name": Section.ADDITIONAL,
       "state": "empty",
-      "starting_step": Step.WITNESSES
+      "starting_step": Step.ADDITIONAL_INITIAL_PAGE
     },
     {
       "id": "confirmation",
       "name": Section.CONFIRMATION_STEP,
       "state": "empty",
-      "starting_step": Step.RESPONSIBILITY_CONFIRMATION
+      "starting_step": Step.CONFIRMATION_STEP_INITIAL_PAGE
     }
   ],
   "steps": [
+    {
+      "step_type": Step.STARTING_STEP_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO SKUPAJ')),
+      "help_text": str(_('Prva vprašanja ki vam bodo pagala po nesreči')),
+      "next_step": Step.CAR_DAMAGE,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.CIRCUMSTANCES_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO CIRCUMSTANCES INITIAL PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.CIRCUMSTANCES_STEP_1,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.VEHICLE_DAMAGES_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO VEHICLE_DAMAGES_INITIAL_PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.COLLISION_DIRECTION,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.ACCIDENT_SKETCH_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO ACCIDENT_SKETCH_INITIAL_PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.ACCIDENT_SKETCH,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.CAR_AND_INSURANCE_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO CAR_AND_INSURANCE_INITIAL_PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.CAR_DATA,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.DRIVER_PERSONAL_DATA,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO DRIVER_PERSONAL_DATA')),
+      "help_text": str(_('????')),
+      "next_step": Step.DRIVER_INITIAL_PAGE,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.ADDITIONAL_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO ADDITIONAL_INITIAL_PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.WITNESSES,
+      "inputs": [],
+    },
+    {
+      "step_type": Step.CONFIRMATION_STEP_INITIAL_PAGE,
+      "main_screen": True,
+      "chapter": True,
+      "question": str(_('ZAČNIMO CONFIRMATION_STEP_INITIAL_PAGE')),
+      "help_text": str(_('????')),
+      "next_step": Step.RESPONSIBILITY_CONFIRMATION,
+      "inputs": [],
+    },
+
+
     {
       "step_type": Step.INJURIES,
       "question": str(_('Is there anyone injured and needs medical attention?')),
@@ -436,7 +520,13 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.INSURANCE_DATA,
       "question": str(_('Write down insurance data')),
-      "inputs": ["32", "41", "42", "43", "44", "48", "45", "46"],
+      "next_step": Step.INSURANCE_HOLDER_DATA,
+      "inputs": ["32", "41", "42", "46"],
+    },
+    {
+      "step_type": Step.INSURANCE_HOLDER_DATA,
+      "question": str(_('Write down insurance holder data')),
+      "inputs": ["43", "44", "48", "45"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
@@ -1177,7 +1267,6 @@ QUESTIONNAIRE = {
       "required": True
     },
   }
-
 }
 
 QUESTIONNAIRE_MAP = generate_circumstance_map(QUESTIONNAIRE)
