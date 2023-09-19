@@ -57,7 +57,6 @@ class Step(str, Enum):
   ACCIDENT_PLACE = "accident_place"
   ACCIDENT_TIME = "accident_time"
   PARTICIPANTS_NUMBER = "participants_number"
-  CIRCUMSTANCES_STEP_FINAL = "circumstances_step_final"
   CIRCUMSTANCES_STEP_1 = "circumstances_step_1"
   CIRCUMSTANCES_STEP_2_PARKED = "circumstances_step_2_parked"
   CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING = "circumstances_step_2_moving_parking_joining"
@@ -100,6 +99,8 @@ class Step(str, Enum):
   CASE_1_VEHICLES = 'case_1_vehicles'
   CASE_3_VEHICLES = 'case_3_vehicles'
 
+  RESPONSIBILITY_CONFIRMATION = "responsibility_confirmation"
+
 
 class Action(str, Enum):
   CALL = 'call',
@@ -114,6 +115,7 @@ class Section(str, Enum):
   CAR_AND_INSURANCE = _('Car and Insurance data')
   DRIVER = _('Driver')
   ADDITIONAL = _('Additional')
+  CONFIRMATION_STEP = _('Confirm')
 
 class PlaceHolder(str, Enum):
   STREET = _('Miklošičeva 21')
@@ -240,6 +242,12 @@ QUESTIONNAIRE = {
       "name": Section.ADDITIONAL,
       "state": "empty",
       "starting_step": Step.WITNESSES
+    },
+    {
+      "id": "confirmation",
+      "name": Section.CONFIRMATION_STEP,
+      "state": "empty",
+      "starting_step": Step.RESPONSIBILITY_CONFIRMATION
     }
   ],
   "steps": [
@@ -282,7 +290,7 @@ QUESTIONNAIRE = {
       "inputs": ["4"]
     },
     {
-      "step_type": Step.CIRCUMSTANCES_STEP_FINAL,
+      "step_type": Step.RESPONSIBILITY_CONFIRMATION,
       "question": str(_('Who is responsible for the accident')),
       "inputs": ["38"]
     },
@@ -613,9 +621,6 @@ QUESTIONNAIRE = {
         {
           "value": "not_in_car",
           "label": Label.PARKED_NOT_BY_THE_CAR,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         }
       ]
     },
@@ -678,23 +683,14 @@ QUESTIONNAIRE = {
         {
           "value": "roundabout_entering",
           "label": Label.ROUNDABOUT_ENTERING,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "roundabout_run_into_vehicle",
           "label": Label.ROUNDABOUT_RUN_INTO_VEHICLE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "roundabout_another_vehicle_crashed_from_behind",
           "label": Label.ROUNDABOUT_ANOTHER_VEHICLE_FROM_BEHIND,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "roundabout_crashed_with_vehicle_from_another_traffic_lane",
@@ -721,9 +717,6 @@ QUESTIONNAIRE = {
         {
           "value": "crossing_standing_or_traffic_light",
           "label": Label.CROSSING_STANDING_IN_FRONT_OF_CROSSING_OR_TRAFFIC_LIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "crossing_driving_straight",
@@ -757,16 +750,10 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight_crashed_with_vehicle_in_front",
           "label": Label.DRIVING_STRAIGHT_CRASHED_WITH_VEHICLE_IN_FRONT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_straight_crashed_from_behind",
           "label": Label.DRIVING_STRAIGHT_CRASHED_FROM_BEHIND,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_straight_crashed_to_vehicle_in_another_lane",
@@ -785,23 +772,14 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight_overtaking_another_vehicle",
           "label": Label.DRIVING_STRAIGHT_OVERTAKING_ANOTHER_VEHICLE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_STRAIGHT_REVERSE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_straight_in_opposite_lane",
           "label": Label.DRIVING_STRAIGHT_IN_OPPOSITE_LANE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -814,16 +792,10 @@ QUESTIONNAIRE = {
         {
           "value": "parked_leaving_car_doors_closed",
           "label": Label.DOORS_CLOSED,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "parked_leaving_car_doors_opened",
           "label": Label.DOORS_OPENED,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -836,16 +808,10 @@ QUESTIONNAIRE = {
         {
           "value": "parked_entering_car_doors_closed",
           "label": Label.DOORS_CLOSED,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "parked_entering_car_doors_opened",
           "label": Label.DOORS_OPENED,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -858,16 +824,10 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -880,16 +840,10 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -902,30 +856,18 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "turning_left",
           "label": Label.TURNING_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "turning_right",
           "label": Label.TURNING_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -938,30 +880,18 @@ QUESTIONNAIRE = {
         {
           "value": "driving_straight",
           "label": Label.DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "driving_reverse",
           "label": Label.DRIVING_REVERSE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "turning_left",
           "label": Label.TURNING_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "turning_right",
           "label": Label.TURNING_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -974,16 +904,10 @@ QUESTIONNAIRE = {
         {
           "value": "vehicle_on_right",
           "label": Label.VEHICLE_ON_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "vehicle_on_left",
           "label": Label.VEHICLE_ON_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -996,16 +920,10 @@ QUESTIONNAIRE = {
         {
           "value": "changing_driving_lane_right",
           "label": Label.CHANGING_DRIVING_LANE_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "changing_driving_lane_left",
           "label": Label.CHANGING_DRIVING_LANE_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -1018,16 +936,10 @@ QUESTIONNAIRE = {
         {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -1040,16 +952,10 @@ QUESTIONNAIRE = {
         {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -1062,16 +968,10 @@ QUESTIONNAIRE = {
         {
           "value": "crossing_entering_from_right",
           "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "crossing_not_obeying_rules",
           "label": Label.CROSSING_NOT_OBEYING_RULES,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -1084,16 +984,10 @@ QUESTIONNAIRE = {
         {
           "value": "vehicle_on_right",
           "label": Label.VEHICLE_ON_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "vehicle_on_left",
           "label": Label.VEHICLE_ON_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
@@ -1106,16 +1000,10 @@ QUESTIONNAIRE = {
         {
           "value": "changing_driving_lane_right",
           "label": Label.CHANGING_DRIVING_LANE_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
         {
           "value": "changing_driving_lane_left",
           "label": Label.CHANGING_DRIVING_LANE_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_FINAL
-          }
         },
       ]
     },
