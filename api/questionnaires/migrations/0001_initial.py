@@ -9,19 +9,21 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('files', '0001_initial'),
+        ('cars', '0001_initial'),
         ('crashes', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Sketch',
+            name='Questionnaire',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('revision', models.IntegerField(default=0)),
-                ('confirmed_editors', models.CharField(blank=True, max_length=256, null=True)),
-                ('crash', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='sketch', to='crashes.crash')),
-                ('file', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='sketch', to='files.file')),
+                ('data', models.JSONField()),
+                ('creator', models.CharField(blank=True, max_length=128)),
+                ('crash_confirmed', models.BooleanField(default=False)),
+                ('car', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cars', to='cars.car')),
+                ('crash', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questionnaires', to='crashes.crash')),
             ],
             options={
                 'abstract': False,
