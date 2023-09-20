@@ -20,6 +20,7 @@ def file_generate_upload_path(instance, filename):
 class File(models.Model):
     file = models.FileField(upload_to=file_generate_upload_path, storage=OverwriteStorage())
     file_name = models.CharField(max_length=256)
+    file_size = models.CharField(max_length=256)
 
     upload_finished_at = models.DateTimeField(blank=True, null=True)
 
