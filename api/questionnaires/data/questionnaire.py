@@ -267,7 +267,7 @@ QUESTIONNAIRE = {
       "chapter": True,
       "question": str(_('ZAČNIMO SKUPAJ')),
       "help_text": str(_('Prva vprašanja ki vam bodo pagala po nesreči')),
-      "next_step": Step.CAR_DAMAGE,
+      "next_step": Step.INJURIES,
       "inputs": [],
     },
     {
@@ -611,9 +611,11 @@ QUESTIONNAIRE = {
         {
           "value": True,
           "label": Label.YES,
+          "icon": 'car-broken',
         },
         {
           "value": False,
+          "icon": 'car-ok',
           "label": Label.NO,
         }
       ]
@@ -1250,10 +1252,12 @@ QUESTIONNAIRE = {
       "options": [
         {
           "value": True,
+          "icon": 'crash',
           "label": Label.YES,
         },
         {
           "value": False,
+          "icon": 'fill-rect',
           "label": Label.NO,
         }
       ]
