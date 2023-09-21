@@ -310,7 +310,7 @@ QUESTIONNAIRE = {
       "step_type": Step.DRIVER_INITIAL_PAGE,
       "main_screen": True,
       "chapter": True,
-      "question": str(_('ZAČNIMO DRIVER_PERSONAL_DATA')),
+      "question": str(_('ZAČNIMO DRIVER PERSONAL DATA')),
       "help_text": str(_('????')),
       "next_step": Step.DRIVER_PERSONAL_DATA,
       "inputs": [],
