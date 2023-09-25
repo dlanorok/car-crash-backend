@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\api\questionnaires\data\questionnaire.py:361
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 11:04+0200\n"
+"POT-Creation-Date: 2023-09-25 09:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,254 +20,466 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 
-#: .\api\questionnaires\data\questionnaire.py:49
+#: .\api\crashes\helpers\email_helper.py:8
+msgid "Crash confirmed"
+msgstr ""
+
+#: .\api\crashes\views.py:44
+msgid "Not enough cars to confirm the crash"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:121
 msgid "Starting questions"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:50
+#: .\api\questionnaires\data\questionnaire.py:122
 msgid "Circumstances"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:51
+#: .\api\questionnaires\data\questionnaire.py:123
 msgid "Vehicle damages"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:52
+#: .\api\questionnaires\data\questionnaire.py:124
 msgid "Accident sketch"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:55
-msgid "Is there anyone injured and needs medical attention?"
+#: .\api\questionnaires\data\questionnaire.py:125
+msgid "Car and Insurance data"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:56
-msgid "Major property damage"
+#: .\api\questionnaires\data\questionnaire.py:126
+msgid "Driver"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:57
-msgid "Are you at the place of the accident?"
+#: .\api\questionnaires\data\questionnaire.py:127
+msgid "Additional"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:58
-msgid "The place of the accident"
+#: .\api\questionnaires\data\questionnaire.py:128
+msgid "Confirm"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:59
-msgid "Write down where it happened"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:60
-msgid "Time of the accident"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:61
-msgid "Number of participants"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:62
-msgid "Choose option that suits you the best"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:63
-msgid "Collision direction"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:64
-msgid "Damaged parts"
-msgstr ""
-
-#: .\api\questionnaires\data\questionnaire.py:67
+#: .\api\questionnaires\data\questionnaire.py:131
 msgid "Miklošičeva 21"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:70
+#: .\api\questionnaires\data\questionnaire.py:134
 msgid "Call 112"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:71
+#: .\api\questionnaires\data\questionnaire.py:135
 msgid "We are OK"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:72
+#: .\api\questionnaires\data\questionnaire.py:136
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv\Lib\site-packages\django\forms\widgets.py:715
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:715
 msgid "Yes"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:73
+#: .\api\questionnaires\data\questionnaire.py:137
 #: .\venv3.9\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv\Lib\site-packages\django\forms\widgets.py:716
 #: .\venv_3.8\Lib\site-packages\django\forms\widgets.py:716
 msgid "No"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:76
+#: .\api\questionnaires\data\questionnaire.py:140
 msgid "My vehicle was parked"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:77
+#: .\api\questionnaires\data\questionnaire.py:141
 msgid "I was parking or entering into traffic"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:78
+#: .\api\questionnaires\data\questionnaire.py:142
 msgid "I was in a roundabout"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:79
+#: .\api\questionnaires\data\questionnaire.py:143
 msgid "I was at a crossing"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:80
+#: .\api\questionnaires\data\questionnaire.py:144
 msgid "I was driving straight"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:83
+#: .\api\questionnaires\data\questionnaire.py:147
 msgid "I was leaving car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:84
+#: .\api\questionnaires\data\questionnaire.py:148
 msgid "I was entering car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:85
+#: .\api\questionnaires\data\questionnaire.py:149
 msgid "I was not by the car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:87
+#: .\api\questionnaires\data\questionnaire.py:151
 msgid "I was leaving parking slot"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:88
+#: .\api\questionnaires\data\questionnaire.py:152
 msgid "I was parking my car"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:89
+#: .\api\questionnaires\data\questionnaire.py:153
 msgid "I was merging into traffic from private property"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:90
+#: .\api\questionnaires\data\questionnaire.py:154
 msgid "I was turning to private property"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:92
+#: .\api\questionnaires\data\questionnaire.py:156
 msgid "I was entering roundabout"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:93
+#: .\api\questionnaires\data\questionnaire.py:157
 msgid "I run into vehicle in front"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:94
-#: .\api\questionnaires\data\questionnaire.py:104
+#: .\api\questionnaires\data\questionnaire.py:158
+#: .\api\questionnaires\data\questionnaire.py:168
 msgid "Another vehicle crashed into me from behind"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:95
+#: .\api\questionnaires\data\questionnaire.py:159
 msgid "Crashed with another vehicle from another traffic lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:96
+#: .\api\questionnaires\data\questionnaire.py:160
 msgid "I was changing traffic lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:98
+#: .\api\questionnaires\data\questionnaire.py:162
 msgid ""
 "I was standing in front of merging into traffic or in front of a traffic "
 "light"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:99
+#: .\api\questionnaires\data\questionnaire.py:163
 msgid "I was driving straight through the crossing"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:100
+#: .\api\questionnaires\data\questionnaire.py:164
 msgid "I was turning right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:101
+#: .\api\questionnaires\data\questionnaire.py:165
 msgid "I was turning left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:103
+#: .\api\questionnaires\data\questionnaire.py:167
 msgid "Crashed with vehicle driving in front of me"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:105
+#: .\api\questionnaires\data\questionnaire.py:169
 msgid "Crashed with vehicle driving in the same direction, but another lane"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:106
+#: .\api\questionnaires\data\questionnaire.py:170
 msgid "Changing lanes"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:107
+#: .\api\questionnaires\data\questionnaire.py:171
 msgid "Overtaking another vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:108
-#: .\api\questionnaires\data\questionnaire.py:116
+#: .\api\questionnaires\data\questionnaire.py:172
+#: .\api\questionnaires\data\questionnaire.py:180
 msgid "Driving reverse"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:109
+#: .\api\questionnaires\data\questionnaire.py:173
 msgid "Driving on a lane from opposite direction"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:112
+#: .\api\questionnaires\data\questionnaire.py:176
 msgid "Doors were closed"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:113
+#: .\api\questionnaires\data\questionnaire.py:177
 msgid "Doors were opened"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:115
+#: .\api\questionnaires\data\questionnaire.py:179
 msgid "Driving straight"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:118
+#: .\api\questionnaires\data\questionnaire.py:182
 msgid "Turning right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:119
+#: .\api\questionnaires\data\questionnaire.py:183
 msgid "Turning left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:121
-msgid "On right"
+#: .\api\questionnaires\data\questionnaire.py:185
+msgid "Other vehicle was on my right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:122
-msgid "On left"
+#: .\api\questionnaires\data\questionnaire.py:186
+msgid "Other vehicle was on my left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:124
+#: .\api\questionnaires\data\questionnaire.py:188
 msgid "Changed lane to right"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:125
+#: .\api\questionnaires\data\questionnaire.py:189
 msgid "Changed lane to left"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:126
+#: .\api\questionnaires\data\questionnaire.py:190
 msgid "I entered crossing from right relative to the other vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:127
-msgid "Didn't follow the right-of-way signs or the red light"
+#: .\api\questionnaires\data\questionnaire.py:191
+msgid "I did (not) follow the right-of-way signs or the red light"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:129
+#: .\api\questionnaires\data\questionnaire.py:193
 msgid "Casco insurance/parked vehicle"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:130
+#: .\api\questionnaires\data\questionnaire.py:194
 msgid "2 vehicles"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:131
+#: .\api\questionnaires\data\questionnaire.py:195
 msgid "3 or more"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:197
+msgid "Me"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:198
+msgid "Other vehicle"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:199
+msgid "I don't know"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:268
+msgid "ZAČNIMO SKUPAJ"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:269
+msgid "Prva vprašanja ki vam bodo pagala po nesreči"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:277
+msgid "ZAČNIMO CIRCUMSTANCES INITIAL PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:278
+#: .\api\questionnaires\data\questionnaire.py:287
+#: .\api\questionnaires\data\questionnaire.py:296
+#: .\api\questionnaires\data\questionnaire.py:305
+#: .\api\questionnaires\data\questionnaire.py:314
+#: .\api\questionnaires\data\questionnaire.py:323
+#: .\api\questionnaires\data\questionnaire.py:332
+msgid "????"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:286
+msgid "ZAČNIMO VEHICLE DAMAGES INITIAL PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:295
+msgid "ZAČNIMO ACCIDENT SKETCH INITIAL PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:304
+msgid "ZAČNIMO CAR AND INSURANCE INITIAL_PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:313
+msgid "ZAČNIMO DRIVER PERSONAL DATA"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:322
+msgid "ZAČNIMO ADDITIONAL INITIAL PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:331
+msgid "ZAČNIMO CONFIRMATION STEP INITIAL_PAGE"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:340
+msgid "Is there anyone injured and needs medical attention?"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:341
+#: .\api\questionnaires\data\questionnaire.py:342
+#: .\api\questionnaires\data\questionnaire.py:563
+#: .\api\questionnaires\data\questionnaire.py:570
+msgid "This is random help text that needs to be changed"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:348
+msgid "Damage on other vehicles"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:354
+msgid "Is there any damage on nearby property?"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:367
+msgid "Time of the accident"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:373
+msgid "Number of participants"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:378
+msgid "Who is responsible for the accident"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:383
+#: .\api\questionnaires\data\questionnaire.py:389
+#: .\api\questionnaires\data\questionnaire.py:395
+#: .\api\questionnaires\data\questionnaire.py:401
+#: .\api\questionnaires\data\questionnaire.py:407
+#: .\api\questionnaires\data\questionnaire.py:413
+#: .\api\questionnaires\data\questionnaire.py:419
+#: .\api\questionnaires\data\questionnaire.py:425
+#: .\api\questionnaires\data\questionnaire.py:431
+#: .\api\questionnaires\data\questionnaire.py:437
+#: .\api\questionnaires\data\questionnaire.py:443
+#: .\api\questionnaires\data\questionnaire.py:449
+#: .\api\questionnaires\data\questionnaire.py:455
+#: .\api\questionnaires\data\questionnaire.py:461
+#: .\api\questionnaires\data\questionnaire.py:467
+#: .\api\questionnaires\data\questionnaire.py:473
+#: .\api\questionnaires\data\questionnaire.py:479
+#: .\api\questionnaires\data\questionnaire.py:485
+#: .\api\questionnaires\data\questionnaire.py:491
+msgid "Choose option that suits you the best"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:498
+msgid "Choose Collision direction"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:505
+msgid "Choose damaged parts"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:510
+msgid "Write down your registration number"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:516
+msgid "Select your insurance"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:522
+msgid "Write down insurance data"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:528
+msgid "Write down insurance holder data"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:533
+msgid ""
+"For data exchange purposes and contact with your insurance company we need "
+"your email and telephone number."
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:539
+msgid "Write down data of anyone who saw the accident?"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:545
+msgid "Please scan you driving license or choose to input by hand"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:551
+msgid "Sketch you accident"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:557
+msgid "Write down additional data of the accident"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:562
+msgid "3 vehicles not supported"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:569
+msgid "CASCO test"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1118
+msgid "Registration number"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1124
+msgid "Country"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1139
+msgid "Insurance number"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1146
+#: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:1638
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1638
+#: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:1638
+msgid "Email address"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1154
+msgid "Phone number"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1161
+msgid "Witnesses"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1195
+msgid "Additional Data"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1201
+msgid "Vehicle type"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1208
+msgid "Green card number"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1214
+msgid "Validity"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1221
+msgid "Insurance holder Name"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1228
+msgid "Insurance holder Address"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1234
+msgid "Insurance holder phone"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1242
+msgid "Insurance holder country"
+msgstr ""
+
+#: .\api\questionnaires\data\questionnaire.py:1269
+msgid "Insurance holder email"
 msgstr ""
 
 #: .\venv3.9\Lib\site-packages\_pytest\config\argparsing.py:474
@@ -275,6 +488,300 @@ msgstr ""
 #, python-format
 msgid "ambiguous option: %(option)s could match %(matches)s"
 msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\_termui_impl.py:518
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\_termui_impl.py:522
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1120
+msgid "Aborted!"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1309
+#: .\venv3.9\Lib\site-packages\click\decorators.py:559
+msgid "Show this message and exit."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1340
+#: .\venv3.9\Lib\site-packages\click\core.py:1370
+#, python-brace-format
+msgid "(Deprecated) {text}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1387
+msgid "Options"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1413
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1429
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1636
+msgid "Commands"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1668
+msgid "Missing command."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:1746
+msgid "No such command {name!r}."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2310
+msgid "Value must be an iterable."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2331
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2778
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2808
+msgid "(dynamic)"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2821
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\core.py:2834
+msgid "required"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\decorators.py:528
+msgid "Show the version and exit."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:44
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:80
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:72
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:121
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:123
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:179
+msgid "Missing argument"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:181
+msgid "Missing option"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:183
+msgid "Missing parameter"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:185
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:192
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:212
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:224
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:262
+msgid "unknown error"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\exceptions.py:269
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\parser.py:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\parser.py:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\parser.py:474
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\shell_completion.py:319
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\shell_completion.py:326
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:158
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:174
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:176
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:187
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:243
+msgid "Error: invalid input"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\termui.py:773
+msgid "Press any key to continue..."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:266
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:298
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:392
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:414
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:470
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:611
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:635
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:822
+msgid "file"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:824
+msgid "directory"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:826
+msgid "path"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:877
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:886
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:894
+#, python-brace-format
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:903
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:912
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:921
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\click\types.py:988
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: .\venv3.9\Lib\site-packages\django\contrib\messages\apps.py:7
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
@@ -677,12 +1184,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1588
 #: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:1588
 msgid "Duration"
-msgstr ""
-
-#: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:1638
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1638
-#: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:1638
-msgid "Email address"
 msgstr ""
 
 #: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:1661
@@ -1988,10 +2489,25 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\config\settings\base.py:192
+#: .\venv3.9\Lib\site-packages\kombu\transport\qpid.py:1311
+#, python-format
+msgid "Attempting to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\kombu\transport\qpid.py:1316
+#, python-format
+msgid "Connected to qpid with SASL mechanism %s"
+msgstr ""
+
+#: .\venv3.9\Lib\site-packages\kombu\transport\qpid.py:1334
+#, python-format
+msgid "Unable to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: .\config\settings\base.py:194
 msgid "Slovenian"
 msgstr ""
 
-#: .\config\settings\base.py:193
+#: .\config\settings\base.py:195
 msgid "English"
 msgstr ""

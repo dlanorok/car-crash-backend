@@ -1158,7 +1158,7 @@ QUESTIONNAIRE = {
     "35": {
       "id": 35,
       "type": "textarea",
-      "placeholder": str(_("Witnesses")),
+      "label": str(_("Witnesses")),
       "shared_input": True,
       "value": None,
     },
@@ -1192,7 +1192,7 @@ QUESTIONNAIRE = {
       "id": 39,
       "shared_input": True,
       "type": "textarea",
-      "placeholder": str(_("Additional Data")),
+      "label": str(_("Additional Data")),
       "value": None,
     },
     "40": {
