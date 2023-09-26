@@ -24,3 +24,22 @@ class Circumstance(RevisionModel):
     driving_on_opposite_lane = models.BooleanField(default=False)
     from_right_crossing = models.BooleanField(default=False)
     disregarding_right_of_way_red_light = models.BooleanField(default=False)
+
+    def is_valid(self):
+        return self.parked_stopped or \
+               self.leaving_parking_opening_door or \
+               self.entering_parking or \
+               self.emerging_from_car_park or \
+               self.entering_car_park or \
+               self.entering_roundabout or \
+               self.circulating_roundabout or \
+               self.rear_same_direction or \
+               self.same_direction_different_lane or \
+               self.changing_lanes or \
+               self.overtaking or \
+               self.turning_right or \
+               self.turning_left or \
+               self.reversing or \
+               self.driving_on_opposite_lane or \
+               self.from_right_crossing or \
+               self.disregarding_right_of_way_red_light

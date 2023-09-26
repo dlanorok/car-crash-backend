@@ -36,3 +36,6 @@ class Car(RevisionModel):
             apps.get_model('drivers', 'Driver').objects.create(car=self)
             apps.get_model('circumstances', 'Circumstance').objects.create(car=self)
             apps.get_model('policy_holders', 'PolicyHolder').objects.create(car=self)
+
+    def is_valid(self):
+        return self.car_type and self.registration_country and self.registration_plate and self.damaged_parts and self.initial_impact

@@ -2,6 +2,7 @@ from api.crashes.helpers.create_pdf import create_pdf_from_crash
 from api.questionnaires.data.constants import circumstances_input_ids
 from api.questionnaires.data.questionnaire_to_model_mapper import questionnaire_to_model_mapper, \
     circumstance_to_model_mapper
+from api.questionnaires.helpers import set_is_questionnaire_completed
 from api.questionnaires.models import Questionnaire
 from config import celery_app
 
@@ -53,7 +54,12 @@ def map_questionnaire_to_models(request_dict, questionnaire_id):
                         continue
 
                     circumstance_value = questionnaire.data.get("inputs").get(circumstance_input_id).get("value") == condition.get("value")
-                    setattr(questionnaire.car.circumstances, condition.get("property"), circumstance_value)
+                    if circumstance_value:
+                        setattr(questionnaire.car.circumstances, condition.get("property"), circumstance_value)
 
             questionnaire.car.circumstances.save()
-    create_pdf_from_crash(questionnaire.crash)
+
+    set_is_questionnaire_completed(questionnaire)
+    questionnaire.save()
+
+    # create_pdf_from_crash(questionnaire.crash)

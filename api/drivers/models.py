@@ -17,3 +17,13 @@ class Driver(RevisionModel):
     driving_licence_valid_to = models.DateTimeField(null=True)
 
     car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='driver')
+
+    def is_valid(self):
+        return self.name and \
+               self.surname and \
+               self.address and \
+               self.email and \
+               self.phone_number and \
+               self.country and \
+               self.driving_licence_number and \
+               self.driving_licence_valid_to

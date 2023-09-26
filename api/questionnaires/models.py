@@ -14,3 +14,4 @@ class Questionnaire(RevisionModel):
     crash = models.ForeignKey(Crash, on_delete=models.CASCADE, related_name='questionnaires')
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='cars')
     crash_confirmed = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)

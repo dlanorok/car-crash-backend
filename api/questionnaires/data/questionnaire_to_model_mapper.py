@@ -4,7 +4,7 @@ from api.drivers.models import Driver
 from api.files.models import File
 from api.insurances.models import Insurance
 from api.policy_holders.models import PolicyHolder
-from api.questionnaires.data.questionnaire import Place, PhoneNumber, Country
+from api.questionnaires.data.questionnaire import Place, PhoneNumber, Country, ConfirmedEditors
 from api.sketches.models import Sketch
 
 questionnaire_to_model_mapper = {
@@ -73,6 +73,10 @@ questionnaire_to_model_mapper = {
         "model": Insurance,
         "property": "valid_until",
     },
+    "50": {
+        "model": Insurance,
+        "property": "damage_insured",
+    },
     "43": {
         "model": PolicyHolder,
         "property": "name",
@@ -104,6 +108,7 @@ questionnaire_to_model_mapper = {
             "name": {"fe_property": "name"},
             "surname": {"fe_property": "surname"},
             "address": {"fe_property": "address"},
+            "country": {"fe_property": "country"},
             "driving_licence_number": {"fe_property": "driving_licence_number"},
             "driving_licence_valid_to": {"fe_property": "driving_licence_valid_to"}
         }
@@ -112,6 +117,7 @@ questionnaire_to_model_mapper = {
         "model": Sketch,
         "mapper": {
             "file": {"fe_property": "file_id", "model": File},
+            "confirmed_editors": {"dataclass": ConfirmedEditors},
         }
     },
     "38": {

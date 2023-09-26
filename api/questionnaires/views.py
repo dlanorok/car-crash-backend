@@ -54,7 +54,7 @@ class QuestionnaireViewSet(SessionView,
             }
 
             if len(crash_questionnaires) > 0:
-                data.get("data").update(sections=list(filter(lambda section: section.get("id") != "starting_questions",
+                data.get("data").update(sections=list(filter(lambda section: section.get("id") not in ["starting_questions", "invite"],
                                                              data.get("data").get("sections"))))
                 self.update_all_shared_inputs(data, crash_questionnaires.first())
 
@@ -110,7 +110,7 @@ class QuestionnaireViewSet(SessionView,
         serializer.is_valid(raise_exception=True)
         super().perform_update(serializer)
 
-        map_questionnaire_to_models.delay(request.data, questionnaire.id)
+        map_questionnaire_to_models(request.data, questionnaire.id)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

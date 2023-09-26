@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 from enum import Enum
+
 from django.utils.translation import ugettext_lazy as _
 from geopy.geocoders import Nominatim
 
 from api.questionnaires.data.helpers import generate_circumstance_map
 from api.questionnaires.data.insurances import supported_insurances
+
 
 @dataclass
 class MarkerPosition:
@@ -35,6 +37,16 @@ class Country(Place):
       return geolocator.reverse(f"{self.marker_position.lat}, {self.marker_position.lng}").raw.get("address").get("country")
     else:
       return self.written_position
+
+@dataclass(init=False)
+class ConfirmedEditors:
+  confirmed_editors: list
+
+  def __init__(self, **kwargs):
+    self.confirmed_editors = kwargs.get("confirmed_editors")
+
+  def to_presentation(self):
+    return ",".join(self.confirmed_editors)
 
 @dataclass(init=False)
 class PhoneNumber:
@@ -101,6 +113,8 @@ class Step(str, Enum):
   CASE_3_VEHICLES = 'case_3_vehicles'
 
   RESPONSIBILITY_CONFIRMATION = "responsibility_confirmation"
+  SUMMARY_CONFIRMATION = "summary_confirmation"
+  FINAL_CONFIRMATION = "final_confirmation"
 
   STARTING_STEP_INITIAL_PAGE = "starting_page_initial_page"
   CIRCUMSTANCES_INITIAL_PAGE = "circumstances_initial_page"
@@ -111,6 +125,8 @@ class Step(str, Enum):
   ADDITIONAL_INITIAL_PAGE = "additional_initial_page"
   CONFIRMATION_STEP_INITIAL_PAGE = "confirmation_step_initial_page"
 
+  INVITE = 'invite'
+
 
 class Action(str, Enum):
   CALL = 'call',
@@ -119,6 +135,7 @@ class Action(str, Enum):
 
 class Section(str, Enum):
   STARTING_QUESTIONS = _('Starting questions')
+  INVITE = _('Invite')
   CIRCUMSTANCES = _('Circumstances')
   VEHICLE_DAMAGES = _('Vehicle damages')
   ACCIDENT_SKETCH = _('Accident sketch')
@@ -218,6 +235,12 @@ QUESTIONNAIRE = {
       "starting_step": Step.STARTING_STEP_INITIAL_PAGE
     },
     {
+      "id": "invite",
+      "name": Section.INVITE,
+      "state": "empty",
+      "starting_step": Step.INVITE
+    },
+    {
       "id": "circumstances",
       "name": Section.CIRCUMSTANCES,
       "state": "empty",
@@ -262,11 +285,18 @@ QUESTIONNAIRE = {
   ],
   "steps": [
     {
+      "step_type": Step.INVITE,
+      "main_screen": True,
+      "question": str(_('Let the other participant scan this code to connect with your accident statement form')),
+      "help_text": str(_('This is random help text on invite section')),
+      "inputs": ["49"],
+    },
+    {
       "step_type": Step.STARTING_STEP_INITIAL_PAGE,
       "main_screen": True,
       "chapter": True,
       "question": str(_('ZAČNIMO SKUPAJ')),
-      "help_text": str(_('Prva vprašanja ki vam bodo pagala po nesreči')),
+      "help_text": str(_('Prva vprašanja ki vam bodo pomagala po nesreči')),
       "next_step": Step.INJURIES,
       "inputs": [],
     },
@@ -339,156 +369,195 @@ QUESTIONNAIRE = {
       "step_type": Step.INJURIES,
       "question": str(_('Is there anyone injured and needs medical attention?')),
       "help_text": str(_('This is random help text that needs to be changed')),
-      "additional_help": str(_('This is random help text that needs to be changed')),
       "next_step": Step.CAR_DAMAGE,
       "inputs": ["1"],
     },
     {
       "step_type": Step.CAR_DAMAGE,
       "question": str(_('Damage on other vehicles')),
+      "help_text": str(_('This is random help text on page Damage on other vehicles section')),
       "next_step": Step.PROPERTY_DAMAGE,
       "inputs": ["2"]
     },
     {
       "step_type": Step.PROPERTY_DAMAGE,
       "question": str(_('Is there any damage on nearby property?')),
+      "help_text": str(_('This is random help text on page Is there any damage on nearby property')),
       "next_step": Step.ACCIDENT_PLACE,
       "inputs": ["47"]
     },
     {
       "step_type": Step.ACCIDENT_PLACE,
       "main_screen": True,
-      "question": str(_('')),
+      "question": str(_('Confirm location')),
+      "help_text": str(_('This is random help text on Accident place picker')),
       "next_step": Step.ACCIDENT_TIME,
       "inputs": ["9"],
     },
     {
       "step_type": Step.ACCIDENT_TIME,
       "question": str(_('Time of the accident')),
+      "help_text": str(_('This is random help text on Time of accident')),
       "next_step": Step.PARTICIPANTS_NUMBER,
       "inputs": ["7"],
     },
     {
       "step_type": Step.PARTICIPANTS_NUMBER,
       "question": str(_('Number of participants')),
+      "help_text": str(_('This is random help text on participant number')),
       "inputs": ["4"]
     },
     {
       "step_type": Step.RESPONSIBILITY_CONFIRMATION,
       "question": str(_('Who is responsible for the accident')),
+      "help_text": str(_('Help text about responsibility')),
+      "next_step": Step.SUMMARY_CONFIRMATION,
       "inputs": ["38"]
+    },
+    {
+      "step_type": Step.SUMMARY_CONFIRMATION,
+      "question": str(_('Povzetek')),
+      "next_step": Step.FINAL_CONFIRMATION,
+      "main_screen": True,
+      "inputs": ["51"]
+    },
+    {
+      "step_type": Step.FINAL_CONFIRMATION,
+      "question": str(_('Smo na CILJU')),
+      "help_text": str(_('Zdaj samo še kliknite na gumb "Zaključi" in potrdite vaše podatke. Vaše poročilo vam bomo kmalu poslali po elektronski pošti.Hvala ker ste z nami')),
+      "main_screen": True,
+      "inputs": ["52"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_1,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('1')),
       "updated_inputs": ["37"],
       "inputs": ["3"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_PARKED,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('2')),
       "updated_inputs": ["37"],
       "inputs": ["5"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('3')),
       "updated_inputs": ["37"],
       "inputs": ["6"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_ROUNDABOUT,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('4')),
       "updated_inputs": ["37"],
       "inputs": ["11"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_CROSSING,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('5')),
       "updated_inputs": ["37"],
       "inputs": ["12"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('6')),
       "updated_inputs": ["37"],
       "inputs": ["13"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('7')),
       "updated_inputs": ["37"],
       "inputs": ["14"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('8')),
       "updated_inputs": ["37"],
       "inputs": ["15"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('9')),
       "updated_inputs": ["37"],
       "inputs": ["16"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_PARKING,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('10')),
       "updated_inputs": ["37"],
       "inputs": ["17"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('11')),
       "updated_inputs": ["37"],
       "inputs": ["18"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('12')),
       "updated_inputs": ["37"],
       "inputs": ["19"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('13')),
       "updated_inputs": ["37"],
       "inputs": ["20"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('14')),
       "updated_inputs": ["37"],
       "inputs": ["21"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('15')),
       "updated_inputs": ["37"],
       "inputs": ["22"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('16')),
       "updated_inputs": ["37"],
       "inputs": ["23"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('17')),
       "updated_inputs": ["37"],
       "inputs": ["24"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('18')),
       "updated_inputs": ["37"],
       "inputs": ["25"]
     },
     {
       "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES,
       "question": str(_('Choose option that suits you the best')),
+      "help_text": str(_('19')),
       "updated_inputs": ["37"],
       "inputs": ["26"]
     },
@@ -508,41 +577,48 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.CAR_DATA,
       "question": str(_('Write down your registration number')),
+      "help_text": str(_('Help ext about registration number')),
       "next_step": Step.INSURANCE_NAME,
       "inputs": ["29", "30", "40"],
     },
     {
       "step_type": Step.INSURANCE_NAME,
       "question": str(_('Select your insurance')),
+      "help_text": str(_('Help ext about insurance')),
       "next_step": Step.INSURANCE_DATA,
       "inputs": ["31"],
     },
     {
       "step_type": Step.INSURANCE_DATA,
       "question": str(_('Write down insurance data')),
+      "help_text": str(_('Help text about insurance data')),
       "next_step": Step.INSURANCE_HOLDER_DATA,
-      "inputs": ["32", "41", "42", "46"],
+      "inputs": ["32", "41", "42", "50", "46"],
     },
     {
       "step_type": Step.INSURANCE_HOLDER_DATA,
       "question": str(_('Write down insurance holder data')),
+      "help_text": str(_('Help text about insurance holder data')),
       "inputs": ["43", "44", "48", "45"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
       "question": str(_('For data exchange purposes and contact with your insurance company we need your email and telephone number.')),
+      "help_text": str(_('Information about data exchange step')),
       "next_step": Step.DRIVER_DATA,
       "inputs": ["33", "34"],
     },
     {
       "step_type": Step.WITNESSES,
       "question": str(_('Write down data of anyone who saw the accident?')),
+      "help_text": str(_('Information about witnesses')),
       "next_step": Step.ADDITIONAL_ACCIDENT_DATA_TEXT,
       "inputs": ["35"],
     },
     {
       "step_type": Step.DRIVER_DATA,
       "question": str(_('Please scan you driving license or choose to input by hand')),
+      "help_text": str(_('Help text about scan')),
       "inputs": ["36"],
     },
     {
@@ -555,12 +631,13 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.ADDITIONAL_ACCIDENT_DATA_TEXT,
       "question": str(_('Write down additional data of the accident')),
+      "help_text": str(_('Information about additional data of accident')),
       "inputs": ["39"],
     },
     {
       "step_type": Step.CASE_3_VEHICLES,
       "question": str(_('3 vehicles not supported')),
-      "help_text": str(_('This is random help text that needs to be changed')),
+      "help_text": str(_('This is random help text that needs to be changed 3 vehicles')),
       "inputs": [],
     },
     {
@@ -1269,6 +1346,31 @@ QUESTIONNAIRE = {
       "label": str(_("Insurance holder email")),
       "value": None,
       "required": True
+    },
+    "49": {
+      "id": 49,
+      "type": "invite",
+      "value": None,
+      "required": True
+    },
+    "50": {
+      "id": 50,
+      "type": "boolean",
+      "label": str(_("Damage insured")),
+      "required": True,
+      "value": None,
+    },
+    "51": {
+      "id": 51,
+      "type": "confirmation",
+      "required": True,
+      "value": None,
+    },
+    "52": {
+      "id": 52,
+      "type": "final_step",
+      "required": True,
+      "value": None,
     },
   }
 }

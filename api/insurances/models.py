@@ -13,3 +13,8 @@ class Insurance(RevisionModel):
     damage_insured = models.BooleanField(null=True, blank=True)
 
     car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='insurance')
+
+    def is_valid(self):
+        return self.name and \
+               self.policy_number and \
+               self.damage_insured is not None

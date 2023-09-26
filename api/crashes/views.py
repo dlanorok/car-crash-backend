@@ -3,6 +3,8 @@ from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from api.cars.models import Car
+from api.cars.serializers import CarSerializer
 from api.common.views.event_view import EventView
 from api.crashes.helpers.create_pdf import create_pdf_from_crash
 from api.crashes.helpers.email_helper import send_pdf
@@ -26,6 +28,16 @@ class CrashViewSet(mixins.RetrieveModelMixin,
         serializer.validated_data['creator'] = self.request.session.session_key
 
         super().perform_create(serializer)
+
+    @action(detail=True, methods=['get'])
+    def summary(self, request, session_id=None):
+        crash = self.get_object()
+        session_key = self.request.session.session_key
+
+        cars = Car.objects.filter(crash=crash).exclude(crash__questionnaires__creator__in=[session_key])
+        serializer = CarSerializer(cars, many=True)
+
+        return Response(status=status.HTTP_200_OK, data=serializer.data)
 
     @action(detail=True, methods=['post'])
     def generate_pdf(self, request, session_id=None):
