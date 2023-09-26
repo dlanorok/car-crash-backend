@@ -34,7 +34,7 @@ class CrashViewSet(mixins.RetrieveModelMixin,
         crash = self.get_object()
         session_key = self.request.session.session_key
 
-        cars = Car.objects.filter(crash=crash).exclude(crash__questionnaires__creator__in=[session_key])
+        cars = Car.objects.filter(crash=crash).exclude(creator=session_key)
         serializer = CarSerializer(cars, many=True)
 
         return Response(status=status.HTTP_200_OK, data=serializer.data)
