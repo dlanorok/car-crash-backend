@@ -32,8 +32,8 @@ class Crash(RevisionModel):
     vehicle_material_damage = models.BooleanField(null=True)
     other_material_damage = models.BooleanField(null=True)
 
-    witnesses = models.TextField(blank=True)
-    additional_crash_data = models.TextField(blank=True)
+    witnesses = models.TextField(blank=True, null=True)
+    additional_crash_data = models.TextField(blank=True, null=True)
 
     pdf = models.ForeignKey(File, on_delete=models.SET_NULL, related_name='crash_pdf', blank=True, null=True)
 
