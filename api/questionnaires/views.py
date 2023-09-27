@@ -5,11 +5,12 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from api.cars.models import Car
-from api.common.views.event_view import EventView, model_event
+from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 from api.questionnaires.data.constants import circumstances_input_ids
+from api.questionnaires.data.demo_questionnaire import demo_questionnaire
 from api.questionnaires.data.helpers import circumstance_input_to_arrow
-from api.questionnaires.data.questionnaire import QUESTIONNAIRE, QUESTIONNAIRE_MAP
+from api.questionnaires.data.questionnaire import QUESTIONNAIRE_MAP, QUESTIONNAIRE
 from api.questionnaires.models import Questionnaire
 from api.questionnaires.serializers import QuestionnaireSerializer
 from api.questionnaires.tasks import map_questionnaire_to_models
@@ -46,9 +47,13 @@ class QuestionnaireViewSet(SessionView,
             crash = self.get_crash_from_session()
             car = Car(crash=crash, creator=session_key)
             car.save()
+            questionnaire = copy.deepcopy(QUESTIONNAIRE)
+            if request.query_params.get("user") == "dario":
+                questionnaire = copy.deepcopy(demo_questionnaire)
+
             data = {
                 "creator": session_key,
-                "data": copy.deepcopy(QUESTIONNAIRE),
+                "data": questionnaire,
                 "crash": crash.id,
                 "car": car.id
             }
