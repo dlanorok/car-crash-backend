@@ -10,6 +10,7 @@ from api.crashes.helpers.create_pdf import create_pdf_from_crash
 from api.crashes.helpers.email_helper import send_pdf
 from api.crashes.models import Crash
 from api.crashes.serializers import CrashSerializer
+from api.crashes.tasks import create_pdf_from_crash_async
 from api.questionnaires.serializers import QuestionnaireSerializer
 
 
@@ -56,10 +57,7 @@ class CrashViewSet(mixins.RetrieveModelMixin,
             return Response(status=status.HTTP_400_BAD_REQUEST, data=_("Not enough cars to confirm the crash"))
 
         if all(_questionnaire.crash_confirmed if _questionnaire.creator != session_key else True for _questionnaire in questionnaires):
-            create_pdf_from_crash(crash)
-            send_pdf(crash.pdf, list(map(lambda q: q.car.driver.email, questionnaires)))
-            crash.closed = True
-            crash.save()
+            create_pdf_from_crash_async.delay(crash.session_id, list(map(lambda q: q.car.driver.email, questionnaires)))
 
         questionnaire = questionnaires.get(creator=session_key, crash=crash)
         if questionnaire:
