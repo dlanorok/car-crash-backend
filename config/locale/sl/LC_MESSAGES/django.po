@@ -49,7 +49,7 @@ msgstr "Skica nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:142
 msgid "Car and Insurance data"
-msgstr "Podatki o zavarovanju in vozilu"
+msgstr "Podatki o zavarovanju"
 
 #: .\api\questionnaires\data\questionnaire.py:143
 msgid "Driver"
@@ -69,7 +69,7 @@ msgstr "Miklošičeva 21"
 
 #: .\api\questionnaires\data\questionnaire.py:151
 msgid "Call 112"
-msgstr "Pokličite 112"
+msgstr "Da, Pokličite 112"
 
 #: .\api\questionnaires\data\questionnaire.py:152
 msgid "We are OK"
@@ -251,11 +251,11 @@ msgstr "1 vozilo"
 
 #: .\api\questionnaires\data\questionnaire.py:211
 msgid "2 vehicles"
-msgstr "2 vozila"
+msgstr "2 vozili"
 
 #: .\api\questionnaires\data\questionnaire.py:212
 msgid "3 or more"
-msgstr "3 vozila ali več"
+msgstr "3 ali več vozil"
 
 #: .\api\questionnaires\data\questionnaire.py:214
 msgid "Me"
@@ -283,7 +283,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:298
 msgid "Let's start"
-msgstr "BREZ SKRBI, najhuje je za vami. Kar sledi je res enostavno."
+msgstr "Bez skrbi, najhuje je za vami. Kar sledi je res preprosto."
 
 #: .\api\questionnaires\data\questionnaire.py:299
 msgid "Initial questions right after the accident"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:385
 msgid "Choose location"
-msgstr "Izberite lokacijo"
+msgstr "Določite lokacijo nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:386
 msgid "This is random help text on Accident place picker"
@@ -363,7 +363,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:399
 msgid "Number of participants"
-msgstr "Število udeležencev"
+msgstr "Število udeleženih vozil"
 
 #: .\api\questionnaires\data\questionnaire.py:400
 msgid "This is random help text on participant number"
@@ -379,19 +379,18 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:412
 msgid "Povzetek"
-msgstr "Povzetek"
+msgstr "Povzetek podatkov o soudeležencu"
 
 #: .\api\questionnaires\data\questionnaire.py:419
 msgid "Smo na CILJU"
-msgstr "Smo na CILJU"
+msgstr "Smo na cilju"
 
 #: .\api\questionnaires\data\questionnaire.py:420
 msgid "Click on button and complete the flow"
 msgstr ""
-"S klikom na gumb Zaključi potrdite vaše podatke in zaključite postopek. "
-"Opozarjamo, da popravljanje poročila po tem koraku ni več možno. Končno "
-"Poročilo Vam bomo poslali po elektronski pošti za nadaljno uporabo. Hvala, "
-"ker smo vam lahko pomagali v tej neprijetni situacijii!"
+"S klikom na gumb 'Zaključite' potrdite vaše podatke in zaključite postopek. "
+"Popravljanje poročila po tem koraku ni več možno. Končno "
+"poročilo Vam bomo poslali po elektronski pošti."
 
 #: .\api\questionnaires\data\questionnaire.py:426
 #: .\api\questionnaires\data\questionnaire.py:433
@@ -509,9 +508,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:579
 msgid "Select your insurance"
-msgstr ""
-"Izberite vašo zavarovalnico, kjer imate sklenjeno polico za zavarovanje "
-"avtomobilske odgovornosti (AO)"
+msgstr "Izberite vašo zavarovalnico"
 
 #: .\api\questionnaires\data\questionnaire.py:580
 msgid "Help ext about insurance"
@@ -556,9 +553,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:612
 msgid "Please scan you driving license or choose to input by hand"
-msgstr ""
-"Poslikajte svoje vozniško dovoljenje za lažji prenos podatkov ali ročno "
-"vpišite vaše podatke"
+msgstr "Poskenirajte vaše vozniško dovoljenje"
 
 #: .\api\questionnaires\data\questionnaire.py:613
 msgid "Help text about scan"
