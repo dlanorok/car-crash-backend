@@ -1342,7 +1342,6 @@ QUESTIONNAIRE = {
       "id": 49,
       "type": "invite",
       "value": None,
-      "required": True
     },
     "50": {
       "id": 50,

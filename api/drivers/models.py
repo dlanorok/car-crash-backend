@@ -24,6 +24,5 @@ class Driver(RevisionModel):
                self.address and \
                self.email and \
                self.phone_number and \
-               self.country and \
                self.driving_licence_number and \
                self.driving_licence_valid_to
