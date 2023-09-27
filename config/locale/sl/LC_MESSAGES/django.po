@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 11:46+0200\n"
+"POT-Creation-Date: 2023-09-27 14:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,6 @@ msgid "Casco insurance/parked vehicle"
 msgstr "1 vozilo"
 
 #: .\api\questionnaires\data\questionnaire.py:211
-#| msgid "2 vehicle"
 msgid "2 vehicles"
 msgstr "2 vozila"
 
@@ -294,99 +293,99 @@ msgstr "Začnimo z nekaj enostavnimi, a pomembnimi vprašanji"
 msgid "Circumstances page chapter"
 msgstr "OKOLIŠČINE NESREČE"
 
-#: .\api\questionnaires\data\questionnaire.py:316
+#: .\api\questionnaires\data\questionnaire.py:315
 msgid "Vehicle damage chapter"
 msgstr "POŠKODBE NA VOZILU"
 
-#: .\api\questionnaires\data\questionnaire.py:325
+#: .\api\questionnaires\data\questionnaire.py:323
 msgid "Sketch page chapter"
 msgstr "SKICA NESREČE"
 
-#: .\api\questionnaires\data\questionnaire.py:334
+#: .\api\questionnaires\data\questionnaire.py:331
 msgid "Car and Insurance page chapter"
 msgstr "PODATKI O ZAVAROVANJU"
 
-#: .\api\questionnaires\data\questionnaire.py:343
+#: .\api\questionnaires\data\questionnaire.py:339
 msgid "Driver page chapter"
 msgstr "PODATKI O VOZNIKU"
 
-#: .\api\questionnaires\data\questionnaire.py:352
+#: .\api\questionnaires\data\questionnaire.py:347
 msgid "Additional page chapter"
 msgstr "DODATNE OKOLIŠČINE NESREČE"
 
-#: .\api\questionnaires\data\questionnaire.py:361
+#: .\api\questionnaires\data\questionnaire.py:355
 msgid "Confirmation step chapter"
 msgstr "POTRDITE POROČILO O PROMETNI NESREČI"
 
-#: .\api\questionnaires\data\questionnaire.py:370
+#: .\api\questionnaires\data\questionnaire.py:363
 msgid "Is there anyone injured and needs medical attention?"
 msgstr ""
 "Varnost vseh udeleženih je na prvem mestu. Ali je kdo poškodovan (huje ali "
 "lažje) in potrebuje medicinsko pomoč? "
 
-#: .\api\questionnaires\data\questionnaire.py:371
-#: .\api\questionnaires\data\questionnaire.py:647
+#: .\api\questionnaires\data\questionnaire.py:364
+#: .\api\questionnaires\data\questionnaire.py:640
 msgid "This is random help text that needs to be changed"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:377
+#: .\api\questionnaires\data\questionnaire.py:370
 msgid "Damage on other vehicles"
 msgstr "Ali so vidne poškodbe na drugem vozilu?"
 
-#: .\api\questionnaires\data\questionnaire.py:378
+#: .\api\questionnaires\data\questionnaire.py:371
 msgid "This is random help text on page Damage on other vehicles section"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:384
+#: .\api\questionnaires\data\questionnaire.py:377
 msgid "Is there any damage on nearby property?"
 msgstr ""
 "Ali je kakšna vidna poškodba tudi na drugih objektih (ograje, drevesa,..)"
 
-#: .\api\questionnaires\data\questionnaire.py:385
+#: .\api\questionnaires\data\questionnaire.py:378
 msgid "This is random help text on page Is there any damage on nearby property"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:392
+#: .\api\questionnaires\data\questionnaire.py:385
 msgid "Choose location"
 msgstr "Izberite lokacijo"
 
-#: .\api\questionnaires\data\questionnaire.py:393
+#: .\api\questionnaires\data\questionnaire.py:386
 msgid "This is random help text on Accident place picker"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:399
+#: .\api\questionnaires\data\questionnaire.py:392
 msgid "Time of the accident"
 msgstr "Datum in ura nesreče"
 
-#: .\api\questionnaires\data\questionnaire.py:400
+#: .\api\questionnaires\data\questionnaire.py:393
 msgid "This is random help text on Time of accident"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:406
+#: .\api\questionnaires\data\questionnaire.py:399
 msgid "Number of participants"
 msgstr "Število udeležencev"
 
-#: .\api\questionnaires\data\questionnaire.py:407
+#: .\api\questionnaires\data\questionnaire.py:400
 msgid "This is random help text on participant number"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:412
+#: .\api\questionnaires\data\questionnaire.py:405
 msgid "Who is responsible for the accident"
 msgstr "Kdo je po vaši presoji kriv za nesrečo"
 
-#: .\api\questionnaires\data\questionnaire.py:413
+#: .\api\questionnaires\data\questionnaire.py:406
 msgid "Help text about responsibility"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:419
+#: .\api\questionnaires\data\questionnaire.py:412
 msgid "Povzetek"
 msgstr "Povzetek"
 
-#: .\api\questionnaires\data\questionnaire.py:426
+#: .\api\questionnaires\data\questionnaire.py:419
 msgid "Smo na CILJU"
 msgstr "Smo na CILJU"
 
-#: .\api\questionnaires\data\questionnaire.py:427
+#: .\api\questionnaires\data\questionnaire.py:420
 msgid "Click on button and complete the flow"
 msgstr ""
 "S klikom na gumb Zaključi potrdite vaše podatke in zaključite postopek. "
@@ -394,6 +393,7 @@ msgstr ""
 "Poročilo Vam bomo poslali po elektronski pošti za nadaljno uporabo. Hvala, "
 "ker smo vam lahko pomagali v tej neprijetni situacijii!"
 
+#: .\api\questionnaires\data\questionnaire.py:426
 #: .\api\questionnaires\data\questionnaire.py:433
 #: .\api\questionnaires\data\questionnaire.py:440
 #: .\api\questionnaires\data\questionnaire.py:447
@@ -412,130 +412,129 @@ msgstr ""
 #: .\api\questionnaires\data\questionnaire.py:538
 #: .\api\questionnaires\data\questionnaire.py:545
 #: .\api\questionnaires\data\questionnaire.py:552
-#: .\api\questionnaires\data\questionnaire.py:559
 msgid "Choose option that suits you the best"
 msgstr "Izberite eno opcijo"
 
-#: .\api\questionnaires\data\questionnaire.py:434
+#: .\api\questionnaires\data\questionnaire.py:427
 msgid "1"
 msgstr "1"
 
-#: .\api\questionnaires\data\questionnaire.py:441
+#: .\api\questionnaires\data\questionnaire.py:434
 msgid "2"
 msgstr "2"
 
-#: .\api\questionnaires\data\questionnaire.py:448
+#: .\api\questionnaires\data\questionnaire.py:441
 msgid "3"
 msgstr "3"
 
-#: .\api\questionnaires\data\questionnaire.py:455
+#: .\api\questionnaires\data\questionnaire.py:448
 msgid "4"
 msgstr "4"
 
-#: .\api\questionnaires\data\questionnaire.py:462
+#: .\api\questionnaires\data\questionnaire.py:455
 msgid "5"
 msgstr "5"
 
-#: .\api\questionnaires\data\questionnaire.py:469
+#: .\api\questionnaires\data\questionnaire.py:462
 msgid "6"
 msgstr "6"
 
-#: .\api\questionnaires\data\questionnaire.py:476
+#: .\api\questionnaires\data\questionnaire.py:469
 msgid "7"
 msgstr "7"
 
-#: .\api\questionnaires\data\questionnaire.py:483
+#: .\api\questionnaires\data\questionnaire.py:476
 msgid "8"
 msgstr "8"
 
-#: .\api\questionnaires\data\questionnaire.py:490
+#: .\api\questionnaires\data\questionnaire.py:483
 msgid "9"
 msgstr "9"
 
-#: .\api\questionnaires\data\questionnaire.py:497
+#: .\api\questionnaires\data\questionnaire.py:490
 msgid "10"
 msgstr "10"
 
-#: .\api\questionnaires\data\questionnaire.py:504
+#: .\api\questionnaires\data\questionnaire.py:497
 msgid "11"
 msgstr "11"
 
-#: .\api\questionnaires\data\questionnaire.py:511
+#: .\api\questionnaires\data\questionnaire.py:504
 msgid "12"
 msgstr "12"
 
-#: .\api\questionnaires\data\questionnaire.py:518
+#: .\api\questionnaires\data\questionnaire.py:511
 msgid "13"
 msgstr "13"
 
-#: .\api\questionnaires\data\questionnaire.py:525
+#: .\api\questionnaires\data\questionnaire.py:518
 msgid "14"
 msgstr "14"
 
-#: .\api\questionnaires\data\questionnaire.py:532
+#: .\api\questionnaires\data\questionnaire.py:525
 msgid "15"
 msgstr "15"
 
-#: .\api\questionnaires\data\questionnaire.py:539
+#: .\api\questionnaires\data\questionnaire.py:532
 msgid "16"
 msgstr "16"
 
-#: .\api\questionnaires\data\questionnaire.py:546
+#: .\api\questionnaires\data\questionnaire.py:539
 msgid "17"
 msgstr "17"
 
-#: .\api\questionnaires\data\questionnaire.py:553
+#: .\api\questionnaires\data\questionnaire.py:546
 msgid "18"
 msgstr "18"
 
-#: .\api\questionnaires\data\questionnaire.py:560
+#: .\api\questionnaires\data\questionnaire.py:553
 msgid "19"
 msgstr "19"
 
-#: .\api\questionnaires\data\questionnaire.py:567
+#: .\api\questionnaires\data\questionnaire.py:560
 msgid "Choose Collision direction"
 msgstr "Označite smer naleta"
 
-#: .\api\questionnaires\data\questionnaire.py:574
+#: .\api\questionnaires\data\questionnaire.py:567
 msgid "Choose damaged parts"
 msgstr "Označite poškodovane dele vozila"
 
-#: .\api\questionnaires\data\questionnaire.py:579
+#: .\api\questionnaires\data\questionnaire.py:572
 msgid "Write down your registration number"
 msgstr "Vpišite registrsko številko"
 
-#: .\api\questionnaires\data\questionnaire.py:580
+#: .\api\questionnaires\data\questionnaire.py:573
 msgid "Help ext about registration number"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:586
+#: .\api\questionnaires\data\questionnaire.py:579
 msgid "Select your insurance"
 msgstr ""
 "Izberite vašo zavarovalnico, kjer imate sklenjeno polico za zavarovanje "
 "avtomobilske odgovornosti (AO)"
 
-#: .\api\questionnaires\data\questionnaire.py:587
+#: .\api\questionnaires\data\questionnaire.py:580
 msgid "Help ext about insurance"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:593
+#: .\api\questionnaires\data\questionnaire.py:586
 msgid "Write down insurance data"
 msgstr ""
 "Vpišite podatke iz vaše police za zavarovanje avtomobilske odgovornosti (AO)"
 
-#: .\api\questionnaires\data\questionnaire.py:594
+#: .\api\questionnaires\data\questionnaire.py:587
 msgid "Help text about insurance data"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:600
+#: .\api\questionnaires\data\questionnaire.py:593
 msgid "Write down insurance holder data"
 msgstr "Vpišite podatke o zavarovalcu"
 
-#: .\api\questionnaires\data\questionnaire.py:601
+#: .\api\questionnaires\data\questionnaire.py:594
 msgid "Help text about insurance holder data"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:606
+#: .\api\questionnaires\data\questionnaire.py:599
 msgid ""
 "For data exchange purposes and contact with your insurance company we need "
 "your email and telephone number."
@@ -543,118 +542,123 @@ msgstr ""
 "Vpišite vaš email in telefonsko številko, ki se bo uporabila za nadaljno "
 "komunikacijo z vami"
 
-#: .\api\questionnaires\data\questionnaire.py:607
+#: .\api\questionnaires\data\questionnaire.py:600
 msgid "Information about data exchange step"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:612
+#: .\api\questionnaires\data\questionnaire.py:605
 msgid "Write down data of anyone who saw the accident?"
 msgstr "Vpišite ime in priimek ter kontaktne podatke vseh prič dogodka"
 
-#: .\api\questionnaires\data\questionnaire.py:613
+#: .\api\questionnaires\data\questionnaire.py:606
 msgid "Information about witnesses"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:619
+#: .\api\questionnaires\data\questionnaire.py:612
 msgid "Please scan you driving license or choose to input by hand"
 msgstr ""
 "Poslikajte svoje vozniško dovoljenje za lažji prenos podatkov ali ročno "
 "vpišite vaše podatke"
 
-#: .\api\questionnaires\data\questionnaire.py:620
+#: .\api\questionnaires\data\questionnaire.py:613
 msgid "Help text about scan"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:627
+#: .\api\questionnaires\data\questionnaire.py:620
 msgid "Sketch you accident"
 msgstr "Vizualizacija nesreče"
 
-#: .\api\questionnaires\data\questionnaire.py:633
+#: .\api\questionnaires\data\questionnaire.py:626
 msgid "Write down additional data of the accident"
 msgstr "Vpišite dodatke okoliščine ali druge pomembne opombe glede nesreče"
 
-#: .\api\questionnaires\data\questionnaire.py:634
+#: .\api\questionnaires\data\questionnaire.py:627
 msgid "Information about additional data of accident"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:639
+#: .\api\questionnaires\data\questionnaire.py:632
 msgid "3 vehicles not supported"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:640
+#: .\api\questionnaires\data\questionnaire.py:633
 msgid "This is random help text that needs to be changed 3 vehicles"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:646
+#: .\api\questionnaires\data\questionnaire.py:639
 msgid "CASCO test"
 msgstr ""
 
-#: .\api\questionnaires\data\questionnaire.py:1195
+#: .\api\questionnaires\data\questionnaire.py:1188
 msgid "Registration number"
 msgstr "Registrska številka"
 
-#: .\api\questionnaires\data\questionnaire.py:1201
+#: .\api\questionnaires\data\questionnaire.py:1194
 msgid "Country"
 msgstr "Država"
 
-#: .\api\questionnaires\data\questionnaire.py:1216
+#: .\api\questionnaires\data\questionnaire.py:1209
 msgid "Insurance number"
 msgstr "Številka zavarovalne police"
 
-#: .\api\questionnaires\data\questionnaire.py:1223
+#: .\api\questionnaires\data\questionnaire.py:1216
 #: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:1638
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1638
 #: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:1638
 msgid "Email address"
 msgstr "Email naslov"
 
-#: .\api\questionnaires\data\questionnaire.py:1231
+#: .\api\questionnaires\data\questionnaire.py:1224
 msgid "Phone number"
 msgstr "Telefonska številka"
 
-#: .\api\questionnaires\data\questionnaire.py:1238
+#: .\api\questionnaires\data\questionnaire.py:1231
 msgid "Witnesses"
 msgstr "Priče dogodka"
 
-#: .\api\questionnaires\data\questionnaire.py:1270
+#: .\api\questionnaires\data\questionnaire.py:1263
 msgid "Additional Data"
 msgstr "Dodatne okoliščine ali druge opombe"
 
-#: .\api\questionnaires\data\questionnaire.py:1276
+#: .\api\questionnaires\data\questionnaire.py:1269
 msgid "Vehicle type"
 msgstr "Znamka in tip vozila"
 
-#: .\api\questionnaires\data\questionnaire.py:1283
+#: .\api\questionnaires\data\questionnaire.py:1276
 msgid "Green card number"
 msgstr "Številka zelene karte"
 
-#: .\api\questionnaires\data\questionnaire.py:1289
+#: .\api\questionnaires\data\questionnaire.py:1282
 msgid "Validity"
 msgstr "Veljavnost do"
 
-#: .\api\questionnaires\data\questionnaire.py:1296
+#: .\api\questionnaires\data\questionnaire.py:1289
 msgid "Insurance holder Name"
 msgstr "Zavarovalec"
 
-#: .\api\questionnaires\data\questionnaire.py:1303
+#: .\api\questionnaires\data\questionnaire.py:1296
 msgid "Insurance holder Address"
 msgstr "Naslov zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:1309
+#: .\api\questionnaires\data\questionnaire.py:1302
 msgid "Insurance holder phone"
 msgstr "Telefonska številka zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:1317
+#: .\api\questionnaires\data\questionnaire.py:1310
 msgid "Insurance holder country"
 msgstr "Država zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:1344
+#: .\api\questionnaires\data\questionnaire.py:1337
 msgid "Insurance holder email"
 msgstr "Email zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:1357
+#: .\api\questionnaires\data\questionnaire.py:1349
 msgid "Damage insured"
 msgstr "Ali je vozilo zavarovano tudi kasko?"
+
+#: .\api\questionnaires\data\questionnaire.py:1368
+#| msgid "Validity"
+msgid "Validity from"
+msgstr "Veljavnost od"
 
 #: .\venv3.9\Lib\site-packages\_pytest\config\argparsing.py:474
 #: .\venv\Lib\site-packages\_pytest\config\argparsing.py:474

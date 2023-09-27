@@ -586,7 +586,7 @@ QUESTIONNAIRE = {
       "question": str(_('Write down insurance data')),
       "help_text": str(_('Help text about insurance data')),
       "next_step": Step.INSURANCE_HOLDER_DATA,
-      "inputs": ["32", "41", "42", "50", "46"],
+      "inputs": ["32", "41", "53", "42", "50", "46"],
     },
     {
       "step_type": Step.INSURANCE_HOLDER_DATA,
@@ -1360,6 +1360,12 @@ QUESTIONNAIRE = {
       "id": 52,
       "type": "final_step",
       "required": True,
+      "value": None,
+    },
+    "53": {
+      "id": 53,
+      "type": "date",
+      "label": str(_("Validity from")),
       "value": None,
     },
   }
