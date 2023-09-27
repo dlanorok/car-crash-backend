@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 14:20+0200\n"
+"POT-Creation-Date: 2023-09-27 15:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -389,8 +389,8 @@ msgstr "Smo na cilju"
 msgid "Click on button and complete the flow"
 msgstr ""
 "S klikom na gumb 'Zaključite' potrdite vaše podatke in zaključite postopek. "
-"Popravljanje poročila po tem koraku ni več možno. Končno "
-"poročilo Vam bomo poslali po elektronski pošti."
+"Popravljanje poročila po tem koraku ni več možno. Končno poročilo Vam bomo "
+"poslali po elektronski pošti."
 
 #: .\api\questionnaires\data\questionnaire.py:426
 #: .\api\questionnaires\data\questionnaire.py:433
@@ -651,7 +651,6 @@ msgid "Damage insured"
 msgstr "Ali je vozilo zavarovano tudi kasko?"
 
 #: .\api\questionnaires\data\questionnaire.py:1368
-#| msgid "Validity"
 msgid "Validity from"
 msgstr "Veljavnost od"
 
