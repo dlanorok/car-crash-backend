@@ -15,6 +15,7 @@ class Circumstance(RevisionModel):
     entering_roundabout = models.BooleanField(default=False)
     circulating_roundabout = models.BooleanField(default=False)
     rear_same_direction = models.BooleanField(default=False)
+    straight = models.BooleanField(default=False)
     same_direction_different_lane = models.BooleanField(default=False)
     changing_lanes = models.BooleanField(default=False)
     overtaking = models.BooleanField(default=False)
@@ -42,4 +43,5 @@ class Circumstance(RevisionModel):
                self.reversing or \
                self.driving_on_opposite_lane or \
                self.from_right_crossing or \
-               self.disregarding_right_of_way_red_light
+               self.disregarding_right_of_way_red_light or \
+               self.straight

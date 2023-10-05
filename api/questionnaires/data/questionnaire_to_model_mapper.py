@@ -219,6 +219,10 @@ circumstance_to_model_mapper = {
                 "value": "driving_straight_crashed_with_vehicle_in_front"
             },
             {
+                "property": "straight",
+                "value": "driving_straight_crashed_from_behind"
+            },
+            {
                 "property": "same_direction_different_lane",
                 "value": "driving_straight_crashed_to_vehicle_in_another_lane"
             },

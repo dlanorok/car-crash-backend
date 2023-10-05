@@ -1280,6 +1280,7 @@ QUESTIONNAIRE = {
       "id": 42,
       "type": "date",
       "label": str(_("Validity")),
+      "after_months": 12,
       "value": None,
       "required": True
     },

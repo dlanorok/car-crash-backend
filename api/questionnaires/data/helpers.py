@@ -15,6 +15,7 @@ def circumstance_input_to_arrow(input_value):
         return ArrowType.NULL
 
     if input_value in [
+        "driving_straight_crashed_from_behind",
         "driving_straight"
         "roundabout_run_into_vehicle",
         "roundabout_another_vehicle_crashed_from_behind",
