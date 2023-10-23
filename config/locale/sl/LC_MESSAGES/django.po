@@ -49,7 +49,7 @@ msgstr "Skica nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:142
 msgid "Car and Insurance data"
-msgstr "Podatki o zavarovanju"
+msgstr "Podatki o zavarovanju in vozilu"
 
 #: .\api\questionnaires\data\questionnaire.py:143
 msgid "Driver"
@@ -69,7 +69,7 @@ msgstr "Miklošičeva 21"
 
 #: .\api\questionnaires\data\questionnaire.py:151
 msgid "Call 112"
-msgstr "Da, Pokličite 112"
+msgstr "Pokličite 112"
 
 #: .\api\questionnaires\data\questionnaire.py:152
 msgid "We are OK"
@@ -283,11 +283,11 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:298
 msgid "Let's start"
-msgstr "Bez skrbi, najhuje je za vami. Kar sledi je res preprosto."
+msgstr "BREZ SKRBI."
 
 #: .\api\questionnaires\data\questionnaire.py:299
 msgid "Initial questions right after the accident"
-msgstr "Začnimo z nekaj enostavnimi, a pomembnimi vprašanji"
+msgstr "Najhuje je za vami. Začnimo z nekaj enostavnimi, a pomembnimi vprašanji."
 
 #: .\api\questionnaires\data\questionnaire.py:307
 msgid "Circumstances page chapter"
@@ -363,7 +363,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:399
 msgid "Number of participants"
-msgstr "Število udeleženih vozil"
+msgstr "Število udeležencev"
 
 #: .\api\questionnaires\data\questionnaire.py:400
 msgid "This is random help text on participant number"
@@ -379,7 +379,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:412
 msgid "Povzetek"
-msgstr "Povzetek podatkov o soudeležencu"
+msgstr "Povzetek"
 
 #: .\api\questionnaires\data\questionnaire.py:419
 msgid "Smo na CILJU"
