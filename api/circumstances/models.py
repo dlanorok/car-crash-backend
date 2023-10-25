@@ -7,24 +7,24 @@ from api.common.models.base import RevisionModel
 class Circumstance(RevisionModel):
     car = models.OneToOneField(Car, on_delete=models.CASCADE, primary_key=True, related_name='circumstances')
 
-    parked_stopped = models.BooleanField(default=False)
-    leaving_parking_opening_door = models.BooleanField(default=False)
-    entering_parking = models.BooleanField(default=False)
-    emerging_from_car_park = models.BooleanField(default=False)
-    entering_car_park = models.BooleanField(default=False)
-    entering_roundabout = models.BooleanField(default=False)
-    circulating_roundabout = models.BooleanField(default=False)
-    rear_same_direction = models.BooleanField(default=False)
+    parked_stopped = models.BooleanField(default=False) # 1
+    leaving_parking_opening_door = models.BooleanField(default=False) # 2
+    entering_parking = models.BooleanField(default=False) # 3
+    emerging_from_car_park = models.BooleanField(default=False) # 4
+    entering_car_park = models.BooleanField(default=False) # 5
+    entering_roundabout = models.BooleanField(default=False) # 6
+    circulating_roundabout = models.BooleanField(default=False) # 7
+    rear_same_direction = models.BooleanField(default=False) # 8
     straight = models.BooleanField(default=False)
-    same_direction_different_lane = models.BooleanField(default=False)
-    changing_lanes = models.BooleanField(default=False)
-    overtaking = models.BooleanField(default=False)
-    turning_right = models.BooleanField(default=False)
-    turning_left = models.BooleanField(default=False)
-    reversing = models.BooleanField(default=False)
-    driving_on_opposite_lane = models.BooleanField(default=False)
-    from_right_crossing = models.BooleanField(default=False)
-    disregarding_right_of_way_red_light = models.BooleanField(default=False)
+    same_direction_different_lane = models.BooleanField(default=False) # 9
+    changing_lanes = models.BooleanField(default=False) # 10
+    overtaking = models.BooleanField(default=False) # 11
+    turning_right = models.BooleanField(default=False) # 12
+    turning_left = models.BooleanField(default=False) # 13
+    reversing = models.BooleanField(default=False) # 14
+    driving_on_opposite_lane = models.BooleanField(default=False) # 15
+    from_right_crossing = models.BooleanField(default=False) # 16
+    disregarding_right_of_way_red_light = models.BooleanField(default=False) # 17
 
     def is_valid(self):
         return self.parked_stopped or \

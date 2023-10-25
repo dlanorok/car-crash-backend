@@ -25,7 +25,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
     def __init__(self, crash: Crash):
         super().__init__(crash)
 
-        self.reader = PdfReader("assets/statement_si.pdf")
+        self.reader = PdfReader("assets/accident_report.pdf")
         self.writer = PdfWriter()
         self.writer.append(self.reader)
 

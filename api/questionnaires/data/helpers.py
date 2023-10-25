@@ -15,17 +15,20 @@ def circumstance_input_to_arrow(input_value):
         return ArrowType.NULL
 
     if input_value in [
-        "driving_straight_crashed_from_behind",
-        "driving_straight"
+        "driving_straight",
+        "roundabout_correctly_driving_on_my_lane",
         "roundabout_run_into_vehicle",
         "roundabout_another_vehicle_crashed_from_behind",
-        "roundabout_crashed_with_vehicle_from_another_traffic_lane",
+        "vehicle_on_right",
+        "vehicle_on_left",
+        "crossing_crashed_to_vehicle_in_front",
+        "crossing_another_vehicle_crashed_from_behind",
         "crossing_driving_straight",
+        "driving_straight_correctly_driving_in_my_lane",
         "driving_straight_crashed_with_vehicle_in_front",
-        "driving_straight_crashed_from_behind"
-        "driving_straight_crashed_to_vehicle_in_another_lane",
+        "driving_straight_crashed_from_behind",
         "driving_straight_overtaking_another_vehicle",
-        "driving_straight_in_opposite_lane"
+        "driving_straight_another_lane"
     ]:
         return ArrowType.STRAIGHT
 
@@ -38,9 +41,9 @@ def circumstance_input_to_arrow(input_value):
     if input_value in ["turning_right", "roundabout_entering", "crossing_turning_right"]:
         return ArrowType.RIGHT
 
-    if input_value == "changing_driving_lane_right":
+    if input_value in ["changing_driving_lane_right", "roundabout_entering"]:
         return ArrowType.STRAIGHT_RIGHT
-    if input_value == "changing_driving_lane_left":
+    if input_value == ["changing_driving_lane_left"]:
         return ArrowType.STRAIGHT_LEFT
 
 

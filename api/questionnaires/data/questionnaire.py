@@ -4,8 +4,15 @@ from enum import Enum
 from django.utils.translation import ugettext_lazy as _
 from geopy.geocoders import Nominatim
 
+from api.questionnaires.data.circumstances.crossing import crossing_questionnaire
+from api.questionnaires.data.circumstances.driving_straight import driving_straight_questionnaire
+from api.questionnaires.data.circumstances.driving_straight_another_lane import \
+  driving_straight_another_lane_questionnaire
+from api.questionnaires.data.circumstances.moving import moving_questionnaire
+from api.questionnaires.data.circumstances.roundabout import roundabout_questionnaire
 from api.questionnaires.data.helpers import generate_circumstance_map
 from api.questionnaires.data.insurances import supported_insurances
+from api.questionnaires.data.circumstances.parked import parked_questionnaire
 
 
 @dataclass
@@ -70,28 +77,7 @@ class Step(str, Enum):
   ACCIDENT_TIME = "accident_time"
   PARTICIPANTS_NUMBER = "participants_number"
   CIRCUMSTANCES_STEP_1 = "circumstances_step_1"
-  CIRCUMSTANCES_STEP_2_PARKED = "circumstances_step_2_parked"
-  CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING = "circumstances_step_2_moving_parking_joining"
-  CIRCUMSTANCES_STEP_2_ROUNDABOUT = "circumstances_step_2_roundabout"
-  CIRCUMSTANCES_STEP_2_CROSSING = "circumstances_step_2_crossing"
-  CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD = "circumstances_step_2_straight_road"
 
-  CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR = "circumstances_step_3_parked_leaving_car"
-  CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR = "circumstances_step_3_parked_entering_car"
-
-  CIRCUMSTANCES_STEP_3_LEAVING_PARKING = "circumstances_step_3_leaving_parking"
-  CIRCUMSTANCES_STEP_3_PARKING = "circumstances_step_3_parking"
-  CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY = "circumstances_step_3_leaving_private_property"
-  CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY = "circumstances_step_3_entering_private_property"
-
-  CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE = "circumstances_step_3_roundabout_crashed_another_lane"
-  CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES = "circumstances_step_3_roundabout_changing_lanes"
-
-  CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT = "circumstances_step_3_crossing_driving_straight"
-  CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT = "circumstances_step_3_crossing_turning_right"
-  CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT = "circumstances_step_3_crossing_turning_left"
-
-  CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE = "circumstances_step_3_straight_road_same_direction_another_lane"
   CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES = "circumstances_step_3_straight_road_changing_lanes"
 
   COLLISION_DIRECTION = 'collision_direction'
@@ -152,60 +138,6 @@ class Label(str, Enum):
   WE_ARE_OK = _('We are OK')
   YES = _('Yes')
   NO = _('No')
-
-  # CIRCUMSTANCES STEP 1
-  VEHICLE_PARKED = _('My vehicle was parked')
-  VEHICLE_MOVING = _('I was parking or entering into traffic')
-  VEHICLE_ROUNDABOUT = _('I was in a roundabout')
-  VEHICLE_CROSSING = _('I was at a crossing')
-  VEHICLE_DRIVING_STRAIGHT = _('I was driving straight')
-
-  # CIRCUMSTANCES STEP 2
-  PARKED_LEAVING_CAR = _('I was leaving car')
-  PARKED_ENTERING_CAR = _('I was entering car')
-  PARKED_NOT_BY_THE_CAR = _('I was not by the car')
-
-  MOVING_LEAVING_PARKING = _('I was leaving parking slot')
-  MOVING_PARKING_CAR = _('I was parking my car')
-  MOVING_LEAVING_PRIVATE_PROPERTY = _('I was merging into traffic from private property')
-  MOVING_ENTERING_PRIVATE_PROPERTY = _('I was turning to private property')
-
-  ROUNDABOUT_ENTERING = _('I was entering roundabout')
-  ROUNDABOUT_RUN_INTO_VEHICLE = _('I run into vehicle in front')
-  ROUNDABOUT_ANOTHER_VEHICLE_FROM_BEHIND = _('Another vehicle crashed into me from behind')
-  ROUNDABOUT_CRASHED_WITH_VEHICLE_FROM_ANOTHER_TRAFFIC_LANE = _('Crashed with another vehicle from another traffic lane')
-  ROUNDABOUT_CHANGING_TRAFFIC_LANE = _('I was changing traffic lane')
-
-  CROSSING_STANDING_IN_FRONT_OF_CROSSING_OR_TRAFFIC_LIGHT = _("I was standing in front of merging into traffic or in front of a traffic light")
-  CROSSING_DRIVING_STRAIGHT = _("I was driving straight through the crossing")
-  CROSSING_TURNING_RIGHT = _("I was turning right")
-  CROSSING_TURNING_LEFT = _("I was turning left")
-
-  DRIVING_STRAIGHT_CRASHED_WITH_VEHICLE_IN_FRONT = _("Crashed with vehicle driving in front of me")
-  DRIVING_STRAIGHT_CRASHED_FROM_BEHIND = _("Another vehicle crashed into me from behind")
-  DRIVING_STRAIGHT_CRASHED_TO_VEHICLE_IN_ANOTHER_LANE = _("Crashed with vehicle driving in the same direction, but another lane")
-  DRIVING_STRAIGHT_CHANGING_LANE = _("Changing lanes")
-  DRIVING_STRAIGHT_OVERTAKING_ANOTHER_VEHICLE = _("Overtaking another vehicle")
-  DRIVING_STRAIGHT_REVERSE = _("Driving reverse")
-  DRIVING_STRAIGHT_IN_OPPOSITE_LANE = _("Driving on a lane from opposite direction")
-
-  #CIRCUMSTANCES STEP 3
-  DOORS_CLOSED = _("Doors were closed")
-  DOORS_OPENED = _("Doors were opened")
-
-  DRIVING_STRAIGHT = _('Driving straight')
-  DRIVING_REVERSE = _('Driving reverse')
-
-  TURNING_RIGHT = _('Turning right')
-  TURNING_LEFT = _('Turning left')
-
-  VEHICLE_ON_RIGHT = _("Other vehicle was on my right")
-  VEHICLE_ON_LEFT = _("Other vehicle was on my left")
-
-  CHANGING_DRIVING_LANE_RIGHT = _("Changed lane to right")
-  CHANGING_DRIVING_LANE_LEFT = _("Changed lane to left")
-  CROSSING_ENTERING_FROM_RIGHT = _("I entered crossing from right relative to the other vehicle")
-  CROSSING_NOT_OBEYING_RULES = _("I did (not) follow the right-of-way signs or the red light")
 
   CASCO_INSURANCE_OR_PARKED_VEHICLE = _('Casco insurance/parked vehicle')
   TWO_VEHICLES = _('2 vehicles')
@@ -429,132 +361,6 @@ QUESTIONNAIRE = {
       "inputs": ["3"]
     },
     {
-      "step_type": Step.CIRCUMSTANCES_STEP_2_PARKED,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('2')),
-      "updated_inputs": ["37"],
-      "inputs": ["5"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('3')),
-      "updated_inputs": ["37"],
-      "inputs": ["6"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_2_ROUNDABOUT,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('4')),
-      "updated_inputs": ["37"],
-      "inputs": ["11"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_2_CROSSING,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('5')),
-      "updated_inputs": ["37"],
-      "inputs": ["12"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('6')),
-      "updated_inputs": ["37"],
-      "inputs": ["13"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('7')),
-      "updated_inputs": ["37"],
-      "inputs": ["14"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('8')),
-      "updated_inputs": ["37"],
-      "inputs": ["15"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('9')),
-      "updated_inputs": ["37"],
-      "inputs": ["16"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_PARKING,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('10')),
-      "updated_inputs": ["37"],
-      "inputs": ["17"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('11')),
-      "updated_inputs": ["37"],
-      "inputs": ["18"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('12')),
-      "updated_inputs": ["37"],
-      "inputs": ["19"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('13')),
-      "updated_inputs": ["37"],
-      "inputs": ["20"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('14')),
-      "updated_inputs": ["37"],
-      "inputs": ["21"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('15')),
-      "updated_inputs": ["37"],
-      "inputs": ["22"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('16')),
-      "updated_inputs": ["37"],
-      "inputs": ["23"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('17')),
-      "updated_inputs": ["37"],
-      "inputs": ["24"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('18')),
-      "updated_inputs": ["37"],
-      "inputs": ["25"]
-    },
-    {
-      "step_type": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES,
-      "question": str(_('Choose option that suits you the best')),
-      "help_text": str(_('19')),
-      "updated_inputs": ["37"],
-      "inputs": ["26"]
-    },
-    {
       "step_type": Step.COLLISION_DIRECTION,
       "main_screen": True,
       "question": str(_('Choose Collision direction')),
@@ -696,41 +502,12 @@ QUESTIONNAIRE = {
       "value": None,
       "required": True,
       "options": [
-        {
-          "value": "parked",
-          "label": Label.VEHICLE_PARKED,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_2_PARKED
-          }
-        },
-        {
-          "value": "moving",
-          "label": Label.VEHICLE_MOVING,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_2_MOVING_PARKING_JOINING
-          }
-        },
-        {
-          "value": "roundabout",
-          "label": Label.VEHICLE_ROUNDABOUT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_2_ROUNDABOUT
-          }
-        },
-        {
-          "value": "crossing",
-          "label": Label.VEHICLE_CROSSING,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_2_CROSSING
-          }
-        },
-        {
-          "value": "driving_straight",
-          "label": Label.VEHICLE_DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_2_STRAIGHT_ROAD
-          }
-        }
+        parked_questionnaire.section,
+        moving_questionnaire.section,
+        roundabout_questionnaire.section,
+        crossing_questionnaire.section,
+        driving_straight_questionnaire.section,
+        driving_straight_another_lane_questionnaire.section,
       ]
     },
     "4": {
@@ -760,68 +537,6 @@ QUESTIONNAIRE = {
         },
       ]
     },
-    "5": {
-      "id": 5,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "leaving_car",
-          "label": Label.PARKED_LEAVING_CAR,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_PARKED_LEAVING_CAR
-          }
-        },
-        {
-          "value": "entering_parked_car",
-          "label": Label.PARKED_ENTERING_CAR,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_PARKED_ENTERING_CAR
-          }
-        },
-        {
-          "value": "not_in_car",
-          "label": Label.PARKED_NOT_BY_THE_CAR,
-        }
-      ]
-    },
-    "6": {
-      "id": 6,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "leaving_parking_slot",
-          "label": Label.MOVING_LEAVING_PARKING,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_LEAVING_PARKING
-          }
-        },
-        {
-          "value": "parking",
-          "label": Label.MOVING_PARKING_CAR,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_PARKING
-          }
-        },
-        {
-          "value": "leaving_parking_slot_private_property",
-          "label": Label.MOVING_LEAVING_PRIVATE_PROPERTY,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_LEAVING_PRIVATE_PROPERTY
-          }
-        },
-        {
-          "value": "entering_parking_slot_private_property",
-          "label": Label.MOVING_ENTERING_PRIVATE_PROPERTY,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_ENTERING_PRIVATE_PROPERTY
-          }
-        }
-      ]
-    },
     "7": {
       "id": 7,
       "type": "datetime",
@@ -835,339 +550,6 @@ QUESTIONNAIRE = {
       "value": None,
       "required": True,
       "shared_input": True
-    },
-    "11": {
-      "id": 11,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "roundabout_entering",
-          "label": Label.ROUNDABOUT_ENTERING,
-        },
-        {
-          "value": "roundabout_run_into_vehicle",
-          "label": Label.ROUNDABOUT_RUN_INTO_VEHICLE,
-        },
-        {
-          "value": "roundabout_another_vehicle_crashed_from_behind",
-          "label": Label.ROUNDABOUT_ANOTHER_VEHICLE_FROM_BEHIND,
-        },
-        {
-          "value": "roundabout_crashed_with_vehicle_from_another_traffic_lane",
-          "label": Label.ROUNDABOUT_CRASHED_WITH_VEHICLE_FROM_ANOTHER_TRAFFIC_LANE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CRASHED_ANOTHER_LANE
-          }
-        },
-        {
-          "value": "roundabout_changing_traffic_lane",
-          "label": Label.ROUNDABOUT_CHANGING_TRAFFIC_LANE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_ROUNDABOUT_CHANGING_LANES
-          }
-        }
-      ]
-    },
-    "12": {
-      "id": 12,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "crossing_standing_or_traffic_light",
-          "label": Label.CROSSING_STANDING_IN_FRONT_OF_CROSSING_OR_TRAFFIC_LIGHT,
-        },
-        {
-          "value": "crossing_driving_straight",
-          "label": Label.CROSSING_DRIVING_STRAIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_CROSSING_DRIVING_STRAIGHT
-          }
-        },
-        {
-          "value": "crossing_turning_right",
-          "label": Label.CROSSING_TURNING_RIGHT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_RIGHT
-          }
-        },
-        {
-          "value": "crossing_turning_left",
-          "label": Label.CROSSING_TURNING_LEFT,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_CROSSING_TURNING_LEFT
-          }
-        },
-      ]
-    },
-    "13": {
-      "id": 13,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "driving_straight_crashed_with_vehicle_in_front",
-          "label": Label.DRIVING_STRAIGHT_CRASHED_WITH_VEHICLE_IN_FRONT,
-        },
-        {
-          "value": "driving_straight_crashed_from_behind",
-          "label": Label.DRIVING_STRAIGHT_CRASHED_FROM_BEHIND,
-        },
-        {
-          "value": "driving_straight_crashed_to_vehicle_in_another_lane",
-          "label": Label.DRIVING_STRAIGHT_CRASHED_TO_VEHICLE_IN_ANOTHER_LANE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_SAME_DIRECTION_ANOTHER_LANE
-          }
-        },
-        {
-          "value": "driving_straight_changing_lane",
-          "label": Label.DRIVING_STRAIGHT_CHANGING_LANE,
-          "action_property": {
-            "step": Step.CIRCUMSTANCES_STEP_3_STRAIGHT_ROAD_CHANGING_LANES
-          }
-        },
-        {
-          "value": "driving_straight_overtaking_another_vehicle",
-          "label": Label.DRIVING_STRAIGHT_OVERTAKING_ANOTHER_VEHICLE,
-        },
-        {
-          "value": "driving_reverse",
-          "label": Label.DRIVING_STRAIGHT_REVERSE,
-        },
-        {
-          "value": "driving_straight_in_opposite_lane",
-          "label": Label.DRIVING_STRAIGHT_IN_OPPOSITE_LANE,
-        },
-      ]
-    },
-    "14": {
-      "id": 14,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "parked_leaving_car_doors_closed",
-          "label": Label.DOORS_CLOSED,
-        },
-        {
-          "value": "parked_leaving_car_doors_opened",
-          "label": Label.DOORS_OPENED,
-        },
-      ]
-    },
-    "15": {
-      "id": 15,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "parked_entering_car_doors_closed",
-          "label": Label.DOORS_CLOSED,
-        },
-        {
-          "value": "parked_entering_car_doors_opened",
-          "label": Label.DOORS_OPENED,
-        },
-      ]
-    },
-    "16": {
-      "id": 16,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "driving_straight",
-          "label": Label.DRIVING_STRAIGHT,
-        },
-        {
-          "value": "driving_reverse",
-          "label": Label.DRIVING_REVERSE,
-        },
-      ]
-    },
-    "17": {
-      "id": 17,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "driving_straight",
-          "label": Label.DRIVING_STRAIGHT,
-        },
-        {
-          "value": "driving_reverse",
-          "label": Label.DRIVING_REVERSE,
-        },
-      ]
-    },
-    "18": {
-      "id": 18,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "driving_straight",
-          "label": Label.DRIVING_STRAIGHT,
-        },
-        {
-          "value": "driving_reverse",
-          "label": Label.DRIVING_REVERSE,
-        },
-        {
-          "value": "turning_left",
-          "label": Label.TURNING_LEFT,
-        },
-        {
-          "value": "turning_right",
-          "label": Label.TURNING_RIGHT,
-        },
-      ]
-    },
-    "19": {
-      "id": 19,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "driving_straight",
-          "label": Label.DRIVING_STRAIGHT,
-        },
-        {
-          "value": "driving_reverse",
-          "label": Label.DRIVING_REVERSE,
-        },
-        {
-          "value": "turning_left",
-          "label": Label.TURNING_LEFT,
-        },
-        {
-          "value": "turning_right",
-          "label": Label.TURNING_RIGHT,
-        },
-      ]
-    },
-    "20": {
-      "id": 20,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "vehicle_on_right",
-          "label": Label.VEHICLE_ON_RIGHT,
-        },
-        {
-          "value": "vehicle_on_left",
-          "label": Label.VEHICLE_ON_LEFT,
-        },
-      ]
-    },
-    "21": {
-      "id": 21,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "changing_driving_lane_right",
-          "label": Label.CHANGING_DRIVING_LANE_RIGHT,
-        },
-        {
-          "value": "changing_driving_lane_left",
-          "label": Label.CHANGING_DRIVING_LANE_LEFT,
-        },
-      ]
-    },
-    "22": {
-      "id": 22,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "crossing_entering_from_right",
-          "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-        },
-        {
-          "value": "crossing_not_obeying_rules",
-          "label": Label.CROSSING_NOT_OBEYING_RULES,
-        },
-      ]
-    },
-    "23": {
-      "id": 23,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "crossing_entering_from_right",
-          "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-        },
-        {
-          "value": "crossing_not_obeying_rules",
-          "label": Label.CROSSING_NOT_OBEYING_RULES,
-        },
-      ]
-    },
-    "24": {
-      "id": 24,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "crossing_entering_from_right",
-          "label": Label.CROSSING_ENTERING_FROM_RIGHT,
-        },
-        {
-          "value": "crossing_not_obeying_rules",
-          "label": Label.CROSSING_NOT_OBEYING_RULES,
-        },
-      ]
-    },
-    "25": {
-      "id": 25,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "vehicle_on_right",
-          "label": Label.VEHICLE_ON_RIGHT,
-        },
-        {
-          "value": "vehicle_on_left",
-          "label": Label.VEHICLE_ON_LEFT,
-        },
-      ]
-    },
-    "26": {
-      "id": 26,
-      "type": "select",
-      "value": None,
-      "required": True,
-      "options": [
-        {
-          "value": "changing_driving_lane_right",
-          "label": Label.CHANGING_DRIVING_LANE_RIGHT,
-        },
-        {
-          "value": "changing_driving_lane_left",
-          "label": Label.CHANGING_DRIVING_LANE_LEFT,
-        },
-      ]
     },
     "27": {
       "id": 27,
@@ -1371,5 +753,17 @@ QUESTIONNAIRE = {
     },
   }
 }
+
+QUESTIONNAIRE['steps'] = QUESTIONNAIRE['steps'] \
+                         + parked_questionnaire.steps \
+                         + moving_questionnaire.steps \
+                         + roundabout_questionnaire.steps \
+                         + crossing_questionnaire.steps \
+                         + driving_straight_questionnaire.steps
+QUESTIONNAIRE.get('inputs', {}).update(parked_questionnaire.inputs)
+QUESTIONNAIRE.get('inputs', {}).update(moving_questionnaire.inputs)
+QUESTIONNAIRE.get('inputs', {}).update(roundabout_questionnaire.inputs)
+QUESTIONNAIRE.get('inputs', {}).update(crossing_questionnaire.inputs)
+QUESTIONNAIRE.get('inputs', {}).update(driving_straight_questionnaire.inputs)
 
 QUESTIONNAIRE_MAP = generate_circumstance_map(QUESTIONNAIRE)

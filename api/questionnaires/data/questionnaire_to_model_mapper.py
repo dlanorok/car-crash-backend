@@ -4,6 +4,11 @@ from api.drivers.models import Driver
 from api.files.models import File
 from api.insurances.models import Insurance
 from api.policy_holders.models import PolicyHolder
+from api.questionnaires.data.circumstances.crossing import crossing_questionnaire
+from api.questionnaires.data.circumstances.driving_straight import driving_straight_questionnaire
+from api.questionnaires.data.circumstances.moving import moving_questionnaire
+from api.questionnaires.data.circumstances.parked import parked_questionnaire
+from api.questionnaires.data.circumstances.roundabout import roundabout_questionnaire
 from api.questionnaires.data.questionnaire import Place, PhoneNumber, Country, ConfirmedEditors
 from api.sketches.models import Sketch
 
@@ -141,231 +146,16 @@ circumstance_to_model_mapper = {
             {
                 "property": "parked_stopped",
                 "value": "parked"
-            }
-        ]
-    },
-    "6": {
-        "conditions": [
-            {
-                "property": "leaving_parking_opening_door",
-                "value": "leaving_parking_slot"
-            },
-            {
-                "property": "entering_parking",
-                "value": "parking"
-            },
-            {
-                "property": "emerging_from_car_park",
-                "value": "leaving_parking_slot_private_property"
-            },
-            {
-                "property": "entering_car_park",
-                "value": "entering_parking_slot_private_property"
-            }
-        ]
-    },
-    "11": {
-        "conditions": [
-            {
-                "property": "entering_roundabout",
-                "value": "roundabout_entering"
-            },
-            {
-                "property": "circulating_roundabout",
-                "value": "roundabout_run_into_vehicle"
-            },
-            {
-                "property": "rear_same_direction",
-                "value": "roundabout_run_into_vehicle"
-            },
-            {
-                "property": "circulating_roundabout",
-                "value": "roundabout_another_vehicle_crashed_from_behind"
-            },
-            {
-                "property": "circulating_roundabout",
-                "value": "roundabout_crashed_with_vehicle_from_another_traffic_lane"
-            },
-            {
-                "property": "same_direction_different_lane",
-                "value": "roundabout_crashed_with_vehicle_from_another_traffic_lane"
-            },
-            {
-                "property": "circulating_roundabout",
-                "value": "roundabout_changing_traffic_lane"
-            },
-            {
-                "property": "changing_lanes",
-                "value": "roundabout_changing_traffic_lane"
-            }
-        ]
-    },
-    "12": {
-        "conditions": [
-            {
-                "property": "turning_right",
-                "value": "crossing_turning_right"
-            },
-            {
-                "property": "turning_left",
-                "value": "crossing_turning_left"
-            }
-        ]
-    },
-    "13": {
-        "conditions": [
-            {
-                "property": "rear_same_direction",
-                "value": "driving_straight_crashed_with_vehicle_in_front"
-            },
-            {
-                "property": "straight",
-                "value": "driving_straight_crashed_from_behind"
-            },
-            {
-                "property": "same_direction_different_lane",
-                "value": "driving_straight_crashed_to_vehicle_in_another_lane"
-            },
-            {
-                "property": "changing_lanes",
-                "value": "driving_straight_changing_lane"
-            },
-            {
-                "property": "overtaking",
-                "value": "driving_straight_overtaking_another_vehicle"
-            },
-            {
-                "property": "reversing",
-                "value": "driving_reverse"
             },
             {
                 "property": "driving_on_opposite_lane",
-                "value": "driving_straight_in_opposite_lane"
+                "value": "driving_straight_another_lane"
             }
         ]
     },
-    "14": {
-        "conditions": [
-            {
-                "property": "leaving_parking_opening_door",
-                "value": "parked_leaving_car_doors_opened"
-            }
-        ]
-    },
-    "15": {
-        "conditions": [
-            {
-                "property": "leaving_parking_opening_door",
-                "value": "parked_entering_car_doors_opened"
-            }
-        ]
-    },
-    "16": {
-        "conditions": [
-            {
-                "property": "reversing",
-                "value": "driving_reverse"
-            }
-        ]
-    },
-    "17": {
-        "conditions": [
-            {
-                "property": "reversing",
-                "value": "driving_reverse"
-            }
-        ]
-    },
-    "18": {
-        "conditions": [
-            {
-                "property": "reversing",
-                "value": "driving_reverse"
-            },
-            {
-                "property": "turning_left",
-                "value": "turning_left"
-            },
-            {
-                "property": "turning_right",
-                "value": "turning_right"
-            }
-        ]
-    },
-    "19": {
-        "conditions": [
-            {
-                "property": "reversing",
-                "value": "driving_reverse"
-            },
-            {
-                "property": "turning_left",
-                "value": "turning_left"
-            },
-            {
-                "property": "turning_right",
-                "value": "turning_right"
-            }
-        ]
-    },
-    "21": {
-        "conditions": [
-            {
-                "property": "turning_right",
-                "value": "changing_driving_lane_right"
-            },
-            {
-                "property": "turning_left",
-                "value": "changing_driving_lane_left"
-            },
-        ]
-    },
-    "22": {
-        "conditions": [
-            {
-                "property": "from_right_crossing",
-                "value": "crossing_entering_from_right"
-            },
-            {
-                "property": "disregarding_right_of_way_red_light",
-                "value": "crossing_not_obeying_rules"
-            },
-        ]
-    },
-    "23": {
-        "conditions": [
-            {
-                "property": "from_right_crossing",
-                "value": "crossing_entering_from_right"
-            },
-            {
-                "property": "disregarding_right_of_way_red_light",
-                "value": "crossing_not_obeying_rules"
-            },
-        ]
-    },
-    "24": {
-        "conditions": [
-            {
-                "property": "from_right_crossing",
-                "value": "crossing_entering_from_right"
-            },
-            {
-                "property": "disregarding_right_of_way_red_light",
-                "value": "crossing_not_obeying_rules"
-            },
-        ]
-    },
-    "26": {
-        "conditions": [
-            {
-                "property": "turning_right",
-                "value": "changing_driving_lane_right"
-            },
-            {
-                "property": "turning_left",
-                "value": "changing_driving_lane_left"
-            },
-        ]
-    }
 }
+circumstance_to_model_mapper.update(moving_questionnaire.to_model_mapper)
+circumstance_to_model_mapper.update(parked_questionnaire.to_model_mapper)
+circumstance_to_model_mapper.update(roundabout_questionnaire.to_model_mapper)
+circumstance_to_model_mapper.update(crossing_questionnaire.to_model_mapper)
+circumstance_to_model_mapper.update(driving_straight_questionnaire.to_model_mapper)
