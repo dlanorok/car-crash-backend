@@ -21,7 +21,7 @@ msgstr ""
 
 #: .\api\crashes\helpers\email_helper.py:8
 msgid "Crash confirmed"
-msgstr "Obrazec je bil potrjen."
+msgstr "Evropsko poročilo o prometni nesreči."
 
 #: .\api\crashes\views.py:56
 msgid "Not enough cars to confirm the crash"
