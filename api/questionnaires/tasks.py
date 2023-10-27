@@ -1,9 +1,9 @@
-from api.crashes.helpers.create_pdf import create_pdf_from_crash
+from django.db.models import BooleanField
+
 from api.questionnaires.data.constants import circumstances_input_ids
 from api.questionnaires.data.questionnaire_to_model_mapper import questionnaire_to_model_mapper, \
     circumstance_to_model_mapper
 from api.questionnaires.helpers import set_is_questionnaire_completed
-from api.questionnaires.models import Questionnaire
 from config import celery_app
 
 
@@ -16,17 +16,20 @@ def save_attribute_to_model(model, mapper, value):
                 _value = value.get(mapper_value.get("fe_property"))
                 if mapper_value.get("model") and _value:
                     _value = mapper_value.get("model").objects.get(id=_value)
+                if mapper_value.get("dataModFun"):
+                    _value = mapper_value.get("dataModFun")(_value)
                 setattr(model, model_property, _value)
     else:
         if "dataclass" in mapper:
             value = mapper.get("dataclass")(**value).to_presentation()
+        if "dataModFun" in mapper:
+            value = mapper.get("dataModFun")(value)
         setattr(model, mapper.get("property"), value)
 
     model.save()
 
 @celery_app.task
-def map_questionnaire_to_models(request_dict, questionnaire_id):
-    questionnaire = Questionnaire.objects.get(id=questionnaire_id)
+def map_questionnaire_to_models(request_dict, questionnaire):
     for input_id, value in request_dict.items():
         if input_id in questionnaire_to_model_mapper:
             mapper = questionnaire_to_model_mapper[input_id]
@@ -45,14 +48,16 @@ def map_questionnaire_to_models(request_dict, questionnaire_id):
                 save_attribute_to_model(questionnaire.car, mapper, value)
 
         if input_id in circumstances_input_ids:
+            # reset circumstances
+            for field in questionnaire.car.circumstances._meta.fields:
+                if field.__class__ is BooleanField:
+                    setattr(questionnaire.car.circumstances, field.attname, False)
+
             for circumstance_input_id in circumstances_input_ids:
                 if circumstance_input_id not in circumstance_to_model_mapper:
                     continue
 
                 for condition in circumstance_to_model_mapper.get(circumstance_input_id).get("conditions", []):
-                    if questionnaire.data.get("inputs").get(circumstance_input_id).get("value") is None:
-                        continue
-
                     circumstance_value = questionnaire.data.get("inputs").get(circumstance_input_id).get("value") == condition.get("value")
                     if circumstance_value:
                         setattr(questionnaire.car.circumstances, condition.get("property"), circumstance_value)

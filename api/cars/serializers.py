@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.fields import MultipleChoiceField
 
 from api.cars.models import Car
@@ -30,3 +31,13 @@ class CarSerializer(ValidationSerializer):
         representation['initial_impact'] = list(representation['initial_impact'])
         return representation
 
+
+class CarJsonSerializer(serializers.ModelSerializer):
+    policy_holder = PolicyHolderSerializer(read_only=True)
+    driver = DriverSerializer(read_only=True)
+    insurance = InsuranceSerializer(read_only=True)
+    circumstances = CircumstanceSerializer(read_only=True)
+
+    class Meta:
+        model = Car
+        fields = '__all__'

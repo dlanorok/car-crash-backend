@@ -11,8 +11,9 @@ class Driver(RevisionModel):
     email = models.CharField(max_length=256, null=True)
     phone_number = models.CharField(max_length=256, null=True)
     country = models.CharField(max_length=256, null=True)
-    birthday = models.DateTimeField(null=True)
+    date_of_birth = models.DateTimeField(null=True)
     driving_licence_number = models.CharField(max_length=256, null=True)
+    driving_licence_category = models.CharField(max_length=256, null=True)
     driving_licence_valid_from = models.DateTimeField(null=True)
     driving_licence_valid_to = models.DateTimeField(null=True)
 

@@ -115,7 +115,7 @@ class QuestionnaireViewSet(SessionView,
         serializer.is_valid(raise_exception=True)
         super().perform_update(serializer)
 
-        map_questionnaire_to_models(request.data, questionnaire.id)
+        map_questionnaire_to_models(request.data, questionnaire)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -129,6 +129,10 @@ class QuestionnaireViewSet(SessionView,
     def input_actions(self, input_id, value, questionnaire):
         if input_id in circumstances_input_ids and questionnaire.data.get("inputs")[input_id].get("value") != value:
 
+            input_to_restore = self.connected_input_ids(input_id, [])
+            for input_id in input_to_restore:
+                questionnaire.data.get("inputs")[input_id].update(value=None)
+
             new_arrow = circumstance_input_to_arrow(value)
             if new_arrow:
                 current_value = questionnaire.data.get("inputs")["37"].get("value", {})
@@ -138,10 +142,6 @@ class QuestionnaireViewSet(SessionView,
                         car["arrow"] = new_arrow
                 questionnaire.data.get("inputs")["37"].update(value=current_value)
                 return ["37"]
-
-            input_to_restore = self.connected_input_ids(input_id, [])
-            for input_id in input_to_restore:
-                questionnaire.data.get("inputs")[input_id].update(value=None)
 
         return []
 

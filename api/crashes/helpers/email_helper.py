@@ -1,9 +1,14 @@
+import json
+
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.utils.translation import ugettext_lazy as _
 
+from api.crashes.serializers import CrashJSONSerializer
 
-def send_pdf(file, recipients):
+
+def send_pdf(crash, recipients):
+    pdf = crash.pdf
     email = EmailMessage(
         subject=_("Crash confirmed"),
         body="Content",
@@ -11,5 +16,6 @@ def send_pdf(file, recipients):
         to=recipients
     )
 
-    email.attach(file.file.name, file.file.read())
+    email.attach("crash.json", json.dumps(CrashJSONSerializer(crash).data), "text/plain")
+    email.attach(pdf.file.name, pdf.file.read())
     email.send()

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from api.cars.models import Car
+from api.cars.serializers import CarSerializer, CarJsonSerializer
 from api.common.models.base import RevisionModel
 from api.common.serializer import ValidationSerializer
 from api.crashes.models import Crash
@@ -60,3 +61,11 @@ class CreateCrashSerializer(ValidationSerializer):
     class Meta:
         model = Crash
         fields = ['date_of_accident', 'country', 'place', 'injuries', 'vehicle_material_damage', 'other_material_damage']
+
+
+class CrashJSONSerializer(serializers.ModelSerializer):
+    cars = CarJsonSerializer(many=True)
+
+    class Meta:
+        model = Crash
+        fields = '__all__'

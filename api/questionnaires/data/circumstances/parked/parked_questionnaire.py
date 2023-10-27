@@ -12,6 +12,7 @@ class ParkedStep(str, Enum):
 
 
 class ParkedLabel(str, Enum):
+    VEHICLE_PARKED = _('My vehicle was parked')
     PARKED_LEAVING_CAR = _('I was leaving car')
     PARKED_ENTERING_CAR = _('I was entering car')
     PARKED_NOT_BY_THE_CAR = _('I was not by the car')
@@ -21,7 +22,7 @@ class ParkedLabel(str, Enum):
 
 section = {
     "value": "parked",
-    "label": ParkedStep.VEHICLE_PARKED_1,
+    "label": ParkedLabel.VEHICLE_PARKED,
     "action_property": {
         "step": ParkedStep.CIRCUMSTANCES_STEP_2_PARKED
     }
