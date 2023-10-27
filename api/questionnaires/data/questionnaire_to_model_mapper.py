@@ -91,6 +91,10 @@ questionnaire_to_model_mapper = {
         "model": Insurance,
         "property": "valid_until",
     },
+    "53": {
+        "model": Insurance,
+        "property": "valid_from",
+    },
     "50": {
         "model": Insurance,
         "property": "damage_insured",
