@@ -1,21 +1,17 @@
 import io
 from datetime import datetime
 
+import fitz
 from PIL import Image
-from PyPDF2 import PdfReader, PdfWriter
-from PyPDF2.generic import NameObject, TextStringObject, IndirectObject, BooleanObject
 from django.core.files import File as CoreFile
 from django.core.files.storage import default_storage
 from django.db.models import BooleanField
 from django.dispatch import Signal
 from reportlab.graphics import renderPDF
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.utils import ImageReader
-from reportlab.pdfgen.canvas import Canvas
 from svglib.svglib import svg2rlg
 
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
-from api.common.pdf_generator.si_field_mapper import field_mapper, FieldType
+from api.common.pdf_generator.si_field_mapper import field_mapper
 from api.common.pdf_generator.statement_enum import AccidentStatementEnums
 from api.crashes.models import Crash
 from api.files.models import File
@@ -28,76 +24,63 @@ class PyPdfGenerator(PdfGeneratorInterface):
     def __init__(self, crash: Crash):
         super().__init__(crash)
 
-        self.reader = PdfReader("assets/accident_report.pdf")
-        self.writer = PdfWriter()
-
-        self.page = self.reader.pages[0]
         self.questionnaires = self.crash.questionnaires.all()
+        self.doc = fitz.open('assets/accident_report.pdf')
+        self.page = self.doc[0]
 
-        packet = io.BytesIO()
-        canvas = Canvas(packet, pagesize=letter)
-        canvas.setFillColorRGB(1,1,1)
+        self.draw_sketch()
+        self.draw_initial_impact()
+        self.draw_damaged_parts()
 
-        self.draw_sketch(canvas)
-        self.draw_initial_impact(canvas)
-        self.draw_damaged_parts(canvas)
-        canvas.save()
-
-        packet.seek(0)
-        modified_page = PdfReader(packet)
-        modified_page = modified_page.pages[0]
-        self.page.merge_page(modified_page)
-
-        self.writer.add_page(self.page)
-
-    def draw_damaged_parts(self, canvas):
+    def draw_damaged_parts(self):
         for index, questionnaire in enumerate(self.questionnaires):
             car = questionnaire.car
             if index > 1 or not car.damaged_parts_svg_file:
                 continue
 
+            y = self.page.mediabox.height - 75
+            width = 30
+            x = 50
+            if index == 1:
+                x = self.page.mediabox.width - 90
+
             try:
                 s3_file = default_storage.open(car.damaged_parts_svg_file.file.name)
                 svg_content = s3_file.read()
                 drawing = svg2rlg(io.BytesIO(svg_content))
+                pdfbytes = renderPDF.drawToString(drawing)
+                pix_doc = fitz.open("pdf", pdfbytes)
+                self.doc[0].insert_image(fitz.Rect(x, y - width, x + width, y),
+                                  pixmap=pix_doc.get_page_pixmap(0))
             except:
                 return
 
-            y = 75
-            width = int(self.page.mediabox.width)
-            drawing_x = 50
-            if index == 1:
-                drawing_x = width - 85
-
-            drawing.scale(0.1, 0.1)
-
-            # draw image
-            renderPDF.draw(drawing, canvas, drawing_x, y)
-
-    def draw_initial_impact(self, canvas):
+    def draw_initial_impact(self):
         for index, questionnaire in enumerate(self.questionnaires):
             car = questionnaire.car
             if index > 1 or not car.initial_impact_svg_file:
                 continue
 
-            y = 147
-            width = int(self.page.mediabox.width)
-            drawing_x = 50
+            y = self.page.mediabox.height - 135
+            width = 70
+            x = 40
             if index == 1:
-                drawing_x = width - 90
+                x = self.page.mediabox.width - 110
 
             try:
                 s3_file = default_storage.open(car.initial_impact_svg_file.file.name)
                 svg_content = s3_file.read()
                 drawing = svg2rlg(io.BytesIO(svg_content))
-                drawing.scale(0.16, 0.16)            # draw image
-                renderPDF.draw(drawing, canvas, drawing_x, y)
+                pdfbytes = renderPDF.drawToString(drawing)
+                pix_doc = fitz.open("pdf", pdfbytes)
+                self.doc[0].insert_image(fitz.Rect(x, y - width, x + width, y),
+                                  pixmap=pix_doc.get_page_pixmap(0))
             except:
                 return
 
 
 
-    def draw_sketch(self, canvas):
+    def draw_sketch(self):
         if not self.crash.sketch or not self.crash.sketch.file:
             return
 
@@ -110,7 +93,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
 
         # define position of img
         x = 128
-        y = 73
+        y = self.page.mediabox.height - 73
         img_width, img_height = img.size
         max_width = 340
         max_height = 170
@@ -136,12 +119,13 @@ class PyPdfGenerator(PdfGeneratorInterface):
         img = img.crop((crop_x, crop_y, crop_x + crop_width, crop_y + crop_height))
 
         # draw image
-        canvas.drawImage(ImageReader(img), x, y, max_width, max_height, preserveAspectRatio=True)
+        imgByteArr = io.BytesIO()
+        img.save(imgByteArr, format='PNG')
+        imgByteArr = imgByteArr.getvalue()
+        self.page.insert_image(fitz.Rect(x, y - max_height, x + max_width, y),  stream=imgByteArr)
 
 
     def prepare_pdf(self):
-        set_need_appearances_writer(self.writer)
-
         witness_merged_data = ''
         write_fields = {
             AccidentStatementEnums.DATE_OF_ACCIDENT: self.crash.date_of_accident.strftime("%d.%m.%Y"),
@@ -226,43 +210,26 @@ class PyPdfGenerator(PdfGeneratorInterface):
             f'{AccidentStatementEnums.WITNESSES}': witness_merged_data,
         })
 
-        for page in self.writer.pages:
-            for annotation in page["/Annots"]:
-                writer_annotation = annotation.get_object()
-
-                if writer_annotation.get("/T") in field_mapper:
-                    mapper = field_mapper.get(writer_annotation.get("/T"))
+        for page in self.doc:
+            widgets = page.widgets()
+            for widget in widgets:
+                if widget.field_name in field_mapper:
+                    mapper = field_mapper.get(widget.field_name)
 
                     if not mapper:
                         continue
 
-                    if 'font_size' in mapper:
-                        writer_annotation.update({
-                            NameObject('/DA'): TextStringObject(f'/MinionPro-Regular {mapper.get("font_size")} Tf 0 g'),
-                        })
-
                     value = write_fields.get(mapper.get("name")) or ''
-                    if mapper.get("type") == FieldType.String:
-                        writer_annotation.update({
-                            NameObject('/V'): TextStringObject(value),
-                        })
-
-                    if mapper.get("type") == FieldType.Checkbox:
-                        writer_annotation.update({
-                            NameObject('/DA'): TextStringObject(f'/MinionPro-Regular 16 Tf 0 g'),
-                        })
-                        if value:
-                            writer_annotation.update(
-                                {
-                                    NameObject("/AS"): NameObject("/Yes")
-                                }
-                            )
+                    widget.field_value = value
+                    widget.text_fontsize = 0
+                    widget.update()
 
 
     def write(self):
         output_buffer = io.BytesIO()
-        self.writer.write(output_buffer)
+        self.doc.save(output_buffer)
         output_buffer.seek(0)
+        self.doc.close()
 
         if not self.crash.pdf:
             self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
@@ -280,25 +247,3 @@ class PyPdfGenerator(PdfGeneratorInterface):
             sender_id='',
             event_type='model_update'
         )
-
-
-def set_need_appearances_writer(writer):
-    try:
-        catalog = writer._root_object
-        # get the AcroForm tree and add "/NeedAppearances attribute
-        if "/AcroForm" not in catalog:
-            writer._root_object.update(
-                {
-                    NameObject("/AcroForm"): IndirectObject(
-                        len(writer._objects), 0, writer
-                    )
-                }
-            )
-
-        need_appearances = NameObject("/NeedAppearances")
-        writer._root_object["/AcroForm"][need_appearances] = BooleanObject(True)
-        return writer
-
-    except Exception as e:
-        print("set_need_appearances_writer() catch : ", repr(e))
-        return writer

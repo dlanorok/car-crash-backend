@@ -155,7 +155,7 @@ questionnaire_to_model_mapper = {
     },
     "39": {
         "model": Car,
-        "property": "additional_crash_data"
+        "property": "additional_data"
     }
 }
 

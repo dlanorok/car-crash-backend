@@ -8,7 +8,7 @@ channels[daphne]
 channels_redis
 python-dotenv
 jsonschema
-PyPDF2
+PyMuPDF
 reportlab
 cairosvg
 celery
