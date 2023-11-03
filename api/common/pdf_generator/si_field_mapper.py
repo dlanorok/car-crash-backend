@@ -107,7 +107,7 @@ field_mapper = {
     '12.A Check Box - 16': {'name': f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_1', 'type': FieldType.Checkbox},
     '12.A Check Box - 17': {'name': f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_1', 'type': FieldType.Checkbox},
     '12.A Okenca': {'name': f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_1', 'type': FieldType.String},
-    '12.A Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_1', 'type': FieldType.String},
+    '15.A Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_1', 'type': FieldType.String},
 
     '12.B Check Box - 1': {'name': f'{AccidentStatementEnums.PARKED_STOPPED}_2', 'type': FieldType.Checkbox},
     '12.B Check Box - 2': {'name': f'{AccidentStatementEnums.LEAVING_PARKING_OPENING_DOOR}_2', 'type': FieldType.Checkbox},
@@ -127,5 +127,5 @@ field_mapper = {
     '12.B Check Box - 16': {'name': f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_2', 'type': FieldType.Checkbox},
     '12.B Check Box - 17': {'name': f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_2','type': FieldType.Checkbox},
     '12.B Okenca': {'name': f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_2', 'type': FieldType.String},
-    '12.B Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_2', 'type': FieldType.String},
+    '15.B Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_2', 'type': FieldType.String},
 }

@@ -152,7 +152,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
 
 
             write_fields.update({
-                f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_{i + 1}': circumstance_count,
+                f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_{i + 1}': str(circumstance_count),
 
                 f'{AccidentStatementEnums.POLICY_HOLDER_SURNAME}_{i+1}': car.policy_holder.name,
                 f'{AccidentStatementEnums.POLICY_HOLDER_NAME}_{i+1}': car.policy_holder.name,
