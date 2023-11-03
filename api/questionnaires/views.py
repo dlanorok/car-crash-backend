@@ -8,8 +8,8 @@ from api.cars.models import Car
 from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 from api.questionnaires.data.constants import circumstances_input_ids
-from api.questionnaires.data.demo_questionnaire import demo_questionnaire
 from api.questionnaires.data.helpers import circumstance_input_to_arrow
+from api.questionnaires.data.prefilled_questionnaire import dario
 from api.questionnaires.data.questionnaire import QUESTIONNAIRE_MAP, QUESTIONNAIRE
 from api.questionnaires.models import Questionnaire
 from api.questionnaires.serializers import QuestionnaireSerializer
@@ -49,7 +49,8 @@ class QuestionnaireViewSet(SessionView,
             car.save()
             questionnaire = copy.deepcopy(QUESTIONNAIRE)
             if request.query_params.get("user") == "dario":
-                questionnaire = copy.deepcopy(demo_questionnaire)
+                for input_id, value in dario.items():
+                    questionnaire['inputs'][input_id]['value'] = value
 
             data = {
                 "creator": session_key,
