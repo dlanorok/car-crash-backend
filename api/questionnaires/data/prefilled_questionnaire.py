@@ -19,5 +19,6 @@ dario = {
             "dialCode":"+386"
          },
     "44": "Nazorjeva 2, 6310 Izola",
-    "43": "Dario Madžarević"
+    "43": "Dario",
+    "54": 'Madžarević'
 }

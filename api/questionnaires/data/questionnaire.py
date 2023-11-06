@@ -398,7 +398,7 @@ QUESTIONNAIRE = {
       "step_type": Step.INSURANCE_HOLDER_DATA,
       "question": str(_('Write down insurance holder data')),
       "help_text": str(_('Help text about insurance holder data')),
-      "inputs": ["43", "44", "48", "45"],
+      "inputs": ["43", "54", "44", "48", "45"],
     },
     {
       "step_type": Step.DRIVER_PERSONAL_DATA,
@@ -670,6 +670,13 @@ QUESTIONNAIRE = {
       "id": 43,
       "type": "text",
       "label": str(_("Insurance holder Name")),
+      "value": None,
+      "required": True
+    },
+    "54": {
+      "id": 54,
+      "type": "text",
+      "label": str(_("Insurance holder Surname")),
       "value": None,
       "required": True
     },

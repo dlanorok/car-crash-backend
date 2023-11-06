@@ -103,6 +103,10 @@ questionnaire_to_model_mapper = {
         "model": PolicyHolder,
         "property": "name",
     },
+    "54": {
+        "model": PolicyHolder,
+        "property": "surname",
+    },
     "44": {
         "model": PolicyHolder,
         "property": "address",

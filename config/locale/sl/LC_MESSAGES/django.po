@@ -1,4 +1,43 @@
-#: .\api\crashes\helpers\email_helper.py:8
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-06 11:46+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#: .\api\crashes\helpers\email_helper.py:14
+#, python-format
+msgid ""
+"\n"
+"Spoštovani,\n"
+"\n"
+"\n"
+"V priponki vam pošiljamo potrjen evropski obrazec o prometni nezgodi, v "
+"kateri sta bili\n"
+"udeleženi vozili z registrsko oznako %(car1)s in %(car2)s\n"
+"\n"
+"\n"
+"Želimo vam, da boste posledice nezgode čim prej uspešno uredili. \n"
+"\n"
+"Lep pozdrav,\n"
+"Vaš Aksi tim\n"
+msgstr ""
+
+#: .\api\crashes\helpers\email_helper.py:29
 msgid "Crash confirmed"
 msgstr "Evropsko poročilo o prometni nesreči."
 
@@ -15,6 +54,10 @@ msgid ""
 "I was standing in front of merging into traffic or in front of a traffic "
 "light"
 msgstr "Stal sem pred vključevanjem v promet oziroma pred semaforjem"
+
+#: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:21
+msgid "Crashed with vehicle in front"
+msgstr "Trčil sem z vozilom, ki je vozilo pred mano"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:22
 msgid "Another vehicle crashed from behind"
@@ -44,13 +87,15 @@ msgstr "Nisem upošteval znakov prednosti oziroma rdeče luči na semaforju"
 msgid ""
 "At the intersection of equivalent roads, I was coming from the right in "
 "relation to another vehicle"
-msgstr "V križišče enakovrednih cest sem pripeljal z desne glede na drugo vozilo"
+msgstr ""
+"V križišče enakovrednih cest sem pripeljal z desne glede na drugo vozilo"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:34
 msgid ""
 "At the intersection of equivalent roads, I was coming from the left in "
 "relation to another vehicle"
-msgstr "V križišče enakovrednih cest sem pripeljal z leve glede na drugo vozilo"
+msgstr ""
+"V križišče enakovrednih cest sem pripeljal z leve glede na drugo vozilo"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:48
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:56
@@ -65,9 +110,9 @@ msgstr "V križišče enakovrednih cest sem pripeljal z leve glede na drugo vozi
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:53
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:61
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:68
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:33
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:40
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:47
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:34
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:41
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:48
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:52
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:61
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:70
@@ -102,11 +147,19 @@ msgid "I drove correctly in my lane"
 msgstr "Vozil sem pravilno po svojem voznem pasu"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:22
-msgid "Crashed with vehicle driving in front"
+#, fuzzy
+#| msgid "Crashed with vehicle driving in front"
+msgid "Crashed with vehicle driving in front of me"
 msgstr "Trčil sem z vozilom, ki je vozilo pred mano"
 
+#: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:23
+#: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:25
+#, fuzzy
+#| msgid "Another vehicle crashed from behind"
+msgid "Another vehicle crashed into me from behind"
+msgstr "Drugo vozilo se je od zadaj zaletelo vame"
+
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:24
-#| msgid "Crashed with vehicle driving in the same direction, but another lane"
 msgid "I collided with a vehicle driving in the same direction"
 msgstr "Trčil sem z vozilom, ki je vozilo v isto smer"
 
@@ -214,34 +267,38 @@ msgid "12"
 msgstr "12"
 
 #: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:15
+msgid "My vehicle was parked"
+msgstr "Moje vozilo je bilo parkirano"
+
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:16
 msgid "I was leaving car"
 msgstr "Zapuščal sem parkirano vozilo"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:16
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:17
 msgid "I was entering car"
 msgstr "Vstopal sem v parkirano vozilo"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:17
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:18
 msgid "I was not by the car"
 msgstr "Ni me bilo ob vozilu"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:18
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:19
 msgid "Doors were closed"
 msgstr "Vrata vozila so bila zaprta"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:19
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:20
 msgid "Doors were opened"
 msgstr "Vrata vozila so bila odprta"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:34
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:35
 msgid "2"
 msgstr "2"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:41
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:42
 msgid "7"
 msgstr "7"
 
-#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:48
+#: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:49
 msgid "8"
 msgstr "8"
 
@@ -266,13 +323,18 @@ msgid "I run into vehicle in front"
 msgstr "Zaletel sem se v vozilo, ki je vozilo pred mano"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:26
-#| msgid "Crashed with vehicle driving in the same direction, but another lane"
 msgid "I collided with a vehicle traveling in the same direction"
 msgstr "Trčil sem z vozilom, ki je vozilo v isto smer"
 
+#: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:30
+#, fuzzy
+#| msgid "I collided with a vehicle traveling in the same direction"
+msgid ""
+"I collided with a vehicle traveling in the same direction but in the other "
+"lane"
+msgstr "Trčil sem z vozilom, ki je vozilo v isto smer"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:31
-#| msgid "I was changing traffic lane"
 msgid "I was changing lanes"
 msgstr "Menjaval sem vozni pas"
 
@@ -377,8 +439,8 @@ msgid ""
 "Let the other participant scan this code to connect with your accident "
 "statement form"
 msgstr ""
-"Vključite soudeleženca, da lahko povežeta ugotovitve na istem poročilu "
-"in nadaljujeta s postopkom. Povabite ga, naj skenira QR kodo"
+"Vključite soudeleženca, da lahko povežeta ugotovitve na istem poročilu in "
+"nadaljujeta s postopkom. Povabite ga, naj skenira QR kodo"
 
 #: .\api\questionnaires\data\questionnaire.py:223
 msgid "This is random help text on invite section"
@@ -442,7 +504,8 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:309
 msgid "Is there any damage on nearby property?"
-msgstr "Ali je kakšna vidna poškodba tudi na drugih objektih (ograje, drevesa,..)?"
+msgstr ""
+"Ali je kakšna vidna poškodba tudi na drugih objektih (ograje, drevesa,..)?"
 
 #: .\api\questionnaires\data\questionnaire.py:310
 msgid "This is random help text on page Is there any damage on nearby property"
@@ -637,29 +700,33 @@ msgstr "Veljavnost do"
 
 #: .\api\questionnaires\data\questionnaire.py:672
 msgid "Insurance holder Name"
-msgstr "Zavarovalec"
+msgstr "Ime zavarovalca"
 
 #: .\api\questionnaires\data\questionnaire.py:679
+msgid "Insurance holder Surname"
+msgstr "Priimek zavarovalca"
+
+#: .\api\questionnaires\data\questionnaire.py:686
 msgid "Insurance holder Address"
 msgstr "Naslov zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:685
+#: .\api\questionnaires\data\questionnaire.py:692
 msgid "Insurance holder phone"
 msgstr "Telefonska številka zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:693
+#: .\api\questionnaires\data\questionnaire.py:700
 msgid "Insurance holder country"
 msgstr "Država zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:720
+#: .\api\questionnaires\data\questionnaire.py:727
 msgid "Insurance holder email"
 msgstr "Email zavarovalca"
 
-#: .\api\questionnaires\data\questionnaire.py:732
+#: .\api\questionnaires\data\questionnaire.py:739
 msgid "Damage insured"
 msgstr "Ali je vozilo zavarovano tudi kasko?"
 
-#: .\api\questionnaires\data\questionnaire.py:751
+#: .\api\questionnaires\data\questionnaire.py:758
 msgid "Validity from"
 msgstr "Veljavnost od"
 
@@ -2693,20 +2760,17 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-msgid "My vehicle was parked"
-msgstr "Moje vozilo je bilo parkirano"
+#~ msgid "I was driving straight"
+#~ msgstr "Vozil sem po ravni cesti"
 
-msgid "I was driving straight"
-msgstr "Vozil sem po ravni cesti"
+#~ msgid "Crashed with another vehicle from another traffic lane"
+#~ msgstr "Trčil sem z vozilom, ki je v krožišču vozilo po drugem voznem pasu"
 
-msgid "Crashed with another vehicle from another traffic lane"
-msgstr "Trčil sem z vozilom, ki je v krožišču vozilo po drugem voznem pasu"
+#~ msgid "Driving on a lane from opposite direction"
+#~ msgstr "Vozil sem po voznem pasu za nasprotni promet"
 
-msgid "Driving on a lane from opposite direction"
-msgstr "Vozil sem po voznem pasu za nasprotni promet"
+#~ msgid "14"
+#~ msgstr "14"
 
-msgid "14"
-msgstr "14"
-
-msgid "19"
-msgstr "19"
+#~ msgid "19"
+#~ msgstr "19"
