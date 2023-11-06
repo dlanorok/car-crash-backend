@@ -11,7 +11,7 @@ from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
 
 from api.common.pdf_generator.pdf_generator_interface import PdfGeneratorInterface
-from api.common.pdf_generator.si_field_mapper import field_mapper
+from api.common.pdf_generator.si_field_mapper import field_mapper, FieldType
 from api.common.pdf_generator.statement_enum import AccidentStatementEnums
 from api.crashes.models import Crash
 from api.files.models import File
@@ -203,7 +203,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_{i + 1}': car.circumstances.from_right_crossing,
                 f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_{i + 1}': car.circumstances.disregarding_right_of_way_red_light,
 
-                f'{AccidentStatementEnums.SIGNATURE}_{i + 1}': f'{car.driver.name}\n{datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
+                f'{AccidentStatementEnums.SIGNATURE}_{i + 1}': f'{car.driver.name} {car.driver.surname}\n{datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
             })
 
         write_fields.update({
@@ -219,9 +219,11 @@ class PyPdfGenerator(PdfGeneratorInterface):
                     if not mapper:
                         continue
 
+                    if mapper.get("type") is not FieldType.TextArea:
+                        widget.text_fontsize = 0
+
                     value = write_fields.get(mapper.get("name")) or ''
                     widget.field_value = value
-                    widget.text_fontsize = 0
                     widget.update()
 
 

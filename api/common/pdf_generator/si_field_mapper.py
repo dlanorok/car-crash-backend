@@ -3,7 +3,8 @@ from api.common.pdf_generator.statement_enum import AccidentStatementEnums
 class FieldType:
     String = 'STRING',
     Radio = 'RADIO',
-    Checkbox = 'CHECKBOX'
+    Checkbox = 'CHECKBOX',
+    TextArea = 'TEXTAREA',
 
 
 field_mapper = {
@@ -18,7 +19,7 @@ field_mapper = {
     '4. Skoda DA': {'name': AccidentStatementEnums.VEHICLE_MATERIAL_DAMAGE_YES, 'type': FieldType.Checkbox},
     '4. Skoda 2 NE': {'name': AccidentStatementEnums.OTHER_MATERIAL_DAMAGE_NO, 'type': FieldType.Checkbox},
     '4. Skoda 2 DA': {'name': AccidentStatementEnums.OTHER_MATERIAL_DAMAGE_YES, 'type': FieldType.Checkbox},
-    '5. Price': {'name': AccidentStatementEnums.WITNESSES, 'type': FieldType.String},
+    '5. Price': {'name': AccidentStatementEnums.WITNESSES, 'type': FieldType.TextArea},
     '6.A Priimek vozilo': {'name': f'{AccidentStatementEnums.POLICY_HOLDER_SURNAME}_1', 'type': FieldType.String},
     '6.A Ime vozilo': {'name': f'{AccidentStatementEnums.POLICY_HOLDER_NAME}_1', 'type': FieldType.String},
     '6.A Naslov vozilo': {'name': f'{AccidentStatementEnums.POLICY_HOLDER_ADDRESS}_1', 'type': FieldType.String},
@@ -51,7 +52,7 @@ field_mapper = {
     '9.A Veljavnost voznik': {'name': f'{AccidentStatementEnums.DRIVER_LICENSE_VALID_TO}_1', 'type': FieldType.String},
     '8.A Kasko NE': {'name': f'{AccidentStatementEnums.CAR_CASCO_NO}_1', 'type': FieldType.Checkbox},
     '8.A Kasko DA': {'name': f'{AccidentStatementEnums.CAR_CASCO_YES}_1', 'type': FieldType.Checkbox},
-    '14.A Pripombe Vozilo': {'name': f'{AccidentStatementEnums.ADDITIONAL_DATA}_1', 'type': FieldType.String},
+    '14.A Pripombe Vozilo': {'name': f'{AccidentStatementEnums.ADDITIONAL_DATA}_1', 'type': FieldType.TextArea},
 
     # CAR 2
 
@@ -87,7 +88,7 @@ field_mapper = {
     '9.B Veljavnost voznik': {'name': f'{AccidentStatementEnums.DRIVER_LICENSE_VALID_TO}_2', 'type': FieldType.String},
     '8.B Kasko NE': {'name': f'{AccidentStatementEnums.CAR_CASCO_NO}_2', 'type': FieldType.Checkbox},
     '8.B Kasko DA': {'name': f'{AccidentStatementEnums.CAR_CASCO_YES}_2', 'type': FieldType.Checkbox},
-    '14.B Pripombe Vozilo': {'name': f'{AccidentStatementEnums.ADDITIONAL_DATA}_2', 'type': FieldType.String},
+    '14.B Pripombe Vozilo': {'name': f'{AccidentStatementEnums.ADDITIONAL_DATA}_2', 'type': FieldType.TextArea},
 
     '12.A Check Box - 1': {'name': f'{AccidentStatementEnums.PARKED_STOPPED}_1', 'type': FieldType.Checkbox},
     '12.A Check Box - 2': {'name': f'{AccidentStatementEnums.LEAVING_PARKING_OPENING_DOOR}_1', 'type': FieldType.Checkbox},
@@ -107,7 +108,7 @@ field_mapper = {
     '12.A Check Box - 16': {'name': f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_1', 'type': FieldType.Checkbox},
     '12.A Check Box - 17': {'name': f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_1', 'type': FieldType.Checkbox},
     '12.A Okenca': {'name': f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_1', 'type': FieldType.String},
-    '15.A Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_1', 'type': FieldType.String},
+    '15.A Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_1', 'type': FieldType.TextArea},
 
     '12.B Check Box - 1': {'name': f'{AccidentStatementEnums.PARKED_STOPPED}_2', 'type': FieldType.Checkbox},
     '12.B Check Box - 2': {'name': f'{AccidentStatementEnums.LEAVING_PARKING_OPENING_DOOR}_2', 'type': FieldType.Checkbox},
@@ -126,6 +127,6 @@ field_mapper = {
     '12.B Check Box - 15': {'name': f'{AccidentStatementEnums.DRIVING_ON_OPPOSITE_LANE}_2', 'type': FieldType.Checkbox},
     '12.B Check Box - 16': {'name': f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_2', 'type': FieldType.Checkbox},
     '12.B Check Box - 17': {'name': f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_2','type': FieldType.Checkbox},
-    '12.B Okenca': {'name': f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_2', 'type': FieldType.String},
-    '15.B Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_2', 'type': FieldType.String},
+    '12.B Okenca': {'name': f'{AccidentStatementEnums.CIRCUMSTANCES_COUNT}_2', 'type': FieldType.Checkbox},
+    '15.B Podpis': {'name': f'{AccidentStatementEnums.SIGNATURE}_2', 'type': FieldType.TextArea},
 }
