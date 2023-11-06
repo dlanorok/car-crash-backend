@@ -44,7 +44,7 @@ class CrashViewSet(mixins.RetrieveModelMixin,
         crash = self.get_object()
         create_pdf_from_crash(crash)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK, data=crash.pdf.url)
 
     @action(detail=True, methods=['post', 'get'])
     def confirm_crash(self, request, session_id=None):
