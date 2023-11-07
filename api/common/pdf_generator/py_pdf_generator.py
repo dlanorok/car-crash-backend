@@ -26,7 +26,6 @@ class PyPdfGenerator(PdfGeneratorInterface):
 
         self.questionnaires = self.crash.questionnaires.all()
         self.doc = fitz.open('assets/accident_report.pdf')
-        self.doc.need_appearances(True)
         self.page = self.doc[0]
 
         self.draw_sketch()
