@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -147,14 +146,12 @@ msgid "I drove correctly in my lane"
 msgstr "Vozil sem pravilno po svojem voznem pasu"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:22
-#, fuzzy
 #| msgid "Crashed with vehicle driving in front"
 msgid "Crashed with vehicle driving in front of me"
 msgstr "Trčil sem z vozilom, ki je vozilo pred mano"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:23
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:25
-#, fuzzy
 #| msgid "Another vehicle crashed from behind"
 msgid "Another vehicle crashed into me from behind"
 msgstr "Drugo vozilo se je od zadaj zaletelo vame"
@@ -327,7 +324,6 @@ msgid "I collided with a vehicle traveling in the same direction"
 msgstr "Trčil sem z vozilom, ki je vozilo v isto smer"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:30
-#, fuzzy
 #| msgid "I collided with a vehicle traveling in the same direction"
 msgid ""
 "I collided with a vehicle traveling in the same direction but in the other "
