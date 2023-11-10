@@ -366,7 +366,7 @@ msgstr "Skica nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:128
 msgid "Car and Insurance data"
-msgstr "Podatki o zavarovanju in vozilu"
+msgstr "Podatki o zavarovanju"
 
 #: .\api\questionnaires\data\questionnaire.py:129
 msgid "Driver"
