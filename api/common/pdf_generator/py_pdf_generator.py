@@ -141,6 +141,9 @@ class PyPdfGenerator(PdfGeneratorInterface):
                     if mapper.get("type") is not FieldType.TextArea:
                         widget.text_fontsize = 0
 
+                    if mapper.get("font_size"):
+                        widget.text_fontsize = mapper.get("font_size")
+
                     value = self.write_fields.get(mapper.get("name")) or ''
                     widget.field_value = value
                     widget.update()

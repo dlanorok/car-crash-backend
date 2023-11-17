@@ -682,6 +682,7 @@ QUESTIONNAIRE = {
     "44": {
       "id": 44,
       "type": "textarea",
+      "rows": 3,
       "label": str(_("Insurance holder Address")),
       "value": None,
       "required": True
