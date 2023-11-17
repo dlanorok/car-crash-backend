@@ -33,6 +33,10 @@ questionnaire_to_model_mapper = {
         "model": Crash,
         "property": "vehicle_material_damage"
     },
+    "47": {
+        "model": Crash,
+        "property": "other_material_damage"
+    },
     "4": {
         "model": Crash,
         "property": "participants"

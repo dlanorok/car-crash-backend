@@ -219,8 +219,7 @@ QUESTIONNAIRE = {
     {
       "step_type": Step.INVITE,
       "main_screen": True,
-      "question": str(_('Let the other participant scan this code to connect with your accident statement form')),
-      "help_text": str(_('This is random help text on invite section')),
+      "question": '',
       "inputs": ["49"],
     },
     {
@@ -682,7 +681,7 @@ QUESTIONNAIRE = {
     },
     "44": {
       "id": 44,
-      "type": "text",
+      "type": "textarea",
       "label": str(_("Insurance holder Address")),
       "value": None,
       "required": True

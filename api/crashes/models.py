@@ -24,6 +24,7 @@ class Crash(RevisionModel):
     closed = models.BooleanField(default=False)
     participants = models.IntegerField(default=2)
     creator = models.CharField(max_length=128, blank=True)
+    timezone = models.CharField(max_length=128, blank=True)
 
     date_of_accident = models.DateTimeField(null=True)
     country = models.CharField(max_length=256, null=True)

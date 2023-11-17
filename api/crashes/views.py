@@ -26,6 +26,7 @@ class CrashViewSet(mixins.RetrieveModelMixin,
             self.request.session.create()
 
         serializer.validated_data['creator'] = self.request.session.session_key
+        serializer.validated_data['timezone'] = self.request.META.get('HTTP_TIMEZONE', '')
 
         super().perform_create(serializer)
 

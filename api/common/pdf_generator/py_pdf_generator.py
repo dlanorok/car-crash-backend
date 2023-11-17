@@ -2,6 +2,7 @@ import io
 from datetime import datetime
 
 import fitz
+import pytz
 from PIL import Image
 from django.core.files import File as CoreFile
 from django.core.files.storage import default_storage
@@ -24,6 +25,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
     def __init__(self, crash: Crash):
         super().__init__(crash)
 
+
         self.questionnaires = self.crash.questionnaires.all()
         self.doc = fitz.open('assets/accident_report.pdf')
         self.page = self.doc[0]
@@ -31,6 +33,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
         self.draw_sketch()
         self.draw_initial_impact()
         self.draw_damaged_parts()
+        self.write_fields = self.get_write_fields()
 
     def draw_damaged_parts(self):
         for index, questionnaire in enumerate(self.questionnaires):
@@ -126,10 +129,51 @@ class PyPdfGenerator(PdfGeneratorInterface):
 
 
     def prepare_pdf(self):
+        for page in self.doc:
+            widgets = page.widgets()
+            for widget in widgets:
+                if widget.field_name in field_mapper:
+                    mapper = field_mapper.get(widget.field_name)
+
+                    if not mapper:
+                        continue
+
+                    if mapper.get("type") is not FieldType.TextArea:
+                        widget.text_fontsize = 0
+
+                    value = self.write_fields.get(mapper.get("name")) or ''
+                    widget.field_value = value
+                    widget.update()
+
+
+    def write(self):
+        output_buffer = io.BytesIO()
+        self.doc.save(output_buffer)
+        output_buffer.seek(0)
+        self.doc.close()
+
+        if not self.crash.pdf:
+            self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
+        else:
+            self.crash.pdf.file.delete()
+            self.crash.pdf.file.save(f'{self.crash.id}_{settings.ENV}.pdf', output_buffer)
+
+        self.crash.pdf.save()
+        self.crash.save()
+        output_buffer.close()
+
+        pdf_generator_event.send(
+            sender=None,
+            instance=self.crash,
+            sender_id='',
+            event_type='model_update'
+        )
+
+    def get_write_fields(self):
         witness_merged_data = ''
         write_fields = {
             AccidentStatementEnums.DATE_OF_ACCIDENT: self.crash.date_of_accident.strftime("%d.%m.%Y"),
-            AccidentStatementEnums.TIME_OF_ACCIDENT: self.crash.date_of_accident.strftime("%H:%M"),
+            AccidentStatementEnums.TIME_OF_ACCIDENT: self.crash.date_of_accident.astimezone(pytz.timezone(self.crash.timezone)).strftime("%H:%M"),
             AccidentStatementEnums.ACCIDENT_COUNTRY: str(self.crash.country),
             AccidentStatementEnums.ACCIDENT_PLACE_1: self.crash.place[0:28],
             AccidentStatementEnums.ACCIDENT_PLACE_2: self.crash.place[28:],
@@ -203,49 +247,10 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 f'{AccidentStatementEnums.FROM_RIGHT_CROSSING}_{i + 1}': car.circumstances.from_right_crossing,
                 f'{AccidentStatementEnums.DISREGARDING_RIGHT_OF_WAY_RED_LIGHT}_{i + 1}': car.circumstances.disregarding_right_of_way_red_light,
 
-                f'{AccidentStatementEnums.SIGNATURE}_{i + 1}': f'{car.driver.name} {car.driver.surname}\n{datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
+                f'{AccidentStatementEnums.SIGNATURE}_{i + 1}': f'{car.driver.name} {car.driver.surname}\n{datetime.now().strftime("%d.%m.%Y %H:%M:%S")}\n{car.driver.email}\n{car.driver.phone_number}',
             })
 
         write_fields.update({
             f'{AccidentStatementEnums.WITNESSES}': witness_merged_data,
         })
-
-        for page in self.doc:
-            widgets = page.widgets()
-            for widget in widgets:
-                if widget.field_name in field_mapper:
-                    mapper = field_mapper.get(widget.field_name)
-
-                    if not mapper:
-                        continue
-
-                    if mapper.get("type") is not FieldType.TextArea:
-                        widget.text_fontsize = 0
-
-                    value = write_fields.get(mapper.get("name")) or ''
-                    widget.field_value = value
-                    widget.update()
-
-
-    def write(self):
-        output_buffer = io.BytesIO()
-        self.doc.save(output_buffer)
-        output_buffer.seek(0)
-        self.doc.close()
-
-        if not self.crash.pdf:
-            self.crash.pdf = File(file=CoreFile(output_buffer, name=f'{self.crash.id}_{settings.ENV}.pdf'), file_name=f'{self.crash.id}_{settings.ENV}.pdf')
-        else:
-            self.crash.pdf.file.delete()
-            self.crash.pdf.file.save(f'{self.crash.id}_{settings.ENV}.pdf', output_buffer)
-
-        self.crash.pdf.save()
-        self.crash.save()
-        output_buffer.close()
-
-        pdf_generator_event.send(
-            sender=None,
-            instance=self.crash,
-            sender_id='',
-            event_type='model_update'
-        )
+        return write_fields
