@@ -12,7 +12,7 @@ class AccidentStatementEnums:
     OTHER_MATERIAL_DAMAGE_YES = 'other_material_damage_yes'
     WITNESSES = 'witnesses'
 
-    POLICY_HOLDER_SURNAME = 'policy_holder_name'
+    POLICY_HOLDER_SURNAME = 'policy_holder_surname'
     POLICY_HOLDER_NAME = 'policy_holder_name'
     POLICY_HOLDER_ADDRESS = 'policy_holder_address'
     POLICY_HOLDER_EMAIL = 'policy_holder_email'

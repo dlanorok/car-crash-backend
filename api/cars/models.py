@@ -28,8 +28,8 @@ class Car(RevisionModel):
 
     responsibility_type = models.CharField(max_length=100, choices=ResponsibilityTypeEnum.RESPONSIBILITY_TYPE, blank=True)
 
-    witnesses = models.TextField(blank=True)
-    additional_data = models.TextField(blank=True)
+    witnesses = models.TextField(blank=True, null=True)
+    additional_data = models.TextField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         is_new_car = self.pk is None

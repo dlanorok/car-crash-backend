@@ -189,7 +189,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
         }
 
         for i, car in enumerate(self.crash.cars.all()):
-            witness_merged_data += car.witnesses + "\n"
+            witness_merged_data += car.witnesses or '' + "\n"
 
             circumstance_count = 0
             for field in car.circumstances._meta.fields:
