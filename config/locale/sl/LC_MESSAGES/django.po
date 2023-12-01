@@ -56,7 +56,7 @@ msgstr "Stal sem pred vključevanjem v promet oziroma pred semaforjem"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:21
 msgid "Crashed with vehicle in front"
-msgstr "Trčil sem z vozilom, ki je vozilo pred mano"
+msgstr "Naletel sem z vozilom, ki je vozilo pred mano"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:22
 msgid "Another vehicle crashed from behind"
@@ -76,25 +76,25 @@ msgstr "Zavijal sem levo"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:28
 msgid "I took into account the right-of-way signs or green light"
-msgstr "Upošteval sem znake prednosti oziroma zeleno luč na semaforju"
+msgstr "<b>Upošteval sem</b> znake prednosti oziroma zeleno luč na semaforju"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:30
 msgid "I did not take into account the right-of-way signs or green light"
-msgstr "Nisem upošteval znakov prednosti oziroma rdeče luči na semaforju"
+msgstr "<b>Nisem upošteval</b> znakov prednosti oziroma rdeče luči na semaforju"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:32
 msgid ""
 "At the intersection of equivalent roads, I was coming from the right in "
 "relation to another vehicle"
 msgstr ""
-"V križišče enakovrednih cest sem pripeljal z desne glede na drugo vozilo"
+"<b>Z desne</b> glede na drugo vozilo sem pripeljal V križišče enakovrednih cest"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:34
 msgid ""
 "At the intersection of equivalent roads, I was coming from the left in "
 "relation to another vehicle"
 msgstr ""
-"V križišče enakovrednih cest sem pripeljal z leve glede na drugo vozilo"
+"<b>Z leve</b> glede na drugo vozilo sem pripeljal V križišče enakovrednih cest"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:48
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:56
