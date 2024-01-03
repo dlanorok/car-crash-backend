@@ -209,7 +209,10 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_serializer
 CELERY_RESULT_SERIALIZER = "json"
-CELERY_BROKER_URL="redis://localhost:6379"
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", default="redis://localhost:6379")
+# CELERY_BROKER_URL="redis://localhost:6379"
+
 CELERY_RESULT_BACKEND="django-db"
 
 AWS_SES_REGION_NAME = os.getenv("AWS_SES_REGION_NAME", "eu-west-1")
