@@ -171,7 +171,7 @@ TOS_PAGE = lambda is_organizer: {
     "step_type": Step.TERMS_OF_SERVICE_STEP_INITIAL_PAGE,
     "question": str(_("Terms of service")),
     "help_text": str(
-        _('I agree to the [terms of service] of the Aksi service and [privacy policy]. I will have access to my data only, the other party involved in the accident, and individuals whom I personally authorize for access.')),
+        _('I agree to the <a href="https://app.aksi.ai/privacy_policy.html" target="_blank">terms of service</a> of the Aksi service and <a href="https://app.aksi.ai/terms_of_service.html" target="_blank">privacy policy</a>. I will have access to my data only, the other party involved in the accident, and individuals whom I personally authorize for access.')),
     "next_step": Step.INJURIES if is_organizer else Step.CIRCUMSTANCES_INITIAL_PAGE,
     "inputs": ["55"],
 }
