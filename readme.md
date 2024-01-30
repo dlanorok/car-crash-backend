@@ -12,6 +12,9 @@ Run command...
 
 >> python manage.py runserver
 
+Run redis
+>> docker run -d --name redis -p 6379:6379 redis/redis-stack-server:latest
+
 
 Run celery 
 

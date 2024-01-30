@@ -10,7 +10,7 @@ from api.common.views.session_view import SessionView
 from api.questionnaires.data.constants import circumstances_input_ids
 from api.questionnaires.data.helpers import circumstance_input_to_arrow
 from api.questionnaires.data.prefilled_questionnaire import dario
-from api.questionnaires.data.questionnaire import QUESTIONNAIRE_MAP, QUESTIONNAIRE
+from api.questionnaires.data.questionnaire import QUESTIONNAIRE_MAP, get_questionnaire
 from api.questionnaires.models import Questionnaire
 from api.questionnaires.serializers import QuestionnaireSerializer
 from api.questionnaires.tasks import map_questionnaire_to_models
@@ -47,7 +47,7 @@ class QuestionnaireViewSet(SessionView,
             crash = self.get_crash_from_session()
             car = Car(crash=crash, creator=session_key)
             car.save()
-            questionnaire = copy.deepcopy(QUESTIONNAIRE)
+            questionnaire = copy.deepcopy(get_questionnaire(len(crash_questionnaires) == 0))
             if request.query_params.get("user") == "dario":
                 for input_id, value in dario.items():
                     questionnaire['inputs'][input_id]['value'] = value

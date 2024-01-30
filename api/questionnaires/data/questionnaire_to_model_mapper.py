@@ -78,6 +78,10 @@ questionnaire_to_model_mapper = {
         "model": Car,
         "property": "car_type",
     },
+    "55": {
+        "model": Car,
+        "property": "tos_compliance"
+    },
     "31": {
         "model": Insurance,
         "property": "name",

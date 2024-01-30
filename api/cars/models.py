@@ -28,6 +28,8 @@ class Car(RevisionModel):
 
     responsibility_type = models.CharField(max_length=100, choices=ResponsibilityTypeEnum.RESPONSIBILITY_TYPE, blank=True)
 
+    tos_compliance = models.BooleanField(default=None, blank=True, null=True)
+
     witnesses = models.TextField(blank=True, null=True)
     additional_data = models.TextField(blank=True, null=True)
 
