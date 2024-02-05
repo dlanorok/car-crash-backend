@@ -4,6 +4,7 @@ import os
 from jsonschema import validate, ValidationError
 from rest_framework import serializers
 
+from api.cars.serializers import CarSerializer
 from api.crashes.models import Crash
 from api.questionnaires.models import Questionnaire
 from django.utils.translation import gettext as _
@@ -11,6 +12,7 @@ from django.utils.translation import gettext as _
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
     crash = serializers.PrimaryKeyRelatedField(queryset=Crash.objects.all(), many=False)
+    car = CarSerializer()
 
     def validate_data(self, value):
         try:

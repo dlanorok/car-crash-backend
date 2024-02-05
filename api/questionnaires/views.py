@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from api.cars.models import Car
+from api.cars.serializers import CarSerializer
 from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
 from api.questionnaires.data.constants import circumstances_input_ids
@@ -56,7 +57,7 @@ class QuestionnaireViewSet(SessionView,
                 "creator": session_key,
                 "data": questionnaire,
                 "crash": crash.id,
-                "car": car.id
+                "car": car
             }
 
             if len(crash_questionnaires) > 0:
@@ -64,11 +65,10 @@ class QuestionnaireViewSet(SessionView,
                                                              data.get("data").get("sections"))))
                 self.update_all_shared_inputs(data, crash_questionnaires.first())
 
-            serializer = self.get_serializer(data=data)
-            serializer.is_valid(raise_exception=True)
-            self.perform_create(serializer)
+            questionnaire_model = Questionnaire(creator=session_key, data=data.get('data'), crash_id=crash.id, car=car)
+            questionnaire_model.save()
 
-            questionnaires = Questionnaire.objects.filter(crash=serializer.instance.crash)
+            questionnaires = Questionnaire.objects.filter(crash=questionnaire_model.crash)
             ids = list(map(lambda questionnaire: questionnaire.id, questionnaires))
             for _questionnaire in questionnaires:
                 sketch_input = _questionnaire.data['inputs']["37"]
@@ -112,13 +112,13 @@ class QuestionnaireViewSet(SessionView,
                 serializer.is_valid(raise_exception=True)
                 super().perform_update(serializer)
 
+        map_questionnaire_to_models(request.data, questionnaire)
+
         serializer = QuestionnaireSerializer(questionnaire, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         super().perform_update(serializer)
 
-        map_questionnaire_to_models(request.data, questionnaire)
-
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(data=QuestionnaireSerializer(questionnaire).data, status=status.HTTP_200_OK)
 
 
     def update_all_shared_inputs(self, questionnaire_data, questionnaire):
