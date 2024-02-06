@@ -106,6 +106,7 @@ class Step(str, Enum):
     RESPONSIBILITY_CONFIRMATION = "responsibility_confirmation"
     SUMMARY_CONFIRMATION = "summary_confirmation"
     FINAL_CONFIRMATION = "final_confirmation"
+    DOWNLOAD_PDF = "download_pdf"
 
     STARTING_STEP_INITIAL_PAGE = "starting_page_initial_page"
     TERMS_OF_SERVICE_STEP_INITIAL_PAGE = "terms_of_service_step_initial_page"
@@ -171,7 +172,7 @@ TOS_PAGE = lambda is_organizer: {
     "step_type": Step.TERMS_OF_SERVICE_STEP_INITIAL_PAGE,
     "question": str(_("Terms of service")),
     "help_text": str(
-        _('I agree to the <a href="https://app.aksi.ai/privacy_policy.html" target="_blank">terms of service</a> of the Aksi service and <a href="https://app.aksi.ai/terms_of_service.html" target="_blank">privacy policy</a>. I will have access to my data only, the other party involved in the accident, and individuals whom I personally authorize for access.')),
+        _('I agree to the <a href="https://terms.aksi.ai/" target="_blank">terms of service</a> of the Aksi service and <a href="https://terms.aksi.ai/politika-zasebnosti" target="_blank">privacy policy</a>. I will have access to my data only, the other party involved in the accident, and individuals whom I personally authorize for access.')),
     "next_step": Step.INJURIES if is_organizer else Step.CIRCUMSTANCES_INITIAL_PAGE,
     "inputs": ["55"],
 }
@@ -308,7 +309,7 @@ def get_questionnaire(is_organizer):
                 "main_screen": True,
                 "chapter": True,
                 "question": str(_('Confirmation step chapter')),
-                "next_step": Step.RESPONSIBILITY_CONFIRMATION,
+                "next_step": Step.SUMMARY_CONFIRMATION,
                 "inputs": [],
             },
 
@@ -358,7 +359,6 @@ def get_questionnaire(is_organizer):
                 "step_type": Step.RESPONSIBILITY_CONFIRMATION,
                 "question": str(_('Who is responsible for the accident')),
                 "help_text": str(_('Help text about responsibility')),
-                "next_step": Step.SUMMARY_CONFIRMATION,
                 "inputs": ["38"]
             },
             {
@@ -372,8 +372,15 @@ def get_questionnaire(is_organizer):
                 "step_type": Step.FINAL_CONFIRMATION,
                 "question": str(_('Smo na CILJU')),
                 "help_text": str(_('Click on button and complete the flow')),
+                "next_step": Step.DOWNLOAD_PDF,
                 "main_screen": True,
                 "inputs": ["52"]
+            },
+            {
+                "step_type": Step.DOWNLOAD_PDF,
+                "question": str(_('You have successfully finished EU report.')),
+                "main_screen": True,
+                "inputs": ["56"]
             },
             {
                 "step_type": Step.CIRCUMSTANCES_STEP_1,
@@ -454,6 +461,7 @@ def get_questionnaire(is_organizer):
                 "step_type": Step.ADDITIONAL_ACCIDENT_DATA_TEXT,
                 "question": str(_('Write down additional data of the accident')),
                 "help_text": str(_('Information about additional data of accident')),
+                "next_step": Step.RESPONSIBILITY_CONFIRMATION,
                 "inputs": ["39"],
             },
             {
@@ -787,6 +795,12 @@ def get_questionnaire(is_organizer):
                 "type": "checkbox",
                 "label": str(_("I accept and agree to the Terms of service")),
                 "required": True,
+                "value": None,
+            },
+            "56": {
+                "id": 56,
+                "type": "download_pdf",
+                "required": False,
                 "value": None,
             },
             **parked_questionnaire.inputs,
