@@ -444,7 +444,7 @@ msgstr "Nisem prepričan kdo je kriv"
 
 #: .\api\questionnaires\data\questionnaire.py:179
 msgid "Terms of service"
-msgstr ""
+msgstr "Pogoji uporabe"
 
 #: .\api\questionnaires\data\questionnaire.py:181
 msgid ""
