@@ -432,7 +432,7 @@ msgstr "Ne vem"
 
 #: .\api\questionnaires\data\questionnaire.py:173
 msgid "Terms of service"
-msgstr ""
+msgstr "Pogoji uporabe"
 
 #: .\api\questionnaires\data\questionnaire.py:175
 msgid ""
