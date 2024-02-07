@@ -16,6 +16,7 @@ from api.common.pdf_generator.si_field_mapper import field_mapper, FieldType
 from api.common.pdf_generator.statement_enum import AccidentStatementEnums
 from api.crashes.models import Crash
 from api.files.models import File
+from api.questionnaires.data.questionnaire import ResponsibilityTypeEnum
 from config import settings
 
 pdf_generator_event = Signal(providing_args=['instance', 'sender_id'])
@@ -210,7 +211,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 f'{AccidentStatementEnums.CAR_TYPE}_{i + 1}': car.car_type,
                 f'{AccidentStatementEnums.CAR_REGISTRATION_PLATE}_{i + 1}': car.registration_plate,
                 f'{AccidentStatementEnums.CAR_REGISTRATION_COUNTRY}_{i + 1}': car.registration_country,
-                f'{AccidentStatementEnums.ADDITIONAL_DATA}_{i + 1}': f'{car.additional_data},\n {car.responsibility_type}',
+                f'{AccidentStatementEnums.ADDITIONAL_DATA}_{i + 1}': f'{car.additional_data},\n {ResponsibilityTypeEnum.TRANSLATIONS[car.responsibility_type]}',
 
                 f'{AccidentStatementEnums.INSURANCE_NAME}_{i + 1}': car.insurance.name,
                 f'{AccidentStatementEnums.INSURANCE_POLICY_NUMBER}_{i + 1}': car.insurance.policy_number,

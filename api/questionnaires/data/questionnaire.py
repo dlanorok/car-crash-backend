@@ -167,6 +167,12 @@ class ResponsibilityTypeEnum:
         (UNKNOWN, "unknown"),
     ]
 
+    TRANSLATIONS = {
+        ME: _("I Am responsible for the accident"),
+        ANOTHER: _("For the accident is responsible someone else"),
+        UNKNOWN: _("I do not know who is responsible"),
+    }
+
 
 TOS_PAGE = lambda is_organizer: {
     "step_type": Step.TERMS_OF_SERVICE_STEP_INITIAL_PAGE,
