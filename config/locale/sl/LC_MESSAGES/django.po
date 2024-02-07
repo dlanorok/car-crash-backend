@@ -42,7 +42,7 @@ msgstr "Evropsko poročilo o prometni nesreči."
 
 #: .\api\crashes\views.py:57
 msgid "Not enough cars to confirm the crash"
-msgstr "Za potrditev poročila morata biti v nesreči udeležena vsaj dva avta."
+msgstr "Za potrditev poročila morata biti v nesreči udeleženi vsaj dve vozili."
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:16
 msgid "I was at a crossing"
@@ -125,19 +125,19 @@ msgstr "Izberite eno opcijo"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:49
 msgid "5"
-msgstr "5"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:57
 msgid "15"
-msgstr "15"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:64
 msgid "16"
-msgstr "16"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\crossing\crossing_questionnaire.py:71
 msgid "17"
-msgstr "17"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:18
 msgid ""
@@ -200,13 +200,13 @@ msgstr "Zapeljal sem na levi vozni pas"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:50
 msgid "6"
-msgstr "6"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:57
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:64
 #: .\api\questionnaires\data\circumstances\driving_straight\driving_straight_questionnaire.py:71
 msgid "18"
-msgstr "18"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\driving_straight_another_lane\driving_straight_another_lane_questionnaire.py:7
 msgid "I was driving in the oncoming traffic lane"
@@ -246,23 +246,23 @@ msgstr "Zavijal sem levo"
 
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:40
 msgid "3"
-msgstr "3"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:47
 msgid "9"
-msgstr "9"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:54
 msgid "10"
-msgstr "10"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:62
 msgid "11"
-msgstr "11"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\moving\moving_questionnaire.py:69
 msgid "12"
-msgstr "12"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:15
 msgid "My vehicle was parked"
@@ -290,15 +290,15 @@ msgstr "Vrata vozila so bila odprta"
 
 #: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:35
 msgid "2"
-msgstr "2"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:42
 msgid "7"
-msgstr "7"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\parked\parked_questionnaire.py:49
 msgid "8"
-msgstr "8"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:18
 msgid "I was in a roundabout"
@@ -336,13 +336,13 @@ msgstr "Menjaval sem vozni pas"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:53
 msgid "4"
-msgstr "4"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:62
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:71
 #: .\api\questionnaires\data\circumstances\roundabout\roundabout_questionnaire.py:78
 msgid "13"
-msgstr "13"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:130
 msgid "Starting questions"
@@ -354,7 +354,7 @@ msgstr "Vključitev udeleženca"
 
 #: .\api\questionnaires\data\questionnaire.py:132
 msgid "Circumstances"
-msgstr "Okoliščine nesreče "
+msgstr "Okoliščine nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:133
 msgid "Vehicle damages"
@@ -366,7 +366,7 @@ msgstr "Skica nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:135
 msgid "Car and Insurance data"
-msgstr "Podatki o zavarovanju"
+msgstr "Podatki o vašem zavarovanju"
 
 #: .\api\questionnaires\data\questionnaire.py:136
 msgid "Driver"
@@ -484,12 +484,12 @@ msgstr "POTRDITE POROČILO O PROMETNI NESREČI"
 msgid "Is there anyone injured and needs medical attention?"
 msgstr ""
 "Varnost vseh udeleženih je na prvem mestu. Ali je kdo poškodovan (huje ali "
-"lažje) in potrebuje medicinsko pomoč? "
+"lažje) in potrebuje medicinsko pomoč?"
 
 #: .\api\questionnaires\data\questionnaire.py:319
 #: .\api\questionnaires\data\questionnaire.py:477
 msgid "This is random help text that needs to be changed"
-msgstr ""
+msgstr "Če so bile v prometni osebe ponesrečene osebe, ki potrebujejo medicinsko oskrbo morate poklicati reševalce na 112. Le v primeru, da so vsi udeleženi brez resnejših poškod lahko nadaljujete z izpolnjevanjem."
 
 #: .\api\questionnaires\data\questionnaire.py:325
 msgid "Damage on other vehicles"
@@ -497,7 +497,7 @@ msgstr "Ali so vidne poškodbe na drugih vozilih?"
 
 #: .\api\questionnaires\data\questionnaire.py:326
 msgid "This is random help text on page Damage on other vehicles section"
-msgstr ""
+msgstr "Če so bila poškodovana tudi druga vozila izberite DA. Če sta bili poškodovani le udeleženi vozili izberite NE"
 
 #: .\api\questionnaires\data\questionnaire.py:332
 msgid "Is there any damage on nearby property?"
@@ -506,7 +506,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:333
 msgid "This is random help text on page Is there any damage on nearby property"
-msgstr ""
+msgstr "V prometnih nesrečah je lahko poškodovana tudi ostala lastnina. Izberite DA, če so poškodbe tudi na ostalih stvareh. Izberite NE, samo če sta poškodovani le udeleženi vozili."
 
 #: .\api\questionnaires\data\questionnaire.py:340
 msgid "Choose location"
@@ -514,7 +514,7 @@ msgstr "Določite lokacijo nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:341
 msgid "This is random help text on Accident place picker"
-msgstr ""
+msgstr "Točna lokacija je zelo pomembna, saj vam bo v nadaljevanju omogočila narisati ustrezno skico nesreče. Dovolite dostop do GPS podatkov za lažjo določitev lokacije. S prstom premikate in večate/manjšate zemljevid, da točno določite lokacijo nesreče."
 
 #: .\api\questionnaires\data\questionnaire.py:347
 msgid "Time of the accident"
@@ -522,7 +522,7 @@ msgstr "Datum in ura nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:348
 msgid "This is random help text on Time of accident"
-msgstr ""
+msgstr "Vnesite čim bolj točen čas prometne nesreče."
 
 #: .\api\questionnaires\data\questionnaire.py:354
 msgid "Number of participants"
@@ -530,7 +530,7 @@ msgstr "Število udeležencev"
 
 #: .\api\questionnaires\data\questionnaire.py:355
 msgid "This is random help text on participant number"
-msgstr ""
+msgstr "Izberite število udeleženih vozil v nesreči. Glede na izbrano boste nato v nadaljevanju lahko povabili ostale soudeležence"
 
 #: .\api\questionnaires\data\questionnaire.py:360
 msgid "Who is responsible for the accident"
@@ -538,7 +538,7 @@ msgstr "Kdo je po vaši presoji kriv za nesrečo?"
 
 #: .\api\questionnaires\data\questionnaire.py:361
 msgid "Help text about responsibility"
-msgstr ""
+msgstr "Določitev odgovornosti je pomemben podatek pri opisu nesreče. Prosimo odgovorite po resnici. V primeru dvomov izberite opcijo Ne vem."
 
 #: .\api\questionnaires\data\questionnaire.py:366
 msgid "Povzetek"
@@ -561,7 +561,7 @@ msgstr "Uspešno ste izpolnili evropski obrazec!"
 
 #: .\api\questionnaires\data\questionnaire.py:388
 msgid "1"
-msgstr "1"
+msgstr "Izberite opcijo, ki je najbolj ustrezna in dobro opisuje okoliščine vaše nesreče"
 
 #: .\api\questionnaires\data\questionnaire.py:395
 msgid "Choose Collision direction"
@@ -573,7 +573,7 @@ msgstr "Označite poškodovane dele vozila"
 
 #: .\api\questionnaires\data\questionnaire.py:407
 msgid "Write down your registration number"
-msgstr "Vpišite registrsko številko"
+msgstr "Vpišite vašo registrsko številko"
 
 #: .\api\questionnaires\data\questionnaire.py:408
 msgid "Help ext about registration number"
@@ -598,7 +598,7 @@ msgstr ""
 
 #: .\api\questionnaires\data\questionnaire.py:428
 msgid "Write down insurance holder data"
-msgstr "Vpišite podatke o zavarovalcu"
+msgstr "Vpišite podatke o zavarovancu"
 
 #: .\api\questionnaires\data\questionnaire.py:429
 msgid "Help text about insurance holder data"
@@ -1424,9 +1424,9 @@ msgstr ""
 msgid "Decimal number"
 msgstr ""
 
-#: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:1585
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1585
-#: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:1585
+#: .\venv3.9\Lib\site-packages\django\db\models\fields\__init__.py:85
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:85
+#: .\venv_3.8\Lib\site-packages\django\db\models\fields\__init__.py:85
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
