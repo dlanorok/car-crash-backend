@@ -8,6 +8,7 @@ from api.cars.models import Car
 from api.cars.serializers import CarSerializer
 from api.common.views.event_view import EventView
 from api.common.views.session_view import SessionView
+from api.crashes.models import Crash
 from api.questionnaires.data.constants import circumstances_input_ids
 from api.questionnaires.data.helpers import circumstance_input_to_arrow
 from api.questionnaires.data.prefilled_questionnaire import dario
@@ -25,9 +26,44 @@ class QuestionnaireViewSet(SessionView,
     serializer_class = QuestionnaireSerializer
 
     def get_by_session(self, session_id):
-        return Questionnaire.objects.all()
+        return Questionnaire.objects.filter(crash__session_id=session_id)
 
-    @action(detail=False, methods=['get'])
+    def list(self, request, *args, **kwargs):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+        return super().list(request, args, kwargs)
+
+    def create(self, request, *args, **kwargs):
+        # Create session
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        session_key = self.request.session.session_key
+        crash = self.get_crash_from_session()
+
+        if not crash:
+            crash = Crash(creator=session_key, timezone=self.request.META.get('HTTP_TIMEZONE', ''))
+            crash.save()
+
+        car = Car(crash=crash, creator=session_key)
+        car.save()
+
+        questionnaire = copy.deepcopy(get_questionnaire(crash.creator == session_key))
+
+        first_questionnaire = crash.questionnaires.first()
+        if first_questionnaire:
+            self.update_all_shared_inputs(questionnaire, first_questionnaire)
+        questionnaire_model = Questionnaire(creator=session_key, data=questionnaire, crash=crash, car=car)
+        questionnaire_model.save()
+
+        self.set_sketch_cars(crash)
+
+        questionnaire_model.refresh_from_db()
+        self.send_event(questionnaire_model, 'model_create')
+
+        return Response(data=QuestionnaireSerializer(questionnaire_model).data, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['get', 'post'])
     def load_or_create(self, request):
         # Create session
         if not self.request.session.exists(self.request.session.session_key):
@@ -69,21 +105,6 @@ class QuestionnaireViewSet(SessionView,
             questionnaire_model.save()
 
             questionnaires = Questionnaire.objects.filter(crash=questionnaire_model.crash)
-            ids = list(map(lambda questionnaire: questionnaire.id, questionnaires))
-            for _questionnaire in questionnaires:
-                sketch_input = _questionnaire.data['inputs']["37"]
-                value = sketch_input.get("value", {})
-                if not value:
-                    value = {"cars": []}
-
-                value.update(cars=[{"questionnaire_id": id} for id in ids])
-                # Reset confirmed ediotrs
-                value.update(confirmed_editors=[])
-                serializer = QuestionnaireSerializer(_questionnaire, data={}, partial=True)
-                serializer.is_valid(raise_exception=True)
-                self.perform_update(serializer)
-
-
             serializer_many = QuestionnaireSerializer(questionnaires, many=True)
 
 
@@ -92,9 +113,30 @@ class QuestionnaireViewSet(SessionView,
     @action(detail=True, methods=['patch'])
     def update_inputs(self, request, pk=None):
         questionnaire = self.get_object()
+        self.update_questionnaire(questionnaire, request.data)
+
+        return Response(data=QuestionnaireSerializer(questionnaire).data, status=status.HTTP_200_OK)
+
+
+    def set_sketch_cars(self, crash):
+        questionnaires = Questionnaire.objects.filter(crash=crash)
+        ids = list(map(lambda questionnaire: questionnaire.id, questionnaires))
+        for _questionnaire in questionnaires:
+            sketch_input = _questionnaire.data['inputs']["37"]
+            value = sketch_input.get("value", {})
+            if not value:
+                value = {"cars": []}
+
+            value.update(cars=[{"questionnaire_id": id} for id in ids])
+            # Reset confirmed ediotrs
+            value.update(confirmed_editors=[])
+            _questionnaire.save()
+
+
+    def update_questionnaire(self, questionnaire, changed_inputs_dict):
         shared_input_ids = []
 
-        for input_id, value in request.data.items():
+        for input_id, value in changed_inputs_dict.items():
             inputs_changed = self.input_actions(input_id, value, questionnaire)
             for input_changed in inputs_changed:
                 shared_input_ids.append(input_changed)
@@ -108,23 +150,20 @@ class QuestionnaireViewSet(SessionView,
             for _questionnaire in questionnaires:
                 for shared_input_id in shared_input_ids:
                     _questionnaire.data['inputs'][shared_input_id] = questionnaire.data['inputs'][shared_input_id]
-                serializer = QuestionnaireSerializer(_questionnaire, data=request.data, partial=True)
+                serializer = QuestionnaireSerializer(_questionnaire, data=changed_inputs_dict, partial=True)
                 serializer.is_valid(raise_exception=True)
                 super().perform_update(serializer)
 
-        map_questionnaire_to_models(request.data, questionnaire)
+        map_questionnaire_to_models(changed_inputs_dict, questionnaire)
 
-        serializer = QuestionnaireSerializer(questionnaire, data=request.data, partial=True)
+        serializer = QuestionnaireSerializer(questionnaire, data=changed_inputs_dict, partial=True)
         serializer.is_valid(raise_exception=True)
         super().perform_update(serializer)
-
-        return Response(data=QuestionnaireSerializer(questionnaire).data, status=status.HTTP_200_OK)
-
 
     def update_all_shared_inputs(self, questionnaire_data, questionnaire):
         inputs = list(filter(lambda input: input.get("shared_input"), list(questionnaire.data.get("inputs").values())))
         for input in inputs:
-            questionnaire_data.get("data").get("inputs")[str(input.get("id"))] = input
+            questionnaire_data.get("inputs")[str(input.get("id"))] = input
 
 
     def input_actions(self, input_id, value, questionnaire):

@@ -177,7 +177,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
         witness_merged_data = ''
         write_fields = {
             AccidentStatementEnums.DATE_OF_ACCIDENT: self.crash.date_of_accident.strftime("%d.%m.%Y"),
-            AccidentStatementEnums.TIME_OF_ACCIDENT: self.crash.date_of_accident.astimezone(pytz.timezone(self.crash.timezone)).strftime("%H:%M"),
+            AccidentStatementEnums.TIME_OF_ACCIDENT: self.crash.date_of_accident.astimezone(pytz.timezone(self.crash.timezone)).strftime("%H:%M") if self.crash.timezone else self.crash.date_of_accident.astimezone().strftime("%H:%M"),
             AccidentStatementEnums.ACCIDENT_COUNTRY: str(self.crash.country),
             AccidentStatementEnums.ACCIDENT_PLACE_1: self.crash.place[0:28],
             AccidentStatementEnums.ACCIDENT_PLACE_2: self.crash.place[28:],
@@ -211,7 +211,7 @@ class PyPdfGenerator(PdfGeneratorInterface):
                 f'{AccidentStatementEnums.CAR_TYPE}_{i + 1}': car.car_type,
                 f'{AccidentStatementEnums.CAR_REGISTRATION_PLATE}_{i + 1}': car.registration_plate,
                 f'{AccidentStatementEnums.CAR_REGISTRATION_COUNTRY}_{i + 1}': car.registration_country,
-                f'{AccidentStatementEnums.ADDITIONAL_DATA}_{i + 1}': f'{car.additional_data},\n {ResponsibilityTypeEnum.TRANSLATIONS[car.responsibility_type]}',
+                f'{AccidentStatementEnums.ADDITIONAL_DATA}_{i + 1}': f'{car.additional_data},\n{ResponsibilityTypeEnum.TRANSLATIONS[car.responsibility_type]}',
 
                 f'{AccidentStatementEnums.INSURANCE_NAME}_{i + 1}': car.insurance.name,
                 f'{AccidentStatementEnums.INSURANCE_POLICY_NUMBER}_{i + 1}': car.insurance.policy_number,

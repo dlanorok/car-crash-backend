@@ -14,6 +14,15 @@ class EventView(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets.Gener
         )
         return instance
 
+    def send_event(self, instance, event_type):
+        model_event.send(
+            sender=self,
+            instance=instance,
+            sender_id=self.request.session.session_key,
+            event_type=event_type
+        )
+        return instance
+
     def perform_update(self, serializer):
         instance = serializer.save()
         model_event.send(

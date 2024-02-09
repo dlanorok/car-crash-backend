@@ -189,18 +189,6 @@ def get_questionnaire(is_organizer):
         "car_arrow": "",
         "sections": [
             {
-                "id": "starting_questions",
-                "name": Section.STARTING_QUESTIONS,
-                "state": "empty",
-                "starting_step": Step.STARTING_STEP_INITIAL_PAGE
-            },
-            {
-                "id": "invite",
-                "name": Section.INVITE,
-                "state": "empty",
-                "starting_step": Step.INVITE
-            },
-            {
                 "id": "circumstances",
                 "name": Section.CIRCUMSTANCES,
                 "state": "empty",
@@ -822,6 +810,22 @@ def get_questionnaire(is_organizer):
                              + roundabout_questionnaire.steps \
                              + crossing_questionnaire.steps \
                              + driving_straight_questionnaire.steps
+
+    if is_organizer:
+        questionnaire['sections'] = [
+            {
+                "id": "starting_questions",
+                "name": Section.STARTING_QUESTIONS,
+                "state": "empty",
+                "starting_step": Step.STARTING_STEP_INITIAL_PAGE
+            },
+            {
+                "id": "invite",
+                "name": Section.INVITE,
+                "state": "empty",
+                "starting_step": Step.INVITE
+            },
+        ] + questionnaire['sections']
     return questionnaire
 
 
